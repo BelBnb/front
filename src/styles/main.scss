@@ -3,8 +3,8 @@
 @import "fontface";
 
 body {
-  color: $basicColor;
-  font-family: "OpenSans-Regular", sans-serif;
+  color: $bn-black;
+  font-family: "Catamaran-Regular", sans-serif;
 }
 
 h2 {
@@ -28,4 +28,8 @@ h2 {
 
 .test-block + .test-block {
   margin-top: 20px;
+}
+
+a {
+  text-decoration: none;
 }

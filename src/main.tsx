@@ -13,7 +13,6 @@ interface AppProps {
 interface AppState {
   title: string;
 }
-
 class AppContainer extends Component<AppProps, AppState> {
   ["constructor"]: typeof AppContainer;
 
