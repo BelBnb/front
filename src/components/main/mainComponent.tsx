@@ -1,25 +1,32 @@
+import { decrementCounter, incrementCounter } from "@/redux/actions/counterActions";
 import { increment } from "@/redux/reducers/counterReducer";
+import { RootState } from "@/redux/store";
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 
 const Main: React.FC = (): JSX.Element => {
     const [counter, setCounter] = useState(0)
 
+    const selector = useSelector<RootState, {counter: number}>(el => el.counter);
+
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(increment(10))
-    })
 
     const handleClck = () => {
-        setCounter(prevState => prevState+=1)
+        dispatch(incrementCounter(1));
     }
+
+    const handleMisClck = () => {
+        dispatch(decrementCounter(1));
+    }
+
 
     
     return <div className={styles.elem}>
-        <span>{counter}</span>
+        <span>{selector.counter}</span>
         <button onClick={handleClck}>Плюс контент</button>
+        <button onClick={handleMisClck}>Минус контент</button>
     </div>;
 };
 

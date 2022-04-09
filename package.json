@@ -110,6 +110,7 @@
     "webpack-mock-server": "^1.0.15"
   },
   "dependencies": {
+    "@manaflair/redux-batch": "^1.0.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@types/react-redux": "^7.1.23",
     "react": "^17.0.2",

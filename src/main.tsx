@@ -4,6 +4,8 @@ import "./styles/main.scss";
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import App from "./components/router/app";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 interface AppProps {
   // eslint-disable-next-line react/no-unused-prop-types
@@ -30,7 +32,9 @@ class AppContainer extends Component<AppProps, AppState> {
   render() {
     return (
       <StrictMode>
-        <App />
+        <Provider store={store}>
+          <App/>  
+        </Provider>
       </StrictMode>
     );
   }
