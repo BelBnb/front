@@ -6,16 +6,16 @@
   "scripts": {
     "test": "exit 0",
     "start": "npm run serve",
-    "serve": ".\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js",
+    "serve": ".//node_modules//.bin//webpack serve --open --config webpack.devServer.js",
     "serve-proxy": "npm run serve -- --env=proxy=https://localhost:44360/",
-    "build-prod": ".\\node_modules\\.bin\\webpack --mode production --config webpack.prod.js",
+    "build-prod": ".//node_modules//.bin//webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "npm run build-prod -- --sourceMap",
-    "build-dev": ".\\node_modules\\.bin\\webpack --mode development --config webpack.dev.js",
+    "build-dev": ".//node_modules//.bin//webpack --mode development --config webpack.dev.js",
     "lint": "npm run lint-es && npm run lint-styles && npm run lint-ts && npm run lint-md",
-    "lint-ts": ".\\node_modules\\.bin\\tsc --skipLibCheck --incremental --noEmit",
-    "lint-es": ".\\node_modules\\.bin\\eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
-    "lint-styles": ".\\node_modules\\.bin\\stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --loglevel warn",
-    "lint-md": ".\\node_modules\\.bin\\markdownlint --fix **/*.md --ignore node_modules",
+    "lint-ts": ".//node_modules//.bin//tsc --skipLibCheck --incremental --noEmit",
+    "lint-es": ".//node_modules//.bin//eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
+    "lint-styles": ".//node_modules//.bin//stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --loglevel warn",
+    "lint-md": ".//node_modules//.bin//markdownlint --fix **/*.md --ignore node_modules",
     "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
   "engines": {
@@ -110,8 +110,13 @@
     "webpack-mock-server": "^1.0.15"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "@types/react-redux": "^7.1.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.3.0"
+    "react-redux": "^7.2.8",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   }
 }
