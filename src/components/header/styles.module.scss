@@ -1,0 +1,74 @@
+.headerContainer {
+  background-color: $bn-black;
+  color: $bn-white;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+
+  .link {
+    color: $bn-light-grey;
+    font-size: 1.2rem;
+  }
+}
+
+.headerContent {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  display: flex;
+}
+
+.logoCaption {
+  font-family: "DaysOne", sans-serif;
+  margin-left: 10px;
+  font-size: 32px;
+  align-self: center;
+}
+
+.logoImage {
+  width: 48px;
+  height: 48px;
+
+  img {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+.linksContainer {
+  display: flex;
+
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  button {
+    height: 42px;
+    padding: 0 40px;
+
+    .link {
+      font-family: "Catamaran-Regular", sans-serif;
+      text-transform: uppercase;
+      color: $bn-black;
+      font-size: 1rem;
+    }
+  }
+}
+
+.highlight {
+  transition: all 0.3s;
+}
+
+.highlight:hover {
+  color: white;
+}

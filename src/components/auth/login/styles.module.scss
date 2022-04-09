@@ -1,0 +1,19 @@
+.loginPage {
+  width: 100%;
+  height: 100%;
+  background-color: $bn-light-grey;
+  display: flex;
+}
+
+.row {
+  margin-top: 100px;
+  margin-bottom: 15vw;
+}
+
+.leftCol {
+  margin-left: 150px;
+}
+
+.loginLabel {
+  font-size: 3.56rem;
+}

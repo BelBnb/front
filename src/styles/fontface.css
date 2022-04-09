@@ -11,3 +11,27 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Catamaran-Bold";
+  src: url("fonts/catamaran/static/Catamaran-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Catamaran-Light";
+  src: url("fonts/catamaran/static/Catamaran-Light.ttf");
+}
+
+@font-face {
+  font-family: "Catamaran-Regular";
+  src: url("fonts/catamaran/static/Catamaran-Regular.ttf");
+}
+
+@font-face {
+  font-family: "DaysOne";
+  src: url("fonts/daysOne/DaysOne-Regular.ttf");
+}
+@font-face {
+  font-family: "Monreal";
+  src: url("fonts/montserrat/static/Montserrat-Regular.ttf");
+}
