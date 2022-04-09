@@ -2,7 +2,8 @@
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  height: 280px;
+  justify-content: space-between;
 
   .inputContainer {
     display: flex;
@@ -22,7 +23,7 @@
   }
 
   .loginInput::placeholder {
-    color: $bn-semi-black;
+    color: $bn-black;
     font-size: 0.8em;
   }
 
@@ -39,6 +40,7 @@
   }
 
   .bottomItems {
+    margin-top: 10px;
     display: flex;
     width: 100%;
     justify-content: space-between;

@@ -11,7 +11,7 @@ const Header = () => (
         <div className={styles.logoImage}>
           <img src={appWhiteLogo} alt="White Logo" />
         </div>
-        <span className={styles.logoCaption}>lorem</span>
+        <span className={styles.logoCaption}>NB</span>
       </div>
       <div className={styles.linksContainer}>
         {headerLinks.map((el) => (
