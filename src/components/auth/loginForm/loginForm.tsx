@@ -23,7 +23,7 @@ const LoginForm = () => (
       </div>
     </div>
 
-    <div>
+    <div className={styles.bottomItems}>
       <LoginButtons />
     </div>
   </FormWrapper>

@@ -10,7 +10,7 @@ const SignUpPage = () => {
     <div className={styles.signUpPageContainer} style={loadStyle}>
       <div className={styles.row}>
         <div className={styles.leftCol}>
-          <span className={styles.loginLabel}>Let's Get Personal.</span>
+          <span className={styles.loginLabel}>Are you ready to join?</span>
           <SignUpForm />
         </div>
       </div>

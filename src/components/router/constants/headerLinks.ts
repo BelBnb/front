@@ -17,8 +17,8 @@ const headerLinks: HeaderLinks[] = [
     label: "Link",
   },
   {
-    value: "value1",
-    label: "Link",
+    value: "messenger",
+    label: "Messenger",
   },
 ];
 

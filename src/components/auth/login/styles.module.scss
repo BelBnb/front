@@ -17,11 +17,14 @@
   background-color: rgba($color: $bn-light-grey, $alpha: 0.9);
   padding: 40px;
   border-radius: 8px;
+  width: 550px;
   height: 100%;
 }
 
 .loginLabel {
   font-size: 3.56rem;
+  display: flex;
+  margin-bottom: 50px;
 }
 
 .bgImage {
