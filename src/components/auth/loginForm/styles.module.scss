@@ -1,48 +1,12 @@
-.loginFromContainer {
-  margin-top: 60px;
+.bottomItems {
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.inputs {
   display: flex;
   flex-direction: column;
-  height: 280px;
-  justify-content: space-between;
-
-  .inputContainer {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .loginInput {
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-    font-size: 1em;
-    padding: 10px 8px;
-  }
-
-  .loginInput:focus {
-    outline: none;
-  }
-
-  .loginInput::placeholder {
-    color: $bn-black;
-    font-size: 0.8em;
-  }
-
-  .loginInputBotom {
-    height: 1px;
-    transition: background-color 0.5s;
-    background-color: $bn-semi-black;
-    width: 100%;
-    margin-top: -2px;
-  }
-
-  .loginInput:focus + .loginInputBotom {
-    background-color: black;
-  }
-
-  .bottomItems {
-    margin-top: 10px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
+  gap: 8px;
 }

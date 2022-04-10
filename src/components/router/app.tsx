@@ -7,6 +7,7 @@ import { ProtectedRoute } from "./protectedRoute";
 import Header from "../header/headerComponent";
 import styles from "./styles.module.scss";
 import LoginPage from "../auth/login/loginPageComponent";
+import SignUpPage from "../auth/signUp/signUpPage";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -17,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/kirill" element={<Main />} />
           <Route path="/sign-in" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
           <Route
             path="/nohon"
             element={

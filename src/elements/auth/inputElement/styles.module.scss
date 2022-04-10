@@ -1,0 +1,40 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginInput {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  font-size: 1em;
+  padding: 10px 8px;
+}
+
+.loginInput:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 20px 30px 40px 30px rgba($color: $bn-light-grey, $alpha: 0.9) inset !important;
+}
+
+.loginInput::placeholder {
+  color: $bn-black;
+  font-size: 0.8em;
+}
+
+.loginInputBotom {
+  height: 1px;
+  transition: background-color 0.5s;
+  background-color: $bn-semi-black;
+  width: 100%;
+  margin-top: -2px;
+}
+
+.loginInput:focus + .loginInputBotom {
+  background-color: black;
+}

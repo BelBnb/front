@@ -1,0 +1,33 @@
+.googleButton {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: $bn-claucos;
+  border: none;
+
+  span {
+    display: flex;
+    justify-content: center;
+    color: $bn-light-grey;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  div {
+    height: 38px;
+    width: 38px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
