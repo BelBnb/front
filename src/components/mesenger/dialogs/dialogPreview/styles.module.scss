@@ -1,0 +1,41 @@
+.previewContainer {
+  display: flex;
+  height: 72px;
+  align-items: center;
+  transition: all 0.3s;
+  border-radius: 4px;
+  width: 100%;
+  padding: 12px 16px;
+
+  &:hover {
+    background-color: $bn-claucos;
+    color: $bn-white;
+  }
+
+  .imgContainer {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    img {
+      border-radius: 50%;
+
+      width: inherit;
+      height: inherit;
+    }
+  }
+
+  .addressInfo {
+    display: flex;
+    justify-self: flex-start;
+    flex-direction: column;
+  }
+
+  .date {
+    font-size: 700;
+
+    span {
+      text-align: right;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { logUserOut, setUser } from "../actions/userActions";
-import { signUserUp } from "../thunks/auth/signInThunk";
+import { signUserIn } from "../thunks/auth/signInThunk";
+import { signUserUp } from "../thunks/auth/signUpThunk";
 
 export type User = {
     email: string,
@@ -22,6 +23,12 @@ export const UserReducer = createReducer(userInitState, (bldr)=> {
     })
     bldr.addCase(logUserOut, (state, _)=> {
         return {...state, ...userInitState}
+    })
+    bldr.addCase(signUserIn.fulfilled, (state, action) => {
+
+        return {
+            ...state, ...action.payload
+        }
     })
     bldr.addCase(signUserUp.fulfilled, (state, action) => {
 

@@ -18,4 +18,4 @@ const signInHandler = async (user: SignInDto) => {
 
 
 
-export const signUserUp = createAsyncThunk(signInPreffix, signInHandler )
+export const signUserIn = createAsyncThunk(signInPreffix, signInHandler )
