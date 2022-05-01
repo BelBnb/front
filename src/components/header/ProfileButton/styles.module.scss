@@ -1,0 +1,28 @@
+.profileContainer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: $bn-light-grey;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $bn-white;
+    cursor: pointer;
+  }
+}
+
+.name {
+}
+
+.imgContainer {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+
+  img {
+    border: $bn-light-grey 2px solid;
+    border-radius: 50%;
+    height: inherit;
+    width: inherit;
+  }
+}

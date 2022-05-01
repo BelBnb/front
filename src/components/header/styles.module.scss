@@ -24,6 +24,7 @@
 
 .logoContainer {
   display: flex;
+  align-items: baseline;
 }
 
 .logoCaption {
@@ -45,8 +46,9 @@
 
 .linksContainer {
   display: flex;
-
-  gap: 10px;
+  align-items: center;
+  margin-left: 8px;
+  gap: 8px;
 }
 
 .buttons {

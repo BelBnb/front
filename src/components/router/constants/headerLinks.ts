@@ -5,16 +5,12 @@ type HeaderLinks = {
 
 const headerLinks: HeaderLinks[] = [
   {
-    value: "value1",
-    label: "Link",
+    value: "hotels",
+    label: "Hotels",
   },
   {
-    value: "value1",
-    label: "Link",
-  },
-  {
-    value: "value1",
-    label: "Link",
+    value: "booking",
+    label: "Booking",
   },
   {
     value: "messenger",
