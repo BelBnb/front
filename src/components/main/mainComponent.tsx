@@ -1,48 +1,50 @@
-import { logUserOut, setUser } from "@/redux/actions/userActions";
-import { User } from "@/redux/reducers/userReducer";
-import { RootState } from "@/redux/store";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import welcomeScreen from "@/assets/images/backgrounds/index.jpg";
 import styles from "./styles.module.scss";
 
-const Main: React.FC = (): JSX.Element => {
-  const selector = useSelector<RootState, User>((el) => el.user);
+const Main: React.FC = (): JSX.Element => (
+  // const handleScroll = (e) => {
+  //   console.log(e);
+  // };
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(selector);
-  }, [selector]);
-
-  const handleClck = () => {
-    dispatch(setUser({ email: "prikol", id: 228, roles: ["kirick"], authorized: true }));
-  };
-
-  const handleMisClck = () => {
-    dispatch(logUserOut());
-  };
-
-  return (
-    <div className={styles.elem}>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/kirill">Home</Link>
-            <Link to="/sign-in">Sign in</Link>
-            <Link to="/nohon">No homo</Link>
-          </li>
-        </ul>
-      </nav>
-      <span>{selector.email}</span>
-      <button type="button" onClick={handleClck}>
-        Плюс контент
-      </button>
-      <button type="button" onClick={handleMisClck}>
-        Минус контент
-      </button>
+  // const selector = useSelector<RootState, User>((el) => el.user);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log(selector);
+  // }, [selector]);
+  // const handleClck = () => {
+  //   dispatch(
+  //     setUser({
+  //       email: "prikol",
+  //       id: 228,
+  //       roles: ["kirick"],
+  //       authorized: true,
+  //       firstName: "Ivan",
+  //       lastName: "Skaradumau",
+  //     })
+  //   );
+  // };
+  // const handleMisClck = () => {
+  //   dispatch(logUserOut());
+  // };
+  <div className={styles.pageWrapper}>
+    <div className={styles.scrollBlockContainer}>
+      <div className={styles.imgContainer}>
+        <img src={welcomeScreen} alt="welcomeScreen" />
+        <span>Welcome to BNB</span>
+      </div>
     </div>
-  );
-};
 
+    <div className={styles.content}>
+      <div className={styles.contentContainer}>
+        <div>
+          <span>Main caption</span>
+          <div className={styles.buttonContainer}>
+            <button>First button</button>
+            <button>Second button</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 export default Main;

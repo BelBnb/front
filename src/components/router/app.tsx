@@ -9,6 +9,7 @@ import styles from "./styles.module.scss";
 import LoginPage from "../auth/login/loginPageComponent";
 import SignUpPage from "../auth/signUp/signUpPage";
 import MessengerMain from "../mesenger/messengerMain/messengerMain";
+import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -17,7 +18,8 @@ export default function App() {
       <div className={styles.pageWrapper}>
         <Header />
         <Routes>
-          <Route path="/kirill" element={<Main />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/hotels" element={<HotelsWrapper />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/messenger" element={<MessengerMain />} />
@@ -30,6 +32,7 @@ export default function App() {
             }
           />
         </Routes>
+
         {/* <Footer /> */}
       </div>
     </Router>

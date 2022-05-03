@@ -9,10 +9,6 @@ const headerLinks: HeaderLinks[] = [
     label: "Hotels",
   },
   {
-    value: "booking",
-    label: "Booking",
-  },
-  {
     value: "messenger",
     label: "Messenger",
   },

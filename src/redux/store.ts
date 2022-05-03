@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 // ...
 import { appStateReducer } from "./reducers/appStateReducer";
+import { HotelsReducer } from "./reducers/hotelsReducer";
 import { UserReducer } from "./reducers/userReducer";
 
 export const store = configureStore({
   reducer: {
     appState: appStateReducer,
     user: UserReducer,
+    hotels: HotelsReducer,
   },
 });
 

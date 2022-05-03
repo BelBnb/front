@@ -1,4 +1,4 @@
-import { createAction } from "@reduxjs/toolkit"
+import { createAction } from "@reduxjs/toolkit";
 import { LOG_OUT, SET_USER } from "../actionTypes/userTypes";
 import { User } from "../reducers/userReducer";
 

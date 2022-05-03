@@ -1,23 +1,86 @@
-.elem {
-  color: #3d3d3d;
+.pageWrapper {
+  width: 100%;
   display: flex;
-  width: 40%;
-  margin: auto;
-  justify-content: center;
-  font-size: 26px;
-  flex-direction:column;
-  text-align: center;
-  gap: 15px;
-  button{
-    background-color: #2a2a2a;
-    padding: 4px;
-    border-radius: 4px;
-    border: none;
-    color: #f7f7f7;
-    transition: all 0.3s;
+  height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.scrollBlockContainer {
+  transition: all 0.3s;
+  width: 100%;
+  height: calc(100vh - 80px);
+}
+
+.imgContainer {
+  position: relative;
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+
+  & > img {
+    height: calc(100vh - 80px);
+    width: 100%;
   }
 
-  button:active {
-    background-color: rgba(42, 42, 42, 0.8);
+  & > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $bn-light-grey;
+    font-size: 42px;
+    font-family: "DaysOne", sans-serif;
+    text-transform: uppercase;
+  }
+}
+
+.content {
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: $bn-light-grey;
+
+  .contentContainer {
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    display: flex;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & span {
+      display: flex;
+      width: 100%;
+      text-align: center;
+    }
+
+    .buttonContainer {
+      display: flex;
+      gap: 12px;
+
+      button {
+        border-radius: 4px;
+        background-color: $bn-black;
+        color: $bn-light-grey;
+        border: none;
+        height: 40px;
+        font-size: 18px;
+        padding: 4px 8px;
+      }
+    }
   }
 }
