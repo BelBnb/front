@@ -19,7 +19,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/hotels" element={<HotelsWrapper />} />
+          <Route path="/hotems" element={<HotelsWrapper />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/messenger" element={<MessengerMain />} />

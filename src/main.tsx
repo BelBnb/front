@@ -3,8 +3,8 @@ import "./styles/main.scss";
 // start-path is 'images' because we have an alias 'images' in webpack.common.js
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
-import App from "./components/router/app";
 import { Provider } from "react-redux";
+import App from "./components/router/app";
 import { store } from "./redux/store";
 
 interface AppProps {
@@ -32,7 +32,7 @@ class AppContainer extends Component<AppProps, AppState> {
     return (
       <StrictMode>
         <Provider store={store}>
-          <App/>  
+          <App />
         </Provider>
       </StrictMode>
     );

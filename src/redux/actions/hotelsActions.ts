@@ -5,6 +5,6 @@ import { CREATE_HOTEL, GET_HOTELS, DELETE_HOTEL, PATCH_HOTEL } from "../actionTy
 import { Hotels } from "../reducers/hotelsReducer";
 
 export const createHotel = createAction<CreateHotelPayload>(CREATE_HOTEL);
-export const getHotels = createAction<getAllHotelsPayload>(GET_HOTELS);
+export const getHotels = createAction<getAllHotelsPayload[]>(GET_HOTELS);
 export const deleteHotel = createAction<Hotels>(DELETE_HOTEL);
 export const updateHotel = createAction<Hotels>(PATCH_HOTEL);

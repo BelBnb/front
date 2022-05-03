@@ -5,6 +5,6 @@ type HotelCardProps = {
   hotelItem: Hotel;
 };
 
-const HotelCard: React.FC<HotelCardProps> = ({ hotelItem }) => <div>HotelCard</div>;
+const HotelCard: React.FC<HotelCardProps> = ({ hotelItem }) => <div>{JSON.stringify(hotelItem)}</div>;
 
 export default HotelCard;

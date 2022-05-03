@@ -1,12 +1,13 @@
-const apiPrefix = "/api";
+const gatewayPreffix = "/gateway";
+const apiPreffix = "/api";
 
-export const signInRoute = `${apiPrefix}/auth/sign-in`;
-export const getTokenInfoRoute = `${apiPrefix}/auth/user`;
-export const signUpRoute = `${apiPrefix}/auth/sign-up`;
+export const signInRoute = `${gatewayPreffix}/auth/sign-in`;
+export const getTokenInfoRoute = `${gatewayPreffix}/auth/user`;
+export const signUpRoute = `${gatewayPreffix}/auth/sign-up`;
 
 const hotelPreffix = "/hotels";
-export const createHotelRoute = `${hotelPreffix + apiPrefix}/create`;
-export const updateHotelRoute = `${hotelPreffix + apiPrefix}/`;
-export const deleteHotelRoute = `${hotelPreffix + apiPrefix}/`;
-export const getAllHotelRoute = `${hotelPreffix + apiPrefix}/all`;
-export const getHotelRoute = `${hotelPreffix + apiPrefix}/`;
+export const createHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/create`;
+export const updateHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
+export const deleteHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
+export const getAllHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/all`;
+export const getHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;

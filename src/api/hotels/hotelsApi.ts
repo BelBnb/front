@@ -18,6 +18,8 @@ const createHotel = async (formData: FormData): Promise<CreateHotelPayload> => {
   return result.data;
 };
 const getHotel = async (id: string): Promise<getHotelPayload> => {
+  console.log("hotem");
+
   const result = await fetch(getHotelRoute + id, {
     method: "get",
   });
