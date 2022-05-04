@@ -24,7 +24,9 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem }) => (
       <span>{hotelItem.price}</span>
 
       <div className={styles.bottomButtons}>
-        <button>Details</button>
+        <button type="button">
+          <a href={`/hotels/${hotelItem.id}`}>Details</a>
+        </button>
         <button>Book</button>
       </div>
     </div>

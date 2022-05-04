@@ -1,0 +1,36 @@
+.pageWrapper {
+  display: flex;
+  background-color: $bn-light-grey;
+  height: calc(100% - 80px);
+
+  .contentContaienr {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 40px auto auto;
+  }
+
+  .columns {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+
+    div:first-child {
+      display: flex;
+      flex: 1 70%;
+    }
+
+    div:last-child {
+      display: flex;
+      flex: 0 30%;
+      max-width: 300px;
+      flex-direction: column;
+    }
+
+    .price {
+    }
+
+    .name {
+    }
+  }
+}

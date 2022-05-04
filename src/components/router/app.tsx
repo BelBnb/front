@@ -10,6 +10,7 @@ import LoginPage from "../auth/login/loginPageComponent";
 import SignUpPage from "../auth/signUp/signUpPage";
 import MessengerMain from "../mesenger/messengerMain/messengerMain";
 import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
+import ParticularHotel from "../hotels/particularHotel/ParticularHotel";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -19,7 +20,8 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/hotems" element={<HotelsWrapper />} />
+          <Route path="/hotels" element={<HotelsWrapper />} />
+          <Route path="/hotels/:id" element={<ParticularHotel />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/messenger" element={<MessengerMain />} />
