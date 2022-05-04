@@ -12,13 +12,12 @@ const HotelsContainer = () => {
   useEffect(() => {
     dispatch(getHotelsThunk());
   }, []);
-  useEffect(() => {
-    console.log("отели", hotels);
-  }, [hotels]);
   return (
-    <div className={styles.hotelsContainer}>
+    <div className={styles.hotelsWrapper}>
       <h4 className={styles.headerCaption}>Hotels</h4>
-      <div>{hotels.length > 0 && hotels.map((el) => <HotelCard hotelItem={el} />)}</div>
+      <div className={styles.hotelsContainer}>
+        {hotels.length > 0 && hotels.map((el) => <HotelCard hotelItem={el} />)}
+      </div>
     </div>
   );
 };
