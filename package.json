@@ -7,7 +7,7 @@
     "start": "npm run serve",
     "serve": ".\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js",
     "dev": "set HTTPS=true&&npm run serve-proxy",
-    "serve-proxy": "npm run serve -- --env=proxy=http://localhost:2999/",
+    "serve-proxy": "npm run serve --open --env=proxy=http://localhost:2999/",
     "build-prod": ".\\node_modules\\.bin\\webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "npm run build-prod -- --sourceMap",
     "build-dev": ".\\node_modules\\.bin\\webpack --mode development --config webpack.dev.js",

@@ -36,8 +36,10 @@ const ParticularHotel = () => {
             </Carousel>
           </div>
           <div>
-            <span className={styles.price}>{hotel?.price}$</span>
-            <span className={styles.name}>{hotel?.name}</span>
+            <div className={styles.sepLine}>
+              <span className={styles.price}>{hotel?.price}$</span>
+              <span className={styles.name}>{hotel?.name}</span>
+            </div>
             <aside>{hotel?.description}</aside>
 
             <div className={styles.buttonContainer}>

@@ -18,6 +18,7 @@
     }
 
     img {
+      border-radius: 22px;
       max-height: 600px;
     }
   }
@@ -37,6 +38,11 @@
       flex: 0 30%;
       max-width: 300px;
       flex-direction: column;
+    }
+
+    .sepLine {
+      display: flex;
+      justify-content: space-between;
     }
 
     .price {
