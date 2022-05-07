@@ -1,3 +1,13 @@
+// methods
+export const enum methods {
+  GET = "GET",
+  POST = "POST",
+  DELETE = "DELETE",
+  UPDATE = "UPDATE",
+  PATCH = "PATCH",
+}
+
+// routes
 const gatewayPreffix = "/gateway";
 const apiPreffix = "/api";
 

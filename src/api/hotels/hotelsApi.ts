@@ -1,57 +1,37 @@
 import { CreateHotelPayload } from "@/types/dto/apiPayloads/createHotelPayload";
 import { getHotelPayload } from "@/types/dto/apiPayloads/getAllHotelsPayload";
-import axios from "axios";
-import { createHotelRoute, getAllHotelRoute, getHotelRoute } from "../constants";
-
-const token = localStorage.getItem("token");
+import { request, requestWithFormData } from "../apiService";
+import {
+  createHotelRoute,
+  deleteHotelRoute,
+  getAllHotelRoute,
+  getHotelRoute,
+  methods,
+  updateHotelRoute,
+} from "../constants";
 
 const createHotel = async (formData: FormData): Promise<CreateHotelPayload> => {
-  // was neeeded to send ultipart data lol
-  const result = await axios.post(createHotelRoute, formData, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "multipart/form-data",
-    },
-  });
+  const result = await requestWithFormData(createHotelRoute, methods.POST, formData);
 
   return result.data;
 };
 const getHotel = async (id: string): Promise<getHotelPayload> => {
-  console.log("hotem");
-
-  const result = await fetch(getHotelRoute + id, {
-    method: "get",
-  });
+  const result = await request(getHotelRoute + id, methods.GET);
   return result.json();
 };
 
 const getAllHotels = async () => {
-  const result = await fetch(getAllHotelRoute, {
-    method: "get",
-  });
+  const result = await request(getAllHotelRoute, methods.GET);
   return result.json();
 };
 
-const deleteHotel = async () => {
-  const result = await fetch(getAllHotelRoute, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+const deleteHotel = async (id: number) => {
+  const result = await request(deleteHotelRoute + id, methods.DELETE);
   return result.json();
 };
-const updateHotel = async (formData: FormData) => {
+const updateHotel = async (id: number, formData: FormData) => {
   // was neeeded to send ultipart data lol
-  const result = await axios.post(createHotelRoute, formData, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "multipart/form-data",
-    },
-  });
-
+  const result = await requestWithFormData(updateHotelRoute + id, methods.PATCH, formData);
   return result.data;
 };
 

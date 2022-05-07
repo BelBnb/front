@@ -1,6 +1,10 @@
+/* stylelint-disable scss/at-rule-no-unknown */
 @import "normalize.css";
 @import "sanitize.css";
 @import "fontface";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   color: $bn-black;
