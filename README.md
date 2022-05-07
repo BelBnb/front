@@ -9,5 +9,5 @@
    - `npm run build-dev` - building development version
    - `npm run serve` - building development hot-reloaded version with webpack-dev-server
 4. To use proxy:
-   4.1 Change proxy url in `package.json`
-   4.2 `npm run serve-proxy`
+   - Change proxy url in `package.json`
+   - `npm run serve-proxy`
