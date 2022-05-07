@@ -1,11 +1,11 @@
 import "../styles.scss";
 
 interface CarouselItemProps {
-  width?: string;
+  wth?: string;
 }
 
-const CarouselItem: React.FC<CarouselItemProps> = ({ children, width }) => (
-  <div className="carousel-item" style={{ width }}>
+const CarouselItem: React.FC<CarouselItemProps> = ({ children, wth }) => (
+  <div className="carousel-item" style={{ width: wth }}>
     {children}
   </div>
 );

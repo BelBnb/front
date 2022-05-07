@@ -12,7 +12,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem }) => (
   <div className={styles.cardContainer}>
     <Carousel>
       {hotelItem.images.map((el) => (
-        <CarouselItem width="320px">
+        <CarouselItem wth="100%">
           <div className={styles.imageContainer}>
             <img src={el} alt="courusel item" />
           </div>
@@ -20,8 +20,8 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem }) => (
       ))}
     </Carousel>
     <div className={styles.bottomText}>
-      <span>{hotelItem.name}</span>
-      <span>{hotelItem.price}</span>
+      <span className={styles.name}>{hotelItem.name}</span>
+      <span className={styles.price}>{hotelItem.price}</span>
 
       <div className={styles.bottomButtons}>
         <button type="button">
