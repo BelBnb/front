@@ -9,8 +9,9 @@ interface MyCommentProps {
 
 const MyComment: React.FC<MyCommentProps> = ({ comment, removeComment, setOpen }) => (
   <div>
+    kok{" "}
     <span>
-      {comment.userFirstName}-{comment.userLastName}
+      {comment.userFirstName} {comment.userLastName}
     </span>
     <span>{comment.text}</span>
     stars: {comment.stars}

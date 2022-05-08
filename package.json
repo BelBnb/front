@@ -8,6 +8,7 @@
     "serve": ".\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js",
     "dev": "set HTTPS=true&&npm run serve-proxy",
     "serve-proxy": "npm run serve -- --env=proxy=http://localhost:2999/",
+    "serve-proxy-mac": "npm run serve -- --env=proxy=http://localhost:2999/ --env=hot=false",
     "build-prod": ".\\node_modules\\.bin\\webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "npm run build-prod -- --sourceMap",
     "build-dev": ".\\node_modules\\.bin\\webpack --mode development --config webpack.dev.js --env=proxy=http://localhost:2999/",
@@ -121,6 +122,7 @@
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
+    "react-simple-star-rating": "^4.0.5",
     "react-toastify": "^9.0.1"
   }
 }

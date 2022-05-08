@@ -10,7 +10,6 @@ const assets = require("./webpack.common").assetsPath;
 
 module.exports = (env, argv) => {
   const devConfig = dev(env, argv);
-  console.log(`env!`, env);
   const { proxy } = env;
 
   function remove(searchFunction) {
@@ -30,8 +29,8 @@ module.exports = (env, argv) => {
         // requires for ignoring CORS issues
         "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
       },
-      liveReload: false,
-      hot: false,
+      hot: `${undefined}` === env.hot,
+      liveReload: `${undefined}` === env.hot,
       historyApiFallback: {
         // provide index.html instead of 404:not found error (for SPA app)
         rewrites: [
@@ -58,12 +57,11 @@ module.exports = (env, argv) => {
         }),
       static: {
         directory: path.resolve(__dirname, assets), // folder with static content
-        watch: false, // enable hot-reload by changes in contentBase folder
+        watch: true, // enable hot-reload by changes in contentBase folder
       },
     },
   };
 
-  console.log(`proxy!`, proxy);
   if (proxy) {
     delete extendedConfig.devServer.onBeforeSetupMiddleware;
     console.log("<i> Proxy configured. webpack-mock-server is removed from config");

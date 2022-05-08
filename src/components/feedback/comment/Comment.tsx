@@ -8,7 +8,7 @@ interface CommentProps {
 const CommentComponent: React.FC<CommentProps> = ({ comment }) => (
   <div>
     <span>
-      {comment.userFirstName}-{comment.userLastName}
+      {comment.userFirstName} {comment.userLastName}
     </span>
     <span>{comment.text}</span>
     stars: {comment.stars}
