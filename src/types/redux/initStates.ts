@@ -1,4 +1,5 @@
 import { SexEnum } from "@/common/sex.enum";
+import { getHotelPayload } from "../dto/apiPayloads/getAllHotelsPayload";
 
 export type User = {
   email: string;
@@ -24,3 +25,7 @@ export const userInitState: User = {
   profilePic:
     "https://res.cloudinary.com/dv1m78v3d/image/upload/c_thumb,w_200,g_face/v1650789446/ukrgenubujqt86buzrsk.jpg",
 };
+
+export type Hotel = getHotelPayload;
+
+export const hotelsInitState: Hotel[] = [];

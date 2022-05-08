@@ -1,5 +1,5 @@
 import hotelsApi from "@/api/hotels/hotelsApi";
-import { Hotel } from "@/redux/reducers/hotelsReducer";
+import { Hotel } from "@/types/redux/initStates";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getPreffix } from "./prefixes";
 
