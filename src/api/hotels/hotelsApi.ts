@@ -1,14 +1,7 @@
 import { CreateHotelPayload } from "@/types/dto/apiPayloads/createHotelPayload";
 import { getHotelPayload } from "@/types/dto/apiPayloads/getAllHotelsPayload";
 import { request, requestWithFormData } from "../apiService";
-import {
-  createHotelRoute,
-  deleteHotelRoute,
-  getAllHotelRoute,
-  getHotelRoute,
-  methods,
-  updateHotelRoute,
-} from "../constants";
+import { createHotelRoute, deleteHotelRoute, getHotelRoute, methods, updateHotelRoute } from "../constants";
 
 const createHotel = async (formData: FormData): Promise<CreateHotelPayload> => {
   const result = await requestWithFormData(createHotelRoute, methods.POST, formData);
@@ -21,7 +14,8 @@ const getHotel = async (id: string): Promise<getHotelPayload> => {
 };
 
 const getAllHotels = async () => {
-  const result = await request(getAllHotelRoute, methods.GET);
+  const token = localStorage.getItem("token");
+  const result = await request(`/gateway/hotels/api/hotels/all`, methods.GET);
   return result.json();
 };
 

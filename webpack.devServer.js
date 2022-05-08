@@ -10,6 +10,7 @@ const assets = require("./webpack.common").assetsPath;
 
 module.exports = (env, argv) => {
   const devConfig = dev(env, argv);
+  console.log(`env!`, env);
   const { proxy } = env;
 
   function remove(searchFunction) {
@@ -61,6 +62,7 @@ module.exports = (env, argv) => {
     },
   };
 
+  console.log(`proxy!`, proxy);
   if (proxy) {
     delete extendedConfig.devServer.onBeforeSetupMiddleware;
     console.log("<i> Proxy configured. webpack-mock-server is removed from config");

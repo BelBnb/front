@@ -21,11 +21,12 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/hotels" element={<HotelsWrapper />} />
-          <Route path="/hotels/:id" element={<ParticularHotel />} />
+          <Route path="/hotems" element={<HotelsWrapper />} />
+          <Route path="/hotems/:id" element={<ParticularHotel />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/messenger" element={<MessengerMain />} />
+          <Route path="*" element={<span>kek</span>} />
           <Route
             path="/profile"
             element={
