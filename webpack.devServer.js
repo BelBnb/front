@@ -30,7 +30,8 @@ module.exports = (env, argv) => {
         // requires for ignoring CORS issues
         "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
       },
-      hot: true,
+      liveReload: false,
+      hot: false,
       historyApiFallback: {
         // provide index.html instead of 404:not found error (for SPA app)
         rewrites: [
@@ -57,7 +58,7 @@ module.exports = (env, argv) => {
         }),
       static: {
         directory: path.resolve(__dirname, assets), // folder with static content
-        watch: true, // enable hot-reload by changes in contentBase folder
+        watch: false, // enable hot-reload by changes in contentBase folder
       },
     },
   };

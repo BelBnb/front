@@ -14,6 +14,7 @@ import CarouselItem from "../Carousel/CarouselItem/carouselItem";
 import "./overrideStyles.scss";
 import { toast } from "react-toastify";
 import { createBookingDto } from "@/types/dto/booking/bookingDtos";
+import FeedbackComponent from "@/components/feedback/feedbackComponent";
 
 const ParticularHotel = () => {
   const { hotels, user } = useSelector<RootState, { hotels: Hotel[]; user: User }>((app) => ({
@@ -95,6 +96,7 @@ const ParticularHotel = () => {
               </button>
             </div>
           </div>
+          {hotel && <FeedbackComponent entityId={hotel.id} />}
         </div>
       </div>
     </div>

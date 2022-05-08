@@ -34,5 +34,7 @@ export const getMyFeedbackFor = (itemId: string, myId: string) =>
   `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/my_feedback/${itemId}?my_id=${myId}`;
 export const deleteFeedback = (itemId: string) =>
   `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/${itemId}`;
+export const updateFeedback = (itemId: string) =>
+  `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/${itemId}`;
 
 export const createFeedback = `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/create`;

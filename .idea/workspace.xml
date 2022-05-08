@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/paginationConstants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/types/FeedbackConstant.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/apiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +107,7 @@
       <workItem from="1651947258748" duration="1964000" />
       <workItem from="1652000639479" duration="691000" />
       <workItem from="1652001404091" duration="207000" />
-      <workItem from="1652001614251" duration="15885000" />
+      <workItem from="1652001614251" duration="19417000" />
     </task>
     <servers />
   </component>
