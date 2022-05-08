@@ -2,6 +2,7 @@
   display: flex;
   background-color: $bn-light-grey;
   height: calc(100% - 80px);
+  overflow-y: auto;
 
   .contentContaienr {
     display: flex;
@@ -21,6 +22,12 @@
       border-radius: 22px;
       max-height: 600px;
     }
+  }
+
+  .feedbackContainer {
+    margin: 48px 0 320px;
+    padding: 0 24px;
+    display: flex;
   }
 
   .columns {
@@ -43,6 +50,11 @@
     .sepLine {
       display: flex;
       justify-content: space-between;
+    }
+
+    .flexDown {
+      display: flex;
+      flex-direction: column;
     }
 
     .price {

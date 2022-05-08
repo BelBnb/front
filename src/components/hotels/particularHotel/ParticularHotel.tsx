@@ -85,8 +85,12 @@ const ParticularHotel = () => {
             <aside>{hotel?.description}</aside>
             <CoolLabel>Booking </CoolLabel>
             <DateRange ranges={[selection]} rangeColors={["#2d2d2d"]} onChange={(e) => handleSelect(e)} />
-            <span>Rent duration: {diffInDays(selection.startDate, selection.endDate)} day</span>
-            {hotel && <span>You would spend {diffInDays(selection.startDate, selection.endDate) * hotel?.price}$</span>}
+            <div className={styles.flexDown}>
+              <span>Rent duration: {diffInDays(selection.startDate, selection.endDate)} day</span>
+              {hotel && (
+                <span>You would spend {diffInDays(selection.startDate, selection.endDate) * hotel?.price}$</span>
+              )}
+            </div>
             <div className={styles.buttonContainer}>
               <button type="button" className={styles.outlineButton} onClick={() => handleBook()}>
                 Book
@@ -96,8 +100,8 @@ const ParticularHotel = () => {
               </button>
             </div>
           </div>
-          {hotel && <FeedbackComponent entityId={hotel.id} />}
         </div>
+        <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
       </div>
     </div>
   );

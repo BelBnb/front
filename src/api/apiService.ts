@@ -30,7 +30,7 @@ export function requestWithQuerry(
 ): Promise<Response> {
   let querryString = "?";
   for (const querryKey in querry) {
-    querryString += querryKey + "=" + querry[querryKey] + "&";
+    querryString += `${querryKey}=${querry[querryKey]}&`;
   }
   return fetch(ur + querryString, {
     method,

@@ -23,6 +23,19 @@
     }
   }
 
+  .avatarContainer {
+    display: flex;
+    width: 400px;
+    height: 400px;
+
+    img {
+      border-radius: 8px;
+      border: 2px solid $bn-semi-black;
+      width: inherit;
+      height: inherit;
+    }
+  }
+
   .columns {
     display: flex;
     gap: 18px;
@@ -30,13 +43,12 @@
 
     & > div:first-child {
       display: flex;
-      flex: 1 70%;
+      flex: 1 50%;
     }
 
     & > div:last-child {
       display: flex;
-      flex: 0 30%;
-      max-width: 300px;
+      flex: 0 40%;
       flex-direction: column;
     }
 
@@ -52,6 +64,11 @@
 
     .name {
     }
+  }
+
+  .profileInfo {
+    display: flex;
+    flex-direction: column;
   }
 
   .buttonContainer {

@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import Carousel from "@/components/hotels/Carousel/Carousel/carousel";
-import CarouselItem from "@/components/hotels/Carousel/CarouselItem/carouselItem";
 import { SexEnum } from "@/common/sex.enum";
 import { User } from "@/types/redux/initStates";
-import styles from "./styles.module.scss";
 import FeedbackComponent from "@/components/feedback/feedbackComponent";
+import styles from "./styles.module.scss";
 
 const ParticularUser = () => {
   const user = useSelector<RootState, User>((state) => state.user);
@@ -26,26 +24,23 @@ const ParticularUser = () => {
     <div className={styles.pageWrapper}>
       <div className={styles.contentContaienr}>
         <div className={styles.columns}>
-          <div className={styles.carousel}>
-            <Carousel>
-              <CarouselItem wth="620px">
-                <img src={user?.profilePic} alt="pirkol" />
-              </CarouselItem>
-            </Carousel>
+          <div className={styles.rightColumn}>
+            <div className={styles.avatarContainer}>
+              <img src={user?.profilePic} alt="pirkol" />
+            </div>
           </div>
           <div>
-            <div className={styles.sepLine}>
+            <div className={styles.profileInfo}>
               <span className={styles.name}>
                 {user.firstName} {user.lastName}
               </span>
-              <span className={styles.price}>{user.sex === SexEnum.Female ? "feMale" : "Male"}</span>
+              <span>{user.sex === SexEnum.Female ? "feMale" : "Male"}</span>
+              <span>Sex? {user.sex === SexEnum.Female ? "Yes" : "No"}</span>
 
               <span className={styles.name}>
                 {new Date().getFullYear() - (new Date(user?.birthDate).getFullYear() || 2001)} years
               </span>
             </div>
-
-            <aside>DESCRIPTION Lorem Ipsum Dolor Sit Amen</aside>
 
             <div className={styles.buttonContainer}>
               {/* if user is I am do not show*/}
@@ -59,7 +54,7 @@ const ParticularUser = () => {
             </div>
           </div>
         </div>
-        <FeedbackComponent entityId={user.id}></FeedbackComponent>
+        <FeedbackComponent entityId={user.id} />
       </div>
     </div>
   );

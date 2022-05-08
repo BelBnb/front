@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { request, requestWithBody, requestWithQuerry } from "@/api/apiService";
-import { createFeedback, deleteFeedback, getFeedbackFor, getMyFeedbackFor, updateFeedback } from "@/api/constants";
+import {
+  createFeedback,
+  deleteFeedback,
+  getFeedbackFor,
+  getMyFeedbackFor,
+  methods,
+  updateFeedback,
+} from "@/api/constants";
 import { PageSize } from "@/common/paginationConstants";
 import { FeedbackConstant } from "@/common/types/FeedbackConstant";
 import { useSelector } from "react-redux";
@@ -25,7 +32,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
   const [starsValue, setStarsValue] = useState(5);
 
   const loadMine = async () => {
-    const data = await request(getMyFeedbackFor(entityId, user.id), "GET");
+    const data = await request(getMyFeedbackFor(entityId, user.id), methods.GET);
     const parsed = await data.json();
     if (parsed.statusCode !== 404) {
       setMyComment(parsed);
@@ -35,7 +42,10 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
   };
 
   const loadMore = async () => {
-    const data = await requestWithQuerry(getFeedbackFor(entityId), "GET", { limit: PageSize, offset: currentPage });
+    const data = await requestWithQuerry(getFeedbackFor(entityId), methods.GET, {
+      limit: PageSize,
+      offset: currentPage,
+    });
     const parsed = await data.json();
 
     setComments((comments) => [...comments, ...parsed.data]);
@@ -43,9 +53,12 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     setCurrentPage((s) => s + 1);
   };
 
-  useEffect(async () => {
-    await loadMine();
-    await loadMore();
+  useEffect(() => {
+    async function loadPrikoli() {
+      await loadMine();
+      await loadMore();
+    }
+    loadPrikoli();
   }, []);
 
   const showMore = async () => {
@@ -83,7 +96,9 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
           </span>
           <span>{myComment.text}</span>
           stars: {myComment.stars}
-          <button onClick={removeComment}>Delete</button>
+          <button type="button" onClick={removeComment}>
+            Delete
+          </button>
           <button
             onClick={() => {
               setOpen(true);
@@ -105,14 +120,14 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
         isOpen={isOpen}
       >
         <input
-          placeholder={"Text"}
+          placeholder="Text"
           type="text"
           name="text"
           value={textValue}
           onChange={(event) => setTextValue(event?.target?.value || "")}
         />
         <input
-          placeholder={"Stars"}
+          placeholder="Stars"
           type="number"
           name="stars"
           min={1}
@@ -143,7 +158,9 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
               onChange={(event) => setStarsValue(Number(event?.target?.value) || 5)}
             />
           </label>
-          <button onClick={sendComment}>Send</button>
+          <button type="button" onClick={sendComment}>
+            Send
+          </button>
         </div>
       )}
 
