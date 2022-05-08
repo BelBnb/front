@@ -43,6 +43,7 @@ const ParticularUser = () => {
                 {new Date().getFullYear() - (user?.birthDate?.getFullYear() || 2001)} years
               </span>
             </div>
+
             <aside>DESCRIPTION Lorem Ipsum Dolor Sit Amen</aside>
 
             <div className={styles.buttonContainer}>

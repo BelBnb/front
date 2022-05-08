@@ -8,7 +8,7 @@ export type User = {
   email: string;
   firstName: string;
   lastName: string;
-  id: number;
+  id: string;
   roles: string[];
   profilePic: string;
   authorized: boolean;
@@ -20,9 +20,11 @@ export const userInitState: User = {
   email: "",
   firstName: "Kirill",
   lastName: "Kvit",
-  id: 0,
+  id: "6780e2d8-8443-4eab-8c35-e149c75ee1d0",
   roles: [],
   authorized: true,
+  sex: SexEnum.Female,
+  birthDate: new Date("2001-01-01"),
   profilePic:
     "https://res.cloudinary.com/dv1m78v3d/image/upload/c_thumb,w_200,g_face/v1650789446/ukrgenubujqt86buzrsk.jpg",
 };
