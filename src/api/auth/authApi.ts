@@ -1,23 +1,16 @@
-import { User } from "@/redux/reducers/userReducer";
 import { SignInPayload, SignUpPayload } from "@/types/dto/apiPayloads/auth";
 import { SignInDto, SignUpDto } from "@/types/dto/user";
-import { getTokenInfoRoute, signInRoute, signUpRoute } from "../constants";
+import { User } from "@/types/redux/initStates";
+import { request, requestWithBody } from "../apiService";
+import { getTokenInfoRoute, methods, signInRoute, signUpRoute } from "../constants";
 
-export const getTokenInfo = async (token: string): Promise<User> => {
-  const payload = await fetch(getTokenInfoRoute, {
-    method: "GET",
-    headers: new Headers({
-      Authorization: `Bearer ${token}`,
-    }),
-  });
+export const getTokenInfo = async (id: string): Promise<User> => {
+  const payload = await request(getTokenInfoRoute + id, methods.GET);
   return payload.json();
 };
 
 export const signIn = async (dto: SignInDto): Promise<SignInPayload> => {
-  const result = await fetch(signInRoute, {
-    method: "POST",
-    body: JSON.stringify(dto),
-  });
+  const result = await requestWithBody(signInRoute, methods.POST, dto);
   return result.json();
 };
 

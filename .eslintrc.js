@@ -23,6 +23,7 @@ module.exports = {
   },
   plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports"],
   rules: {
+    "import/prefer-default-export": "off",
     "@typescript-eslint/no-explicit-any": [
       "error",
       {

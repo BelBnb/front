@@ -11,8 +11,8 @@ export const enum methods {
 const gatewayPreffix = "/gateway";
 const apiPreffix = "/api";
 
-export const signInRoute = `${gatewayPreffix}/auth/sign-in`;
-export const getTokenInfoRoute = `${gatewayPreffix}/auth/user`;
+export const signInRoute = `${gatewayPreffix}/auth/auth/login`;
+export const getTokenInfoRoute = `${gatewayPreffix}/users/api/users/`;
 export const signUpRoute = `${gatewayPreffix}/auth/sign-up`;
 
 const hotelPreffix = "/hotels";

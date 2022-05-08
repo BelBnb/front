@@ -31,11 +31,9 @@ const Header = () => {
             <Link to="/sign-in" className={`${styles.link} ${styles.highlight}`}>
               Sign in
             </Link>
-            <button type="button">
-              <Link to="/sign-up" className={styles.link}>
-                Sign up
-              </Link>
-            </button>
+            <Link to="/sign-up" className={styles.link}>
+              Sign up
+            </Link>
           </div>
         ) : (
           <ProfileButton user={user} />

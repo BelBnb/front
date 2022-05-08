@@ -7,8 +7,9 @@ export function requestWithBody<T>(url: string, method: string, body: T) {
     method,
     headers: new Headers({
       Autorization: `Bearer ${getToken()}`,
-      body: JSON.stringify(body),
+      "Content-type": "application/json",
     }),
+    body: JSON.stringify(body),
   });
 }
 
@@ -18,7 +19,6 @@ export function request(ur: string, method: string): Promise<Response> {
     method,
     headers: new Headers({
       Authorization: `Bearer ${getToken()}`,
-      "Content-type": "multipart/form-data",
     }),
   });
 }

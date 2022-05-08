@@ -9,6 +9,46 @@
     color: $bn-white;
     cursor: pointer;
   }
+
+  .dropdown {
+    transition: all 0.4s;
+    opacity: 0;
+    display: none;
+    padding: 6px 12px;
+
+    box-sizing: content-box;
+  }
+
+  &:hover,
+  &:active,
+  &:hover + .dropdown:hover {
+    position: relative;
+
+    .dropdown {
+      background-color: $bn-light-grey;
+      color: $bn-black;
+      display: flex;
+      gap: 8px;
+      opacity: 1;
+      border-radius: 4px;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 30px;
+      left: -12px;
+    }
+
+    .drpItem {
+      text-align: left;
+      padding: 0 0 1px 0;
+      border-bottom: transparent 2px solid;
+      transition: all 0.4s;
+
+      &:hover {
+        border-bottom: $bn-claucos 2px solid;
+      }
+    }
+  }
 }
 
 .name {
