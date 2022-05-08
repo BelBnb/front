@@ -13,7 +13,10 @@ import { FeedbackConstant } from "@/common/types/FeedbackConstant";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
-import DialogComponent from "@/elements/common/dialog/dialog";
+import FeedBackDialog from "./feedbackDialog/feedbackDialog";
+import AddNewComment from "./notMyComment/addNewComment";
+import MyComment from "./myComment/myComment";
+import CommentComponent from "./comment/Comment";
 
 interface FeedbackComponentProps {
   entityId: string;
@@ -22,7 +25,7 @@ interface FeedbackComponentProps {
 const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
   const [comments, setComments] = useState<FeedbackConstant[]>([]);
-  const [myComment, setMyComment] = useState<FeedbackConstant | undefined>(undefined);
+  const [myComment, setMyComment] = useState<FeedbackConstant>();
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -48,7 +51,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     });
     const parsed = await data.json();
 
-    setComments((comments) => [...comments, ...parsed.data]);
+    setComments((cm) => [...cm, ...parsed.data]);
     setHasMore(parsed.limit + parsed.offset < parsed.total);
     setCurrentPage((s) => s + 1);
   };
@@ -66,6 +69,10 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
   };
 
   const removeComment = async () => {
+    if (!myComment) {
+      return;
+    }
+
     await request(deleteFeedback(myComment.id), "DELETE");
     await loadMine();
 
@@ -73,6 +80,9 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     setStarsValue(1);
   };
   const updateComment = async () => {
+    if (!myComment) {
+      return;
+    }
     const data = await requestWithBody(updateFeedback(myComment.id), "PATCH", { text: textValue, stars: starsValue });
     await loadMine();
   };
@@ -89,92 +99,31 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
 
   return (
     <>
-      {myComment && (
-        <div>
-          <span>
-            {myComment.userFirstName}-{myComment.userLastName}
-          </span>
-          <span>{myComment.text}</span>
-          stars: {myComment.stars}
-          <button type="button" onClick={removeComment}>
-            Delete
-          </button>
-          <button
-            onClick={() => {
-              setOpen(true);
-            }}
-            type="button"
-          >
-            Update
-          </button>
-        </div>
-      )}
-      <DialogComponent
-        cancelLabel="Back"
+      {myComment && <MyComment comment={myComment} setOpen={setOpen} removeComment={removeComment} />}
+      <FeedBackDialog
         setOpen={setOpen}
-        submitLabel="Submit"
-        title="Update comment"
-        submitHandler={async () => {
-          await updateComment();
-        }}
         isOpen={isOpen}
-      >
-        <input
-          placeholder="Text"
-          type="text"
-          name="text"
-          value={textValue}
-          onChange={(event) => setTextValue(event?.target?.value || "")}
-        />
-        <input
-          placeholder="Stars"
-          type="number"
-          name="stars"
-          min={1}
-          max={5}
-          value={starsValue}
-          onChange={(event) => setStarsValue(Number(event?.target?.value) || 5)}
-        />
-      </DialogComponent>
+        updateComment={updateComment}
+        textValue={textValue}
+        setTextValue={setTextValue}
+        starsValue={starsValue}
+        setStarsValue={setStarsValue}
+      />
       {!myComment && (
-        <div>
-          <label>
-            Text:
-            <input
-              value={textValue}
-              type="text"
-              name="text"
-              onChange={(event) => setTextValue(event?.target?.value || "")}
-            />
-          </label>
-          <label>
-            Stars:
-            <input
-              value={starsValue}
-              type="number"
-              name="stars"
-              min={1}
-              max={5}
-              onChange={(event) => setStarsValue(Number(event?.target?.value) || 5)}
-            />
-          </label>
-          <button type="button" onClick={sendComment}>
-            Send
-          </button>
-        </div>
+        <AddNewComment
+          textValue={textValue}
+          setTextValue={setTextValue}
+          starsValue={starsValue}
+          setStarsValue={setStarsValue}
+          sendComment={sendComment}
+        />
       )}
 
       <div>
         {comments
           .filter((comment) => comment.creator_Id !== user.id)
           .map((comment) => (
-            <div>
-              <span>
-                {comment.userFirstName}-{comment.userLastName}
-              </span>
-              <span>{comment.text}</span>
-              stars: {comment.stars}
-            </div>
+            <CommentComponent comment={comment} />
           ))}
         {hasMore && (
           <button type="button" onClick={showMore}>
