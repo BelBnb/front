@@ -6,6 +6,7 @@ import CarouselItem from "@/components/hotels/Carousel/CarouselItem/carouselItem
 import { SexEnum } from "@/common/sex.enum";
 import { User } from "@/types/redux/initStates";
 import styles from "./styles.module.scss";
+import FeedbackComponent from "@/components/feedback/feedbackComponent";
 
 const ParticularUser = () => {
   const user = useSelector<RootState, User>((state) => state.user);
@@ -58,6 +59,7 @@ const ParticularUser = () => {
             </div>
           </div>
         </div>
+        <FeedbackComponent entityId={user.id}></FeedbackComponent>
       </div>
     </div>
   );

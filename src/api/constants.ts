@@ -24,3 +24,15 @@ export const updateHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + 
 export const deleteHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
 export const getAllHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/all`;
 export const getHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
+
+// feedbacks
+
+const feedbackPreffix = "/feedback";
+export const getFeedbackFor = (id: string) =>
+  `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/for_entity/${id}`;
+export const getMyFeedbackFor = (itemId: string, myId: string) =>
+  `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/my_feedback/${itemId}?my_id=${myId}`;
+export const deleteFeedback = (itemId: string) =>
+  `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/${itemId}`;
+
+export const createFeedback = `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/create`;
