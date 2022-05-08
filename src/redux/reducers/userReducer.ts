@@ -2,6 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { logUserOut, setUser } from "../actions/userActions";
 import { signUserIn } from "../thunks/auth/signInThunk";
 import { signUserUp } from "../thunks/auth/signUpThunk";
+import { SexEnum } from "@/common/sex.enum";
 
 export type User = {
   email: string;
@@ -11,6 +12,8 @@ export type User = {
   roles: string[];
   profilePic: string;
   authorized: boolean;
+  birthDate: Date;
+  sex: SexEnum;
 };
 
 export const userInitState: User = {

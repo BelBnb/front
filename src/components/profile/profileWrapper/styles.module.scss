@@ -1,2 +1,96 @@
 .pageWrapper {
+  display: flex;
+  background-color: $bn-light-grey;
+  height: calc(100% - 80px);
+
+  .contentContaienr {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 40px auto auto;
+  }
+
+  .carousel {
+    width: 100%;
+
+    & > div {
+      width: 620px;
+    }
+
+    img {
+      border-radius: 22px;
+      max-height: 600px;
+    }
+  }
+
+  .columns {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+
+    & > div:first-child {
+      display: flex;
+      flex: 1 70%;
+    }
+
+    & > div:last-child {
+      display: flex;
+      flex: 0 30%;
+      max-width: 300px;
+      flex-direction: column;
+    }
+
+    .sepLine {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .price {
+      font-family: "DaysOne", sans-serif;
+      font-size: 18px;
+    }
+
+    .name {
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .outlineButton,
+  .coloredButton {
+    height: 40px;
+    border: none;
+    transition: all 0.3s;
+    border-radius: 4px;
+    text-transform: uppercase;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .outlineButton {
+    height: 40px;
+    border: 2px solid $bn-black;
+
+    &:hover {
+      background-color: #d7d7d7;
+    }
+  }
+
+  .coloredButton {
+    background-color: $bn-black;
+    color: white;
+
+    &:hover {
+      border: 2px solid $bn-black;
+      color: $bn-black;
+      background-color: #d7d7d7;
+    }
+  }
 }
