@@ -1,22 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { Hotel } from "@/redux/reducers/hotelsReducer";
+import { AppDispatch, RootState } from "@/redux/store";
 import getHotelsThunk from "@/redux/thunks/hotels/getHotelsThunk";
+import CoolLabel from "@/elements/common/coolLabel/coolLabel";
+import { RangeKeyDict, DateRange } from "react-date-range";
+import { Hotel, User } from "@/types/redux/initStates";
+import { diffInDays } from "@/helpers/dateDiffHelper";
+import bookingApi from "@/api/booking/bookingApi";
 import styles from "./styles.module.scss";
 import Carousel from "../Carousel/Carousel/carousel";
 import CarouselItem from "../Carousel/CarouselItem/carouselItem";
+import "./overrideStyles.scss";
+import { toast } from "react-toastify";
+import { createBookingDto } from "@/types/dto/booking/bookingDtos";
 
 const ParticularHotel = () => {
-  const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
+  const { hotels, user } = useSelector<RootState, { hotels: Hotel[]; user: User }>((app) => ({
+    hotels: app.hotels,
+    user: app.user,
+  }));
+
+  const [selection, setSelecton] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  });
   const [hotel, setHotel] = useState<Hotel>();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const params = useParams();
+
+  const handleSelect = (ranges: RangeKeyDict) => {
+    setSelecton(ranges?.selection);
+  };
 
   useEffect(() => {
     dispatch(getHotelsThunk());
-    console.log(params.id);
+  }, []);
+
+  const handleBook = async () => {
+    if (!user.authorized || !hotel) {
+      return;
+    }
+    const bookingDto: createBookingDto = {
+      userId: user.id,
+      wannaNeighbour: false,
+      hotelId: hotel?.id,
+      startDate: selection.startDate,
+      endDate: selection.endDate,
+    };
+    const result = await bookingApi.createBooking(bookingDto);
+    if (result) {
+      toast.success("Booked successfully");
+    }
+
+    console.log(result);
+  };
+
+  useEffect(() => {
     if (params.id) {
       setHotel(hotels.find((el) => el.id === params.id));
     }
@@ -41,9 +82,12 @@ const ParticularHotel = () => {
               <span className={styles.name}>{hotel?.name}</span>
             </div>
             <aside>{hotel?.description}</aside>
-
+            <CoolLabel>Booking </CoolLabel>
+            <DateRange ranges={[selection]} rangeColors={["#2d2d2d"]} onChange={(e) => handleSelect(e)} />
+            <span>Rent duration: {diffInDays(selection.startDate, selection.endDate)} day</span>
+            {hotel && <span>You would spend {diffInDays(selection.startDate, selection.endDate) * hotel?.price}$</span>}
             <div className={styles.buttonContainer}>
-              <button type="button" className={styles.outlineButton}>
+              <button type="button" className={styles.outlineButton} onClick={() => handleBook()}>
                 Book
               </button>
               <button type="button" className={styles.coloredButton}>

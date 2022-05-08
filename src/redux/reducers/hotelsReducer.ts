@@ -8,8 +8,5 @@ export const HotelsReducer = createReducer(hotelsInitState, (bldr) => {
   bldr.addCase(createHotel, (state, action) => ({ ...state, ...action.payload }));
   bldr.addCase(deleteHotel, (state, action) => ({ ...state, ...action.payload }));
   bldr.addCase(updateHotel, (state, _) => ({ ...state, ...hotelsInitState }));
-  bldr.addCase(getHotelsThunk.fulfilled, (state, action) => {
-    console.log(`action`, action.payload);
-    return action.payload;
-  });
+  bldr.addCase(getHotelsThunk.fulfilled, (state, action) => action.payload);
 });

@@ -6,6 +6,8 @@ import ReactDom from "react-dom";
 import { Provider } from "react-redux";
 import App from "./components/router/app";
 import { store } from "./redux/store";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
 interface AppProps {
   // eslint-disable-next-line react/no-unused-prop-types

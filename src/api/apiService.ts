@@ -6,7 +6,7 @@ export function requestWithBody<T>(url: string, method: string, body: T) {
   return fetch(url, {
     method,
     headers: new Headers({
-      Autorization: `Bearer ${getToken()}`,
+      Authorization: `Bearer ${getToken()}`,
       "Content-type": "application/json",
     }),
     body: JSON.stringify(body),
