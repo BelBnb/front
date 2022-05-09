@@ -14,6 +14,7 @@ const StarsComponent: React.FC<StarsComponentProps> = ({ isEdit, onChange, value
       secondaryColor="#d7d7d7"
       primaryColor="#2a2a2a"
       isEdit={isEdit}
+      isHalf={false}
       onChange={onChange}
       value={value}
     />

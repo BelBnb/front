@@ -2,6 +2,7 @@
   display: flex;
   background-color: $bn-light-grey;
   height: calc(100% - 80px);
+  overflow-y: auto;
 
   .contentContaienr {
     display: flex;

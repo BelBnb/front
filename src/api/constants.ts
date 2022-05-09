@@ -17,6 +17,7 @@ export const signUpRoute = `${gatewayPreffix}/auth/sign-up`;
 
 // booking
 export const createBookingRoute = `${gatewayPreffix}/booking/api/booking/create`;
+export const userBookingsRoute = `${gatewayPreffix}/booking/api/booking/user_bookings`;
 
 const hotelPreffix = "/hotels";
 export const createHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/create`;
