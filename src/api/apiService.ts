@@ -41,8 +41,7 @@ export function requestWithQuerry(
 }
 
 export function requestWithFormData(url: string, method: string, body: FormData) {
-  return axios.post(url, body, {
-    method,
+  return axios.patch(url, body, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
       "Content-type": "multipart/form-data",

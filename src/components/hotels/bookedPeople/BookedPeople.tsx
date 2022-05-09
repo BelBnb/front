@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import styles from "./styles.module.scss";
 import "./overrides.scss";
-import { request, requestWithBody, requestWithQuerry } from "@/api/apiService";
-import { getBookingsFor, getFeedbackFor, methods, updateBooking, updateFeedback } from "@/api/constants";
+import { requestWithBody, requestWithQuerry } from "@/api/apiService";
+import { getBookingsFor, methods, updateBooking } from "@/api/constants";
 import { PageSize } from "@/common/paginationConstants";
 import { Link, useParams } from "react-router-dom";
 import { BookingEntityFilled } from "@/common/types/Booking";
@@ -94,13 +94,13 @@ const columns = [
   {
     name: "",
     selector: (row: { userImage: string }) => (
-      <img src={row.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}></img>
+      <img src={row.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"} />
     ),
     sortable: false,
   },
   {
     name: "Name",
-    selector: (row: { name: string; userId: string }) => <Link to={"/profile/" + row.userId}>{row.name}</Link>,
+    selector: (row: { name: string; userId: string }) => <Link to={`/profile/${row.userId}`}>{row.name}</Link>,
   },
   {
     name: "Start date",
@@ -176,7 +176,7 @@ const BookedPeople = () => {
   };
 
   return (
-    <div>
+    <div className={styles.marginBot}>
       <DataTable
         title="Bookings"
         selectableRows

@@ -1,43 +1,36 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
 import { SexEnum } from "@/common/sex.enum";
 import { User } from "@/types/redux/initStates";
 import FeedbackComponent from "@/components/feedback/feedbackComponent";
 import { userBookingPayload } from "@/types/dto/apiPayloads/booking/userBookingsPayload";
 import bookingApi from "@/api/booking/bookingApi";
 import { userBookingsDto } from "@/types/dto/booking/bookingDtos";
-import styles from "./styles.module.scss";
-import UserBookings from "../UserBookings/UserBookings";
-import { useParams } from "react-router-dom";
-import { request, requestWithBody } from "@/api/apiService";
-import { getUserById, updateUserRoute, userBookingsRoute } from "@/api/constants";
+import { useNavigate, useParams } from "react-router-dom";
+import { request } from "@/api/apiService";
+import { getUserById } from "@/api/constants";
 import EditProfileDialog from "@/components/profile/profileWrapper/editProfileDialog/editProfileDialog";
 import { toast } from "react-toastify";
+import userApi from "@/api/user/userApi";
+import { getTokenInfoThunk } from "@/redux/thunks/auth/getTokenThunk";
+import UserBookings from "../UserBookings/UserBookings";
+import styles from "./styles.module.scss";
 
 const ParticularUser = () => {
   const params = useParams();
-  const [user, setUser] = useState<User>();
-  const [visitorUser, setVisitor] = useState<User>(useSelector<RootState, User>((state) => state.user));
+  const appUser = useSelector<RootState, User>((state) => state.user);
+  const [user, setUser] = useState<User>(appUser);
   const [isMyself, setIsMyself] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-
-  useEffect(async () => {
-    if (params.id) {
-      const data = await request(getUserById(params.id), "GET");
-      console.log(data);
-      const user = await data.json();
-      // todo: redirect to 404
-      if (user?.error) alert("No such user");
-
-      if (user.id === visitorUser.id) setIsMyself(true);
-      setUser(user);
-    } else {
-      setIsMyself(true);
-      setUser(visitorUser);
-    }
-  }, []);
-
+  const [isEdit, setIsEdit] = useState<{ editPhoto: boolean; editBody: boolean }>({
+    editPhoto: false,
+    editBody: false,
+  });
+  const [isOpen, setOpen] = useState(false);
+  const [firstName, setFirstNameValue] = useState(user?.firstName || "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
   const [paginationProps, setPaginationProps] = useState<{ limit: number; offset: number }>({ limit: 10, offset: 0 });
   const [userBookingsArray, setUserBookings] = useState<userBookingPayload>({
     data: [],
@@ -47,29 +40,31 @@ const ParticularUser = () => {
   });
   const [totalCount, setTotalCount] = useState(0);
   const [file, setFile] = useState<{ selectedFile: File }>();
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Update the state
     if (event.target && event.target.files) {
       setFile({ selectedFile: event.target.files[0] });
     }
   };
 
-  /*const onFileUpload = () => {
+  const onFileUpload = () => {
     const formData = new FormData();
-
-    if (!file) {
-      return;
+    console.log(file);
+    if (!file || !user) {
       toast.error("Select file pizdoglazoye mudilo");
+      return;
     }
-    // Update the formData object
-    formData.append("myFile", file.selectedFile, file.selectedFile.name);
-
-    // Details of the uploaded file
-    console.log(file.selectedFile);
-
-    // Request made to the backend api
-    // Send formData object
-user  };*/
+    formData.append("file", file.selectedFile, file.selectedFile.name);
+    toast.promise(userApi.updateAvatar(formData, user?.id), {
+      pending: "Updating",
+      success: "Updated",
+      error: "Somthing went wrong",
+    });
+    dispatch(getTokenInfoThunk());
+  };
 
   const fetchUserBookings = async () => {
     const dto: userBookingsDto = {
@@ -86,32 +81,76 @@ user  };*/
 
   useEffect(() => {
     async function load() {
-      await fetchUserBookings();
+      if (params.id) {
+        if (params.id === user.id) {
+          setIsMyself(true);
+        } else {
+          const data = await request(getUserById(params.id), "GET");
+          const suspect = await data.json();
+          // todo: redirect to 404
+          if (suspect?.error) {
+            toast.error("No such user");
+            navigate("/");
+          }
+          setUser(suspect);
+        }
+      } else {
+        setUser(appUser);
+        setIsMyself(true);
+      }
     }
     load();
-    console.log(user);
-  }, [user]);
+  }, [user, appUser]);
 
   useEffect(() => {
     async function load() {
       await fetchUserBookings();
     }
     load();
-  }, [paginationProps]);
+  }, [paginationProps, user]);
 
-  const [isOpen, setOpen] = useState(false);
+  const setEditPhoto = () => {
+    setIsEdit((prevState) => ({ ...prevState, editPhoto: true }));
+  };
 
-  const [firstName, setFirstNameValue] = useState(user?.firstName || "");
-  const [lastName, setLastName] = useState(user?.lastName || "");
+  const setNotEditPhoto = () => {
+    setIsEdit((prevState) => ({ ...prevState, editPhoto: false }));
+  };
+
+  const setEditBody = () => {
+    setOpen(true);
+    setIsEdit((prevState) => ({ ...prevState, editBody: true }));
+  };
+
+  const setNotEditBody = () => {
+    setIsEdit((prevState) => ({ ...prevState, editBody: false }));
+  };
 
   const updateUser = () => {
+    if (!user) {
+      toast.warn("User id is undefined");
+      return;
+    }
     toast.promise(
-      requestWithBody(updateUserRoute(user.id), "PUT", {
-        firstName,
-        lastName,
-      }),
+      userApi.updateUser(
+        {
+          firstName,
+          lastName,
+        },
+        user?.id
+      ),
       { success: "Updated", error: "Failed", pending: "Pending" }
     );
+    dispatch(getTokenInfoThunk());
+  };
+
+  const saveHandler = () => {
+    if (isEdit.editPhoto) {
+      onFileUpload();
+      setNotEditBody();
+    }
+    // if (isEdit.editBody) {
+    // }
   };
 
   return (
@@ -120,7 +159,7 @@ user  };*/
         <div className={styles.columns}>
           <div className={styles.rightColumn}>
             <div className={styles.avatarContainer}>
-              <label htmlFor="my-file">
+              <label htmlFor="my-file" onClick={setEditPhoto} onKeyDown={setEditPhoto}>
                 <img src={user?.profilePic} alt="pirkol" />
               </label>
               <input id="my-file" type="file" hidden onChange={(e) => onFileChange(e)} />
@@ -148,23 +187,20 @@ user  };*/
 
               {isMyself && (
                 <>
-                  {isEdit ? (
-                    <button type="button" onClick={} className={styles.coloredButton}>
+                  {isEdit.editBody || isEdit.editPhoto ? (
+                    <button type="button" onClick={saveHandler} className={styles.coloredButton}>
                       Save
                     </button>
                   ) : (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setOpen(true);
-                      }}
-                      className={styles.coloredButton}
-                    >
+                    <button type="button" onClick={setEditBody} className={styles.coloredButton}>
                       Edit
                     </button>
                   )}
                   <EditProfileDialog
-                    setOpen={setOpen}
+                    setOpen={(e: boolean) => {
+                      setOpen(e);
+                      setNotEditBody();
+                    }}
                     setFirstNameValue={setFirstNameValue}
                     firstNameValue={firstName}
                     lastNameValue={lastName}

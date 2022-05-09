@@ -4,6 +4,7 @@ export const enum methods {
   POST = "POST",
   DELETE = "DELETE",
   UPDATE = "UPDATE",
+  PUT = "PUT",
   PATCH = "PATCH",
 }
 
@@ -23,7 +24,6 @@ export const getAllHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + 
 export const getHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
 
 // feedbacks
-
 const feedbackPreffix = "/feedback";
 export const getFeedbackFor = (id: string) =>
   `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/for_entity/${id}`;

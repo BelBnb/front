@@ -32,8 +32,8 @@
     img {
       border-radius: 8px;
       border: 2px solid $bn-semi-black;
-      width: inherit;
-      height: inherit;
+      width: 400px;
+      height: 400px;
     }
   }
 
@@ -45,12 +45,17 @@
     & > div:first-child {
       display: flex;
       flex: 1 50%;
+      justify-content: center;
     }
 
     & > div:last-child {
       display: flex;
       flex: 0 40%;
       flex-direction: column;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 4px;
+      background-color: $bn-white;
     }
 
     .sepLine {
