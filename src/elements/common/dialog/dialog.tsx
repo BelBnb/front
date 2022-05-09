@@ -1,6 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import styles from "./styles.module.scss";
+import "./overrides.scss";
+import ColoredButton from "../buttons/buttons";
+import OutlinedButton from "../buttons/outlinedButton";
 
 interface DialogProps {
   submitLabel: string;
@@ -36,10 +39,9 @@ const DialogComponent: React.FC<DialogProps> = ({
   }
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={isOpen}>
       <Dialog as="div" className="relative z-10" onClose={() => closeModal()}>
         <Transition.Child
-          as={Fragment}
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -50,16 +52,15 @@ const DialogComponent: React.FC<DialogProps> = ({
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/30 ">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
-              as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
+              enterFrom="opacity-0 "
+              enterTo="opacity-100 "
               leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              leaveFrom="opacity-100 "
+              leaveTo="opacity-0 "
             >
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title>{title}</Dialog.Title>
@@ -68,14 +69,10 @@ const DialogComponent: React.FC<DialogProps> = ({
 
                 <div className={styles.buttonContainer}>
                   {submitHandler && submitLabel && (
-                    <button type="button" onClick={() => ancestHandler(submitHandler)}>
-                      {submitLabel}
-                    </button>
+                    <ColoredButton coloredLabel={submitLabel} onClick={() => ancestHandler(submitHandler)} />
                   )}
                   {cancelHandler && cancelLabel && (
-                    <button type="button" onClick={() => ancestHandler(cancelHandler)}>
-                      {cancelLabel}
-                    </button>
+                    <OutlinedButton outlineLabel={cancelLabel} onClick={() => ancestHandler(cancelHandler)} />
                   )}
                 </div>
               </Dialog.Panel>

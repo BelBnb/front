@@ -14,12 +14,18 @@
   & > span {
     display: flex;
   }
+  margin-bottom: 10px;
 }
 
 .buttons {
   display: flex;
   gap: 8px;
   margin-top: 6px;
+
+  .delete:hover {
+    background-color: $bn-terra-cota;
+    color: $bn-white;
+  }
 
   button {
     width: 49%;

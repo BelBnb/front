@@ -1,0 +1,33 @@
+.outlineButton,
+.coloredButton {
+  height: 40px;
+  border: none;
+  transition: all 0.3s;
+  border-radius: 4px;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.outlineButton {
+  height: 40px;
+  border: 2px solid $bn-black;
+  background-color: #d7d7d7;
+
+  &:hover {
+    background-color: $bn-white;
+  }
+}
+
+.coloredButton {
+  background-color: $bn-black;
+  color: white;
+
+  &:hover {
+    border: 2px solid $bn-black;
+    color: $bn-black;
+    background-color: $bn-white;
+  }
+}

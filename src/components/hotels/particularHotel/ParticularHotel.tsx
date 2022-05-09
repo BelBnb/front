@@ -8,13 +8,15 @@ import { RangeKeyDict, DateRange } from "react-date-range";
 import { Hotel, User } from "@/types/redux/initStates";
 import { diffInDays } from "@/helpers/dateDiffHelper";
 import bookingApi from "@/api/booking/bookingApi";
-import styles from "./styles.module.scss";
-import Carousel from "../Carousel/Carousel/carousel";
-import CarouselItem from "../Carousel/CarouselItem/carouselItem";
-import "./overrideStyles.scss";
 import { toast } from "react-toastify";
 import { createBookingDto } from "@/types/dto/booking/bookingDtos";
 import FeedbackComponent from "@/components/feedback/feedbackComponent";
+import Carousel from "../Carousel/Carousel/carousel";
+import CarouselItem from "../Carousel/CarouselItem/carouselItem";
+import "./overrideStyles.scss";
+import styles from "./styles.module.scss";
+import ColoredButton from "@/elements/common/buttons/buttons";
+import OutlinedButton from "@/elements/common/buttons/outlinedButton";
 
 const ParticularHotel = () => {
   const { hotels, user } = useSelector<RootState, { hotels: Hotel[]; user: User }>((app) => ({
@@ -92,12 +94,13 @@ const ParticularHotel = () => {
               )}
             </div>
             <div className={styles.buttonContainer}>
-              <button type="button" className={styles.outlineButton} onClick={() => handleBook()}>
-                Book
-              </button>
-              <button type="button" className={styles.coloredButton}>
-                Net blyat film
-              </button>
+              <OutlinedButton outlineLabel="Book" onClick={handleBook} />
+              <ColoredButton
+                coloredLabel="Net blayt film"
+                onClick={() => {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             </div>
             <CoolLabel>Feedback</CoolLabel>
             <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>

@@ -1,6 +1,6 @@
 import { FeedbackConstant } from "@/common/types/FeedbackConstant";
+import StarsComponent from "@/elements/common/Stars/StarsComponent";
 import React from "react";
-import ReactStarsRating from "react-awesome-stars-rating";
 import styles from "./styles.module.scss";
 
 interface MyCommentProps {
@@ -13,13 +13,8 @@ const MyComment: React.FC<MyCommentProps> = ({ comment, removeComment, setOpen }
   <div className={styles.flexDown}>
     <span className={styles.headerCaption}>Your last feedback</span>
     <span>{comment.text}</span>
-    <div className={styles.prikol}>
-      <ReactStarsRating isEdit={false} onChange={console.log} value={comment.stars} />
-    </div>
+    <StarsComponent isEdit={false} onChange={console.log} value={comment.stars} />
     <div className={styles.buttons}>
-      <button type="button" onClick={removeComment}>
-        Delete
-      </button>
       <button
         onClick={() => {
           setOpen(true);
@@ -27,6 +22,9 @@ const MyComment: React.FC<MyCommentProps> = ({ comment, removeComment, setOpen }
         type="button"
       >
         Update
+      </button>
+      <button type="button" className={styles.delete} onClick={removeComment}>
+        Delete
       </button>
     </div>
   </div>

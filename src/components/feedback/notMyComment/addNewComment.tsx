@@ -1,4 +1,5 @@
 import React from "react";
+import CommentInputs from "../commentInputs/commentInputs";
 
 interface AddNewCommentProps {
   textValue: string;
@@ -16,21 +17,12 @@ const AddNewComment: React.FC<AddNewCommentProps> = ({
   sendComment,
 }) => (
   <div>
-    <label>
-      Text:
-      <input value={textValue} type="text" name="text" onChange={(event) => setTextValue(event?.target?.value || "")} />
-    </label>
-    <label>
-      Stars:
-      <input
-        value={starsValue}
-        type="number"
-        name="stars"
-        min={1}
-        max={5}
-        onChange={(event) => setStarsValue(Number(event?.target?.value) || 5)}
-      />
-    </label>
+    <CommentInputs
+      textValue={textValue}
+      setTextValue={setTextValue}
+      starsValue={starsValue}
+      setStarsValue={setStarsValue}
+    />
     <button type="button" onClick={sendComment}>
       Send
     </button>
