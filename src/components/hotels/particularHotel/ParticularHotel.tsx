@@ -77,7 +77,7 @@ const ParticularHotel = () => {
               ))}
             </Carousel>
           </div>
-          <div>
+          <div className={styles.rightCol}>
             <div className={styles.sepLine}>
               <span className={styles.price}>{hotel?.price}$</span>
               <span className={styles.name}>{hotel?.name}</span>
@@ -99,9 +99,10 @@ const ParticularHotel = () => {
                 Net blyat film
               </button>
             </div>
+            <CoolLabel>Feedback</CoolLabel>
+            <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
           </div>
         </div>
-        <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
       </div>
     </div>
   );

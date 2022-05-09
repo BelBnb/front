@@ -25,9 +25,9 @@
   }
 
   .feedbackContainer {
-    margin: 48px 0 320px;
-    padding: 0 24px;
+    margin: 0 0 320px;
     display: flex;
+    flex-direction: column;
   }
 
   .columns {
@@ -42,9 +42,11 @@
 
     & > div:last-child {
       display: flex;
-      flex: 0 30%;
-      max-width: 300px;
+      flex: 1 40%;
       flex-direction: column;
+      background-color: $bn-white;
+      padding: 12px;
+      border-radius: 6px;
     }
 
     .sepLine {
@@ -106,4 +108,9 @@
       background-color: $bn-white;
     }
   }
+}
+
+.rightCol {
+  overflow-y: auto;
+  max-height: 600px;
 }

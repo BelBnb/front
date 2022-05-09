@@ -1,0 +1,38 @@
+.flexDown {
+  background-color: $bn-white;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerCaption {
+  font-family: "DaysOne", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.prikol {
+  & > span {
+    display: flex;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+
+  button {
+    width: 49%;
+    display: flex;
+    flex: 0 49%;
+    justify-content: center;
+    padding: 6px;
+    transition: all 0.4s;
+    border: 1px solid $bn-black;
+
+    &:hover {
+      color: $bn-light-grey;
+      background-color: $bn-black;
+    }
+  }
+}

@@ -29,8 +29,8 @@ module.exports = (env, argv) => {
         // requires for ignoring CORS issues
         "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
       },
-      hot: `${undefined}` === env.hot,
-      liveReload: `${undefined}` === env.hot,
+      hot: undefined === env.hot,
+      liveReload: undefined === env.hot,
       historyApiFallback: {
         // provide index.html instead of 404:not found error (for SPA app)
         rewrites: [
