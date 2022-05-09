@@ -17,6 +17,7 @@ import "./overrideStyles.scss";
 import styles from "./styles.module.scss";
 import ColoredButton from "@/elements/common/buttons/buttons";
 import OutlinedButton from "@/elements/common/buttons/outlinedButton";
+import BookedPeople from "../bookedPeople/BookedPeople";
 
 const ParticularHotel = () => {
   const { hotels, user } = useSelector<RootState, { hotels: Hotel[]; user: User }>((app) => ({
@@ -106,6 +107,7 @@ const ParticularHotel = () => {
             <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
           </div>
         </div>
+        <BookedPeople />
       </div>
     </div>
   );

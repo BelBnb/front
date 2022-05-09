@@ -1,8 +1,8 @@
 export type SignInPayload = {
-    token : string
-}
+  token: string;
+};
 
 export type SignUpPayload = {
-    email: string,
-    password: string
-}
+  email: string;
+  password: string;
+};
