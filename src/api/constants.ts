@@ -39,3 +39,9 @@ export const updateFeedback = (itemId: string) =>
   `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/${itemId}`;
 
 export const createFeedback = `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/create`;
+
+// bookings
+const bookingPreffix = "/booking";
+
+export const getBookingsFor = (hotelId: string) =>
+  `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/hotel_bookings/${hotelId}`;

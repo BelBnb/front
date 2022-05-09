@@ -12,6 +12,10 @@ const headerLinks: HeaderLinks[] = [
     value: "messenger",
     label: "Messenger",
   },
+  {
+    value: "booking",
+    label: "Booking",
+  },
 ];
 
 export default headerLinks;

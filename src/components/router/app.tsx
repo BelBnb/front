@@ -15,6 +15,8 @@ import MessengerMain from "../mesenger/messengerMain/messengerMain";
 import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
 import ParticularHotel from "../hotels/particularHotel/ParticularHotel";
 import ProfileWrapper from "../profile/profileWrapper/ProfileWrapper";
+import "react-toastify/dist/ReactToastify.css";
+import BookingMain from "@/components/bookings/bookingsComponent";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -46,6 +48,7 @@ export default function App() {
               }
             />
             <Route path="/messenger" element={<MessengerMain />} />
+            <Route path="/booking" element={<BookingMain />} />
             <Route path="*" element={<span>kek</span>} />
             <Route
               path="/profile"

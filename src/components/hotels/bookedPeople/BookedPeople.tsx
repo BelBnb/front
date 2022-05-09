@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import styles from "./styles.module.scss";
 import "./overrides.scss";
+import { requestWithQuerry } from "@/api/apiService";
+import { getBookingsFor, getFeedbackFor, methods } from "@/api/constants";
+import { PageSize } from "@/common/paginationConstants";
+import { useParams } from "react-router-dom";
+import { BookingEntityFilled } from "@/common/types/Booking";
 
 export const themeOptions = [
   "appTheme",
@@ -47,118 +52,24 @@ createTheme(...themeOptions);
 
 const columns = [
   {
-    name: "Title",
-    selector: (row: { title: string }) => row.title,
-    sortable: true,
+    name: "",
+    selector: (row: { userImage: string }) => row.userImage,
+    sortable: false,
   },
   {
-    name: "Year",
-    selector: (row: { year: string }) => row.year,
+    name: "Name",
+    selector: (row: { name: string }) => row.name,
+  },
+  {
+    name: "Start date",
+    selector: (row: { startDate: Date }) => row.startDate,
+  },
+  {
+    name: "End date",
+    selector: (row: { endDate: Date }) => row.endDate,
   },
 ];
 
-const data = [
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-];
 type selectionChangeType = {
   allSelected: boolean;
   selectedCount: number;
@@ -170,12 +81,54 @@ type selectionChangeType = {
 };
 
 const BookedPeople = () => {
-  const [selected, setSelected] = useState<typeof data>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const [totalRows, setTotalRows] = useState(-1);
+  const [loading, setLoading] = useState(true);
+
+  const [bookings, setBookings] = useState<BookingEntityFilled[]>([]);
+
+  const params = useParams();
+
+  const loadMore = async (page = 1) => {
+    setLoading(true);
+    const data = await requestWithQuerry(getBookingsFor(params.id), methods.GET, {
+      limit: PageSize,
+      offset: (page - 1) * PageSize,
+    });
+    const loaded = await data.json();
+
+    setTotalRows(loaded.total);
+
+    const parsed = loaded.data.map((item: BookingEntityFilled) => ({
+      ...item,
+      name: `${item.userFirstName} ${item.userLastName}`,
+    }));
+
+    setBookings(parsed);
+    setCurrentPage((s) => s + 1);
+
+    setLoading(false);
+  };
+
+  const handlePageChange = async (page: number) => {
+    await loadMore(page);
+  };
+
+  useEffect(() => {
+    async function loadPrikoli() {
+      if (params.id) await loadMore();
+    }
+    loadPrikoli();
+  }, []);
+
+  const [selected, setSelected] = useState<BookingEntityFilled[]>([]);
 
   const handleSelectionChanged = (e: selectionChangeType) => {
     setSelected(e.selectedRows);
     console.log(e);
   };
+
   return (
     <div>
       <DataTable
@@ -183,11 +136,17 @@ const BookedPeople = () => {
         selectableRows
         selectableRowsHighlight
         onSelectedRowsChange={(e) => handleSelectionChanged(e)}
-        pagination
         className={styles.table}
         columns={columns}
-        data={data}
+        data={bookings}
         theme="appTheme"
+        progressPending={loading}
+        pagination
+        paginationServer
+        paginationTotalRows={totalRows}
+        paginationPerPage={PageSize}
+        paginationRowsPerPageOptions={[PageSize]}
+        onChangePage={handlePageChange}
       />
     </div>
   );
