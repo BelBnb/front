@@ -1,12 +1,4 @@
 import { Paginator } from "../../pagination/paginator";
+import { BookingEntityFilled } from "@/common/types/Booking";
 
-export type userBookings = {
-  id: string;
-  hotelId: string;
-  userId: string;
-  wannaNeighbour: boolean;
-  startDate: string;
-  endDate: string;
-};
-
-export type userBookingPayload = Paginator<userBookings[]>;
+export type userBookingPayload = Paginator<BookingEntityFilled[]>;

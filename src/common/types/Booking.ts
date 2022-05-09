@@ -10,5 +10,9 @@ export class BookingEntityFilled {
   userFirstName: string;
   userLastName: string;
 
+  hotelImage: string;
+  hotelName: string;
+
+  // username will be calculated on necessary
   name?: string;
 }

@@ -93,7 +93,9 @@ const changeStatusButton = (isActive: boolean, itemId: string) => {
 const columns = [
   {
     name: "",
-    selector: (row: { userImage: string }) => row.userImage,
+    selector: (row: { userImage: string }) => (
+      <img src={row.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}></img>
+    ),
     sortable: false,
   },
   {
