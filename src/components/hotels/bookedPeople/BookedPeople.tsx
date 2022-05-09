@@ -100,7 +100,7 @@ const columns = [
   },
   {
     name: "Name",
-    selector: (row: { name: string; userId: string }) => <Link to={"/users/" + row.userId}>{row.name}</Link>,
+    selector: (row: { name: string; userId: string }) => <Link to={"/profile/" + row.userId}>{row.name}</Link>,
   },
   {
     name: "Start date",

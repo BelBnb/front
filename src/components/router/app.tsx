@@ -49,6 +49,14 @@ export default function App() {
             />
             <Route path="/messenger" element={<MessengerMain />} />
             <Route path="/booking" element={<BookingMain />} />
+            <Route
+              path="/profile/:id"
+              element={
+                <ProtectedRoute user={selectore}>
+                  <ProfileWrapper />
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<span>kek</span>} />
             <Route
               path="/profile"

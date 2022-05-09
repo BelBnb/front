@@ -23,6 +23,10 @@ interface FeedbackComponentProps {
 }
 
 const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.Element => {
+  if (!entityId) {
+    return <></>;
+  }
+
   const user = useSelector<RootState, User>((el) => el.user);
   const [comments, setComments] = useState<FeedbackConstant[]>([]);
   const [myComment, setMyComment] = useState<FeedbackConstant>();
@@ -51,6 +55,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     });
     const parsed = await data.json();
 
+    console.log("Parsed ", parsed);
     setComments((cm) => [...cm, ...parsed.data]);
     setHasMore(parsed.limit + parsed.offset < parsed.total);
     setCurrentPage((s) => s + 1);

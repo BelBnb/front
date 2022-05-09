@@ -15,10 +15,6 @@ export const signInRoute = `${gatewayPreffix}/auth/auth/login`;
 export const getTokenInfoRoute = `${gatewayPreffix}/users/api/users/`;
 export const signUpRoute = `${gatewayPreffix}/auth/sign-up`;
 
-// booking
-export const createBookingRoute = `${gatewayPreffix}/booking/api/booking/create`;
-export const userBookingsRoute = `${gatewayPreffix}/booking/api/booking/user_bookings`;
-
 const hotelPreffix = "/hotels";
 export const createHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/create`;
 export const updateHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
@@ -40,10 +36,16 @@ export const updateFeedback = (itemId: string) =>
 
 export const createFeedback = `${gatewayPreffix + feedbackPreffix + apiPreffix + feedbackPreffix}/create`;
 
-// bookings
+// booking
 const bookingPreffix = "/booking";
 
+export const createBookingRoute = `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/create`;
+export const userBookingsRoute = `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/user_bookings`;
 export const getBookingsFor = (hotelId: string) =>
   `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/hotel_bookings/${hotelId}`;
 export const updateBooking = (itemId: string) =>
   `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/${itemId}`;
+
+// user
+const usersPreffix = "/users";
+export const getUserById = (userId: string) => `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/${userId}`;

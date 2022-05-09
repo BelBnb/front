@@ -9,9 +9,35 @@ import bookingApi from "@/api/booking/bookingApi";
 import { userBookingsDto } from "@/types/dto/booking/bookingDtos";
 import styles from "./styles.module.scss";
 import UserBookings from "../UserBookings/UserBookings";
+import { useParams } from "react-router-dom";
+import { request } from "@/api/apiService";
+import { getUserById } from "@/api/constants";
 
 const ParticularUser = () => {
-  const user = useSelector<RootState, User>((state) => state.user);
+  const params = useParams();
+
+  const [user, setUser] = useState<User>();
+
+  const [visitorUser, setVisitor] = useState<User>(useSelector<RootState, User>((state) => state.user));
+
+  const [isMyself, setIsMyself] = useState(false);
+
+  useEffect(async () => {
+    if (params.id) {
+      const data = await request(getUserById(params.id), "GET");
+      console.log(data);
+      const user = await data.json();
+      // todo: redirect to 404
+      if (user?.error) alert("No such user");
+
+      if (user.id === visitorUser.id) setIsMyself(true);
+      setUser(user);
+    } else {
+      setIsMyself(true);
+      setUser(visitorUser);
+    }
+  }, []);
+
   const [paginationProps, setPaginationProps] = useState<{ limit: number; offset: number }>({ limit: 10, offset: 0 });
   const [userBookingsArray, setUserBookings] = useState<userBookingPayload>({
     data: [],
@@ -29,7 +55,6 @@ const ParticularUser = () => {
       offset: paginationProps.offset,
     };
     const result = await bookingApi.userBooking(dto);
-
     setUserBookings(result);
     setTotalCount(result.total);
     return result;
@@ -40,7 +65,8 @@ const ParticularUser = () => {
       await fetchUserBookings();
     }
     load();
-  }, []);
+    console.log(user);
+  }, [user]);
 
   useEffect(() => {
     async function load() {
@@ -61,27 +87,30 @@ const ParticularUser = () => {
           <div>
             <div className={styles.profileInfo}>
               <span className={styles.name}>
-                {user.firstName} {user.lastName}
+                {user?.firstName} {user?.lastName}
               </span>
-              <span>{user.sex === SexEnum.Female ? "feMale" : "Male"}</span>
-              <span>Sex? {user.sex === SexEnum.Female ? "Yes" : "No"}</span>
+              <span>{user?.sex === SexEnum.Female ? "feMale" : "Male"}</span>
+              <span>Sex? {user?.sex === SexEnum.Female ? "Yes" : "No"}</span>
 
               <span className={styles.name}>
-                {new Date().getFullYear() - (new Date(user?.birthDate).getFullYear() || 2001)} years
+                {new Date().getFullYear() - (new Date(user?.birthDate || "").getFullYear() || 2001)} years
               </span>
             </div>
 
             <div className={styles.buttonContainer}>
-              {/* if user is I am do not show*/}
-              <button type="button" className={styles.outlineButton}>
-                Open chat
-              </button>
-              {/* if user is I am do show*/}
-              <button type="button" className={styles.coloredButton}>
-                Edit
-              </button>
+              {!isMyself && (
+                <button type="button" className={styles.outlineButton}>
+                  Open chat
+                </button>
+              )}
+
+              {isMyself && (
+                <button type="button" className={styles.coloredButton}>
+                  Edit
+                </button>
+              )}
             </div>
-            <FeedbackComponent entityId={user.id} />
+            <FeedbackComponent entityId={user?.id || ""} />
           </div>
         </div>
         {userBookingsArray && (
