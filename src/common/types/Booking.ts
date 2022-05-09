@@ -3,7 +3,7 @@ export class BookingEntityFilled {
   hotelId!: string;
   startDate!: Date;
   endDate!: Date;
-  wannaNeighbour!: boolean;
+  isActive!: boolean;
   id!: string;
 
   userImage: string;

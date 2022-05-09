@@ -48,7 +48,7 @@ const ParticularHotel = () => {
     }
     const bookingDto: createBookingDto = {
       userId: user.id,
-      wannaNeighbour: false,
+      isActive: true,
       hotelId: hotel?.id,
       startDate: selection.startDate,
       endDate: selection.endDate,

@@ -44,3 +44,5 @@ const bookingPreffix = "/booking";
 
 export const getBookingsFor = (hotelId: string) =>
   `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/hotel_bookings/${hotelId}`;
+export const updateBooking = (itemId: string) =>
+  `${gatewayPreffix + bookingPreffix + apiPreffix + bookingPreffix}/${itemId}`;

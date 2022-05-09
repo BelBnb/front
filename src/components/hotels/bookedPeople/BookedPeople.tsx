@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import styles from "./styles.module.scss";
 import "./overrides.scss";
-import { requestWithQuerry } from "@/api/apiService";
-import { getBookingsFor, getFeedbackFor, methods } from "@/api/constants";
+import { request, requestWithBody, requestWithQuerry } from "@/api/apiService";
+import { getBookingsFor, getFeedbackFor, methods, updateBooking, updateFeedback } from "@/api/constants";
 import { PageSize } from "@/common/paginationConstants";
 import { useParams } from "react-router-dom";
 import { BookingEntityFilled } from "@/common/types/Booking";
+import { toast } from "react-toastify";
 
 createTheme(
   "appTheme",
@@ -48,6 +49,45 @@ createTheme(
   "dark"
 );
 
+const changeStatusButton = (isActive: boolean, itemId: string) => {
+  if (isActive) {
+    return (
+      <button
+        onClick={async () => {
+          if (confirm("Set to Disabled?")) {
+            toast.promise(
+              requestWithBody(updateBooking(itemId), "PATCH", {
+                isActive: false,
+              }),
+              { pending: "Otpravlyaem", success: "Ezhzhzhi", error: "Ashibka" }
+            );
+          }
+        }}
+        style={{ color: "green" }}
+      >
+        Active
+      </button>
+    );
+  }
+  return (
+    <button
+      onClick={async () => {
+        if (confirm("Set to Active?")) {
+          toast.promise(
+            requestWithBody(updateBooking(itemId), "PATCH", {
+              isActive: true,
+            }),
+            { pending: "Otpravlyaem", success: "Ezhzhzhi", error: "Ashibka" }
+          );
+        }
+      }}
+      style={{ color: "red" }}
+    >
+      Disabled
+    </button>
+  );
+};
+
 const columns = [
   {
     name: "",
@@ -65,6 +105,10 @@ const columns = [
   {
     name: "End date",
     selector: (row: { endDate: Date }) => row.endDate,
+  },
+  {
+    name: "Status",
+    selector: (row: { isActive: boolean; id: string }) => changeStatusButton(row.isActive, row.id),
   },
 ];
 

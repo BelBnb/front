@@ -3,5 +3,5 @@ export interface createBookingDto {
   hotelId: string;
   startDate: Date;
   endDate: Date;
-  wannaNeighbour: boolean;
+  isActive: boolean;
 }
