@@ -5,3 +5,10 @@ export interface createBookingDto {
   endDate: Date;
   wannaNeighbour: boolean;
 }
+
+export interface userBookingsDto {
+  userId: string;
+  dateFilter: string;
+  limit: number;
+  offset: number;
+}

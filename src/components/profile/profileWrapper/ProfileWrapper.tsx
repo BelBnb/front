@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { SexEnum } from "@/common/sex.enum";
 import { User } from "@/types/redux/initStates";
 import FeedbackComponent from "@/components/feedback/feedbackComponent";
+import { userBookingPayload } from "@/types/dto/apiPayloads/booking/userBookingsPayload";
+import bookingApi from "@/api/booking/bookingApi";
+import { userBookingsDto } from "@/types/dto/booking/bookingDtos";
 import styles from "./styles.module.scss";
+import UserBookings from "../UserBookings/UserBookings";
 
 const ParticularUser = () => {
   const user = useSelector<RootState, User>((state) => state.user);
-  /* const [hotel, setHotel] = useState<User>();
-  const dispatch = useDispatch();
-  const params = useParams();
+  const [paginationProps, setPaginationProps] = useState<{ limit: number; offset: number }>({ limit: 10, offset: 0 });
+  const [userBookingsArray, setUserBookings] = useState<userBookingPayload>({
+    data: [],
+    limit: 0,
+    offset: 0,
+    total: 0,
+  });
+  const [totalCount, setTotalCount] = useState(0);
+
+  const fetchUserBookings = async () => {
+    const dto: userBookingsDto = {
+      dateFilter: "ALL",
+      userId: user.id,
+      limit: paginationProps.limit,
+      offset: paginationProps.offset,
+    };
+    const result = await bookingApi.userBooking(dto);
+
+    setUserBookings(result);
+    setTotalCount(result.total);
+    return result;
+  };
 
   useEffect(() => {
-    dispatch(getHotelsThunk());
-    console.log(params.id);
-    if (params.id) {
-      setHotel(hotels.find((el) => el.id === params.id));
+    async function load() {
+      await fetchUserBookings();
     }
-  }, [params, hotels]);*/
+    load();
+  }, []);
+
+  useEffect(() => {
+    async function load() {
+      await fetchUserBookings();
+    }
+    load();
+  }, [paginationProps]);
 
   return (
     <div className={styles.pageWrapper}>
@@ -52,9 +81,19 @@ const ParticularUser = () => {
                 Edit
               </button>
             </div>
+            <FeedbackComponent entityId={user.id} />
           </div>
         </div>
-        <FeedbackComponent entityId={user.id} />
+        {userBookingsArray && (
+          <UserBookings
+            totalRows={totalCount}
+            data={userBookingsArray.data}
+            onChangeRowsPerPage={(e) => setPaginationProps((prevState) => ({ ...prevState, limit: e }))}
+            onChangePage={(e) =>
+              setPaginationProps((prevState) => ({ ...prevState, offset: (e - 1) * prevState.limit }))
+            }
+          />
+        )}
       </div>
     </div>
   );

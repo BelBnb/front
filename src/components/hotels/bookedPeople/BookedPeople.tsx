@@ -3,7 +3,7 @@ import DataTable, { createTheme } from "react-data-table-component";
 import styles from "./styles.module.scss";
 import "./overrides.scss";
 
-createTheme(
+export const themeOptions = [
   "appTheme",
   {
     text: {
@@ -32,16 +32,18 @@ createTheme(
       disabled: "rgba(0,0,0)",
     },
     selected: {
-      default: "#d7d7d7",
-      text: "#2d2d2d",
+      default: "rgba(0,0,0,.3)",
+      text: "#1d1d1d",
     },
     highlightOnHover: {
       default: "#647aa3",
       text: "#fff",
     },
   },
-  "dark"
-);
+  "dark",
+];
+
+createTheme(...themeOptions);
 
 const columns = [
   {
