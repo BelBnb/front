@@ -1,6 +1,17 @@
 TODO:
--hotel pagination
--ability block bookings
--ability to look already booked
+-hotel pagination and filter
+-neighbours service
 -admin part
 -messenger
+
+-profile changing
+-image styling in tables
+
+-ws
+-https
+-zapiska
+
+DONE:
+-ability to look already booked
+-ability block bookings
+-logout

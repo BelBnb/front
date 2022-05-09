@@ -1,0 +1,19 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  textarea {
+    padding: 6px;
+    max-height: 400px;
+    border-radius: 4px;
+    border: 2px solid $bn-black;
+    transition: all 0.4s;
+  }
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: $bn-claucos;
+  box-shadow: 0 0 5px $bn-semi-black;
+}

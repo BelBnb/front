@@ -10,17 +10,17 @@ import { userBookingsDto } from "@/types/dto/booking/bookingDtos";
 import styles from "./styles.module.scss";
 import UserBookings from "../UserBookings/UserBookings";
 import { useParams } from "react-router-dom";
-import { request } from "@/api/apiService";
-import { getUserById } from "@/api/constants";
+import { request, requestWithBody } from "@/api/apiService";
+import { getUserById, updateUserRoute, userBookingsRoute } from "@/api/constants";
+import EditProfileDialog from "@/components/profile/profileWrapper/editProfileDialog/editProfileDialog";
+import { toast } from "react-toastify";
 
 const ParticularUser = () => {
   const params = useParams();
-
   const [user, setUser] = useState<User>();
-
   const [visitorUser, setVisitor] = useState<User>(useSelector<RootState, User>((state) => state.user));
-
   const [isMyself, setIsMyself] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(async () => {
     if (params.id) {
@@ -46,6 +46,30 @@ const ParticularUser = () => {
     total: 0,
   });
   const [totalCount, setTotalCount] = useState(0);
+  const [file, setFile] = useState<{ selectedFile: File }>();
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Update the state
+    if (event.target && event.target.files) {
+      setFile({ selectedFile: event.target.files[0] });
+    }
+  };
+
+  /*const onFileUpload = () => {
+    const formData = new FormData();
+
+    if (!file) {
+      return;
+      toast.error("Select file pizdoglazoye mudilo");
+    }
+    // Update the formData object
+    formData.append("myFile", file.selectedFile, file.selectedFile.name);
+
+    // Details of the uploaded file
+    console.log(file.selectedFile);
+
+    // Request made to the backend api
+    // Send formData object
+user  };*/
 
   const fetchUserBookings = async () => {
     const dto: userBookingsDto = {
@@ -75,13 +99,31 @@ const ParticularUser = () => {
     load();
   }, [paginationProps]);
 
+  const [isOpen, setOpen] = useState(false);
+
+  const [firstName, setFirstNameValue] = useState(user?.firstName || "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
+
+  const updateUser = () => {
+    toast.promise(
+      requestWithBody(updateUserRoute(user.id), "PUT", {
+        firstName,
+        lastName,
+      }),
+      { success: "Updated", error: "Failed", pending: "Pending" }
+    );
+  };
+
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.contentContaienr}>
         <div className={styles.columns}>
           <div className={styles.rightColumn}>
             <div className={styles.avatarContainer}>
-              <img src={user?.profilePic} alt="pirkol" />
+              <label htmlFor="my-file">
+                <img src={user?.profilePic} alt="pirkol" />
+              </label>
+              <input id="my-file" type="file" hidden onChange={(e) => onFileChange(e)} />
             </div>
           </div>
           <div>
@@ -105,9 +147,32 @@ const ParticularUser = () => {
               )}
 
               {isMyself && (
-                <button type="button" className={styles.coloredButton}>
-                  Edit
-                </button>
+                <>
+                  {isEdit ? (
+                    <button type="button" onClick={} className={styles.coloredButton}>
+                      Save
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                      className={styles.coloredButton}
+                    >
+                      Edit
+                    </button>
+                  )}
+                  <EditProfileDialog
+                    setOpen={setOpen}
+                    setFirstNameValue={setFirstNameValue}
+                    firstNameValue={firstName}
+                    lastNameValue={lastName}
+                    setLastNameValue={setLastName}
+                    isOpen={isOpen}
+                    updateUser={updateUser}
+                  />
+                </>
               )}
             </div>
             <FeedbackComponent entityId={user?.id || ""} />
