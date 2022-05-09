@@ -5,7 +5,7 @@ import "./overrides.scss";
 import { request, requestWithBody, requestWithQuerry } from "@/api/apiService";
 import { getBookingsFor, getFeedbackFor, methods, updateBooking, updateFeedback } from "@/api/constants";
 import { PageSize } from "@/common/paginationConstants";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BookingEntityFilled } from "@/common/types/Booking";
 import { toast } from "react-toastify";
 
@@ -100,7 +100,7 @@ const columns = [
   },
   {
     name: "Name",
-    selector: (row: { name: string }) => row.name,
+    selector: (row: { name: string; userId: string }) => <Link to={"/users/" + row.userId}>{row.name}</Link>,
   },
   {
     name: "Start date",

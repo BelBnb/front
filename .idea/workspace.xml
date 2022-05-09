@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/types/Booking.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/types/Booking.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/hotels/bookedPeople/BookedPeople.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/bookedPeople/BookedPeople.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/profile/UserBookings/UserBookings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/UserBookings/UserBookings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/dto/apiPayloads/booking/userBookingsPayload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/dto/apiPayloads/booking/userBookingsPayload.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +122,7 @@
       <workItem from="1652001614251" duration="21066000" />
       <workItem from="1652107083554" duration="43000" />
       <workItem from="1652107130369" duration="1692000" />
-      <workItem from="1652108840239" duration="9959000" />
+      <workItem from="1652108840239" duration="10506000" />
     </task>
     <servers />
   </component>
