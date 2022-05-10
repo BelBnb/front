@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import hotelsApi from "@/api/hotels/hotelsApi";
 import InputElement from "@/elements/auth/inputElement/InputElement";
 import DialogComponent from "@/elements/common/dialog/dialog";
 import { RootState } from "@/redux/store";
@@ -16,7 +19,16 @@ const HotelsContainer = () => {
     hotel: Hotel;
     method: "delete" | "update";
   }>();
-  const [editableItem, setEditableItem] = useState<Hotel>();
+  const [editableItem, setEditableItem] = useState<Hotel>({
+    id: "",
+    name: "",
+    authorId: "",
+    city: "",
+    description: "",
+    images: "",
+    location: { coordinates: [], type: "" },
+  });
+  const [files, setFiles] = useState<File[]>();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getHotelsThunk());
@@ -38,18 +50,50 @@ const HotelsContainer = () => {
     if (polygonItem?.method === "delete") {
       toast.error("No you don't");
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      onFileUpload();
     }
   };
+
   const cancelHandler = () => {
     setIsOpen(false);
   };
 
   const updateEditableProp = (e: string | number | File, prop: keyof Hotel) => {
-    setEditableItem((prevState) => {
-      if (prevState) {
-        return { ...prevState, [prop]: e };
+    setEditableItem((prevState) => ({ ...prevState, [prop]: e }));
+    console.log(editableItem);
+  };
+
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target && event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
+  const onFileUpload = () => {
+    const formData = new FormData();
+    console.log(files);
+    console.log(polygonItem?.hotel);
+    console.log(editableItem);
+    if (!files || !polygonItem?.hotel || !editableItem) {
+      toast.error("Select file pizdoglazoye mudilo");
+      return;
+    }
+    files.forEach((file) => {
+      formData.append("images", file, file.name);
+    });
+    Object.keys(editableItem).forEach((key) => {
+      if (key === "location") {
+        return;
       }
-      return prevState;
+      formData.append(key, editableItem[key] || "");
+    });
+    formData.append("lat", "0");
+    formData.append("long", "0");
+    toast.promise(hotelsApi.updateHotel(polygonItem?.hotel.id, formData), {
+      pending: "Updating",
+      success: "Updated",
+      error: "Somthing went wrong",
     });
   };
 
@@ -79,6 +123,8 @@ const HotelsContainer = () => {
             />
             <InputElement placeholder="Price" onChange={(e) => updateEditableProp(e, "price")} type="text" />
             <InputElement placeholder="City" onChange={(e) => updateEditableProp(e, "city")} type="text" />
+            <input type="file" multiple id="qw-item" hidden onChange={(e) => onFileChange(e)} />
+            <label htmlFor="qw-item">Pick an images</label>
           </div>
         )}
       </DialogComponent>
