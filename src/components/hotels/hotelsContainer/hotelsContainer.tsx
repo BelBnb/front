@@ -1,3 +1,4 @@
+import InputElement from "@/elements/auth/inputElement/InputElement";
 import DialogComponent from "@/elements/common/dialog/dialog";
 import { RootState } from "@/redux/store";
 import getHotelsThunk from "@/redux/thunks/hotels/getHotelsThunk";
@@ -15,6 +16,7 @@ const HotelsContainer = () => {
     hotel: Hotel;
     method: "delete" | "update";
   }>();
+  const [editableItem, setEditableItem] = useState<Hotel>();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getHotelsThunk());
@@ -42,6 +44,15 @@ const HotelsContainer = () => {
     setIsOpen(false);
   };
 
+  const updateEditableProp = (e: string | number | File, prop: keyof Hotel) => {
+    setEditableItem((prevState) => {
+      if (prevState) {
+        return { ...prevState, [prop]: e };
+      }
+      return prevState;
+    });
+  };
+
   return (
     <div className={styles.hotelsWrapper}>
       <h4 className={styles.headerCaption}>Hotels</h4>
@@ -59,7 +70,17 @@ const HotelsContainer = () => {
         isOpen={isOpen}
         setOpen={(e) => setIsOpen(e)}
       >
-        {polygonItem?.method === "update" && <div />}
+        {polygonItem?.method === "update" && (
+          <div className={styles.dialogUpdate}>
+            <InputElement placeholder="Name" onChange={(e) => updateEditableProp(e, "name")} type="text" />
+            <textarea
+              placeholder="Desctiption"
+              onChange={(e) => updateEditableProp(e.currentTarget.value, "description")}
+            />
+            <InputElement placeholder="Price" onChange={(e) => updateEditableProp(e, "price")} type="text" />
+            <InputElement placeholder="City" onChange={(e) => updateEditableProp(e, "city")} type="text" />
+          </div>
+        )}
       </DialogComponent>
     </div>
   );
