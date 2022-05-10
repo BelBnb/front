@@ -25,9 +25,14 @@
     flex-direction: column;
 
     .bottomButtons {
-      justify-content: space-between;
-      display: flex;
+      & > div {
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+      }
       gap: 8px;
+      flex-direction: column;
+      display: flex;
 
       button {
         display: flex;
