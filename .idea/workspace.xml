@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/feedback/commentInputs/userInputs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/editProfileDialog/editProfileDialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/editProfileDialog/styles.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/types/Neighbours.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/neighbours/neighboursComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo" beforeDir="false" afterPath="$PROJECT_DIR$/todo" afterDir="false" />
-    </list>
-    <list id="56c9c161-9247-4e89-bfa5-33b8ca0cace5" name="Changes by aspera" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/sex.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/sex.enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/bookings/bookingsComponent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/router/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/router/app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/router/constants/headerLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/router/constants/headerLinks.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,21 +40,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx">
-      <ranges>
-        <range start1="12" end1="14" start2="12" end2="16" changelist="6fe2e149-fb67-4a15-9866-82aee1a7bf58" />
-        <range start1="17" end1="18" start2="19" end2="19" changelist="56c9c161-9247-4e89-bfa5-33b8ca0cace5" />
-        <range start1="19" end1="20" start2="20" end2="20" changelist="56c9c161-9247-4e89-bfa5-33b8ca0cace5" />
-        <range start1="21" end1="22" start2="21" end2="21" changelist="56c9c161-9247-4e89-bfa5-33b8ca0cace5" />
-        <range start1="23" end1="23" start2="22" end2="23" changelist="56c9c161-9247-4e89-bfa5-33b8ca0cace5" />
-        <range start1="48" end1="48" start2="48" end2="72" changelist="6fe2e149-fb67-4a15-9866-82aee1a7bf58" />
-        <range start1="77" end1="77" start2="101" end2="116" changelist="6fe2e149-fb67-4a15-9866-82aee1a7bf58" />
-        <range start1="83" end1="84" start2="122" end2="126" changelist="6fe2e149-fb67-4a15-9866-82aee1a7bf58" />
-        <range start1="107" end1="110" start2="149" end2="175" changelist="6fe2e149-fb67-4a15-9866-82aee1a7bf58" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -69,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/feedback/commentInputs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common/types" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -82,9 +66,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/common/types" />
       <recent name="$PROJECT_DIR$/src/components/feedback/commentInputs" />
       <recent name="$PROJECT_DIR$/src/components/profile/profileWrapper" />
-      <recent name="$PROJECT_DIR$/src/common/types" />
       <recent name="$PROJECT_DIR$/src/components/bookings" />
       <recent name="$PROJECT_DIR$/src/components/feedback" />
     </key>
@@ -144,7 +128,9 @@
       <workItem from="1652001614251" duration="21066000" />
       <workItem from="1652107083554" duration="43000" />
       <workItem from="1652107130369" duration="1692000" />
-      <workItem from="1652108840239" duration="15779000" />
+      <workItem from="1652108840239" duration="16540000" />
+      <workItem from="1652158595996" duration="4346000" />
+      <workItem from="1652203497724" duration="757000" />
     </task>
     <servers />
   </component>
