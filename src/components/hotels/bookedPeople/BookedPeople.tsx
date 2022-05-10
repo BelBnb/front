@@ -55,6 +55,7 @@ const changeStatusButton = (isActive: boolean, itemId: string) => {
   if (isActive) {
     return (
       <button
+        type="button"
         onClick={async () => {
           if (confirm("Set to Disabled?")) {
             toast.promise(
@@ -73,6 +74,7 @@ const changeStatusButton = (isActive: boolean, itemId: string) => {
   }
   return (
     <button
+      type="button"
       onClick={async () => {
         if (confirm("Set to Active?")) {
           toast.promise(
@@ -94,7 +96,13 @@ const columns = [
   {
     name: "",
     selector: (row: { userImage: string }) => (
-      <img src={row.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"} />
+      <div className={styles.imageWrapper}>
+        <img
+          className={styles.roundedImage}
+          src={row.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}
+          alt="prikol"
+        />
+      </div>
     ),
     sortable: false,
   },

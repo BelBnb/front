@@ -1,4 +1,17 @@
-.rdt_Table {
+.rdt_TableCell {
+  display: flex;
+  width: 100%;
+
+  & > div {
+    display: flex;
+    width: 100%;
+
+    & > div {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  }
 }
 
 .rdt_Pagination {

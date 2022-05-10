@@ -1,3 +1,19 @@
 .rdt_Pagination {
   margin-bottom: 30px;
 }
+
+.rdt_TableCell {
+  display: flex;
+  width: 100%;
+
+  & > div {
+    display: flex;
+    width: 100%;
+
+    & > div {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

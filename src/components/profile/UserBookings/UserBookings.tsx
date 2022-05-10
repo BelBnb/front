@@ -3,16 +3,21 @@ import DataTable, { TableColumn } from "react-data-table-component";
 import "./overrides.scss";
 import { BookingEntityFilled } from "@/common/types/Booking";
 import { Link } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 const userBookingColumns: TableColumn<BookingEntityFilled>[] = [
   {
     name: "",
-    selector: (row) => <img src={JSON.parse(row.hotelImage)[0]}></img>,
+    selector: (row) => (
+      <div>
+        <img className={styles.roundedImage} src={JSON.parse(row.hotelImage)[0]} alt="prikolchik" />
+      </div>
+    ),
   },
   {
     name: "Hotel",
     selector: (row: { hotelName: string; hotelId: string }) => (
-      <Link to={"/hotels/" + row.hotelId}>{row.hotelName}</Link>
+      <Link to={`/hotels/${row.hotelId}`}>{row.hotelName}</Link>
     ),
     sortable: true,
   },
