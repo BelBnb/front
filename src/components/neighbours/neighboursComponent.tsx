@@ -64,6 +64,7 @@ const NeighboursMain: React.FC = (): JSX.Element => {
   return (
     <div>
       <div>
+        <div>//todo: mine neigbours</div>
         <div>
           <input type={"text"} placeholder={"City"} value={city} onChange={(e) => setCity(e.target.value)} />
 
@@ -130,6 +131,7 @@ const NeighboursMain: React.FC = (): JSX.Element => {
                 <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
                 <span>{item.startDate}</span>
                 <span>{item.endDate}</span>
+                <span>{item.description}</span>
               </div>
             );
           })}
