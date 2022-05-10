@@ -55,3 +55,4 @@ export const updateUserRoute = (userId: string) =>
 //neighbours
 const neighboursPreffix = "/neighbours";
 export const allNeighboursRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/all`;
+export const createNeighbourRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/create`;

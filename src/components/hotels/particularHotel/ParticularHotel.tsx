@@ -18,6 +18,8 @@ import styles from "./styles.module.scss";
 import ColoredButton from "@/elements/common/buttons/buttons";
 import OutlinedButton from "@/elements/common/buttons/outlinedButton";
 import BookedPeople from "../bookedPeople/BookedPeople";
+import neighboursApi from "@/api/neighbours/neighboursApi";
+import { createNeighbourDto } from "@/types/dto/neighbours/createNeighbourDto";
 
 const ParticularHotel = () => {
   const { hotels, user } = useSelector<RootState, { hotels: Hotel[]; user: User }>((app) => ({
@@ -31,6 +33,10 @@ const ParticularHotel = () => {
     key: "selection",
   });
   const [hotel, setHotel] = useState<Hotel>();
+
+  const [wannaNeighbour, setWannaNeigbour] = useState<boolean>(false);
+  const [neighbourDescription, setNeighbourDescription] = useState("");
+
   const dispatch: AppDispatch = useDispatch();
   const params = useParams();
 
@@ -53,12 +59,30 @@ const ParticularHotel = () => {
       startDate: selection.startDate,
       endDate: selection.endDate,
     };
+
     const result = await bookingApi.createBooking(bookingDto);
     if (result) {
       toast.success("Booked successfully");
     }
+  };
 
-    console.log(result);
+  const handleNeighbour = async () => {
+    if (wannaNeighbour) {
+      const neighbourDto: createNeighbourDto = {
+        userId: user.id,
+        startDate: selection.startDate,
+        endDate: selection.endDate,
+        city: hotel?.city,
+        description: neighbourDescription,
+      };
+      const neighbourResult = await neighboursApi.createNeighboursRequest(neighbourDto);
+      if (!neighbourResult.error) {
+        toast.success("Neighbour request created successfully. You can find it on neighbours page!");
+      } else {
+        if (Array.isArray(neighbourResult.message)) toast.error(neighbourResult.message[0]);
+        else toast.error(neighbourResult.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -97,11 +121,22 @@ const ParticularHotel = () => {
             <div className={styles.buttonContainer}>
               <OutlinedButton outlineLabel="Book" onClick={handleBook} />
               <ColoredButton
-                coloredLabel="Net blayt film"
+                coloredLabel={!wannaNeighbour ? "Find neighbour?" : "Hide neighbours finding"}
                 onClick={() => {
-                  throw new Error("Function not implemented.");
+                  setWannaNeigbour((s) => !s);
                 }}
               />
+              {wannaNeighbour && (
+                <div className={styles.findNeighboursContent}>
+                  <textarea
+                    placeholder="Share aims of your visit: "
+                    name="text"
+                    value={neighbourDescription}
+                    onChange={(event) => setNeighbourDescription(event?.target?.value || "")}
+                  />
+                  <OutlinedButton outlineLabel="Find!" onClick={handleNeighbour} />
+                </div>
+              )}
             </div>
             <CoolLabel>Feedback</CoolLabel>
             <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
