@@ -7,6 +7,7 @@ import { allNeighboursRoute } from "@/api/constants";
 import { Neighbours } from "@/common/types/Neighbours";
 import { SexEnum } from "@/common/sex.enum";
 import { PageSize } from "@/common/paginationConstants";
+import MeNeighboursMain from "@/components/neighbours/mineNeighboursComponent";
 
 const NeighboursMain: React.FC = (): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
@@ -64,7 +65,7 @@ const NeighboursMain: React.FC = (): JSX.Element => {
   return (
     <div>
       <div>
-        <div>//todo: mine neigbours</div>
+        <MeNeighboursMain />
         <div>
           <input type={"text"} placeholder={"City"} value={city} onChange={(e) => setCity(e.target.value)} />
 

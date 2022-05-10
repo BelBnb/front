@@ -1,6 +1,7 @@
 import { SexEnum } from "@/common/sex.enum";
 
 export type Neighbours = {
+  id: string;
   userId: string;
 
   userImage: string;
