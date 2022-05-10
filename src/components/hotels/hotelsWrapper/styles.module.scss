@@ -28,6 +28,12 @@
   width: 100%;
 }
 
+.topItems {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .topLine {
   width: 100%;
   display: flex;
