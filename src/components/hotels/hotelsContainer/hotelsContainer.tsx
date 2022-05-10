@@ -28,6 +28,7 @@ const HotelsContainer = () => {
     images: "",
     location: { coordinates: [], type: "" },
   });
+
   const [files, setFiles] = useState<File[]>();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,6 +42,7 @@ const HotelsContainer = () => {
     setPolygonItem({ hotel: e, method: "update" });
     setIsOpen(true);
   };
+
   const handleDelete = (e: Hotel) => {
     setPolygonItem({ hotel: e, method: "delete" });
     setIsOpen(true);
@@ -48,7 +50,11 @@ const HotelsContainer = () => {
 
   const submitHandler = () => {
     if (polygonItem?.method === "delete") {
-      toast.error("No you don't");
+      toast.promise(hotelsApi.deleteHotel(polygonItem.hotel.id), {
+        success: "Deleted",
+        pending: "In progress",
+        error: "Error",
+      });
     } else {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       onFileUpload();
