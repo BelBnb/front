@@ -13,8 +13,8 @@ const headerLinks: HeaderLinks[] = [
     label: "Messenger",
   },
   {
-    value: "booking",
-    label: "Booking",
+    value: "neighbours",
+    label: "Neighbours",
   },
 ];
 
