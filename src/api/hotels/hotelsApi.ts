@@ -19,9 +19,9 @@ const getAllHotels = async () => {
   return result.json();
 };
 
-const deleteHotel = async (id: number) => {
+const deleteHotel = async (id: string) => {
   const result = await request(deleteHotelRoute + id, methods.DELETE);
-  return result.json();
+  return result;
 };
 const updateHotel = async (id: string, formData: FormData) => {
   // was neeeded to send ultipart data lol
