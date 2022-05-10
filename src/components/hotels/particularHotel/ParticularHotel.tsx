@@ -107,7 +107,7 @@ const ParticularHotel = () => {
             <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
           </div>
         </div>
-        <BookedPeople />
+        {hotel?.authorId === user.id && <BookedPeople />}
       </div>
     </div>
   );
