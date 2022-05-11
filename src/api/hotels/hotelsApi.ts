@@ -29,6 +29,7 @@ const getAllHotels = async () => {
 
 interface HotelsFilter {
   city: string;
+  name: string;
   priceLT: number;
   priceGT: number;
 

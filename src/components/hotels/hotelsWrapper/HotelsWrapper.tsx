@@ -1,17 +1,20 @@
 import ColoredButton from "@/elements/common/buttons/buttons";
 import Searchbar from "@/elements/common/searchbar/searchbar";
 import queryBuilder from "@/helpers/queryBuilder";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HotelFilters, { hotelFiltersType } from "../HotelFilters/HotelFIlters";
 import HotelsContainer from "../hotelsContainer/hotelsContainer";
 import styles from "./styles.module.scss";
+import * as debounce from "lodash.debounce";
 
 const HotelsWrapper = () => {
   const [filters, setFilters] = useState<hotelFiltersType>({ city: "", priceB: 0, priceL: 10000 });
   const [toplineClass, setTopLineClass] = useState(styles.initBorderLine);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [findEvent, setFindEvent] = useState(false);
+
+  const [hotelName, setHotelName] = useState("");
 
   useEffect(() => {
     setTopLineClass(styles.endBorderLine);
@@ -37,6 +40,18 @@ const HotelsWrapper = () => {
     setFindEvent((s) => !s);
   };
 
+  const nameChanger = (val: string) => {
+    setHotelName(val);
+    nameChangerDebouncer();
+  };
+
+  const nameChangerDebouncer = useCallback(
+    debounce(() => {
+      setFindEvent((s) => !s);
+    }, 300),
+    []
+  );
+
   return (
     <div className={styles.hotelsWrapper}>
       <div className={styles.hotelsContainer}>
@@ -58,14 +73,14 @@ const HotelsWrapper = () => {
               )}
             </div>
             <div className={styles.searchBarContainer}>
-              <Searchbar />
+              <Searchbar placeholder="Enter hotel name for search" value={hotelName} valueSetter={nameChanger} />
               <ColoredButton coloredLabel="Add hotel" onClick={() => {}} />
             </div>
           </div>
           <div className={`${styles.borderLine} ${toplineClass}`} />
         </div>
         <HotelsContainer
-          name=""
+          name={hotelName}
           city={filters.city}
           priceL={filters.priceL}
           priceB={filters.priceB}

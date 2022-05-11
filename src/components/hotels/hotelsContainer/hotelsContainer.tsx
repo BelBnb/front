@@ -3,23 +3,22 @@
 import hotelsApi from "@/api/hotels/hotelsApi";
 import InputElement from "@/elements/auth/inputElement/InputElement";
 import DialogComponent from "@/elements/common/dialog/dialog";
-import { RootState } from "@/redux/store";
-import getHotelsThunk from "@/redux/thunks/hotels/getHotelsThunk";
 import { Hotel } from "@/types/redux/initStates";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { PageSize } from "@/common/paginationConstants";
 import HotelCard from "../HotelCard/HotelCard";
 import styles from "./styles.module.scss";
-import { PageSize } from "@/common/paginationConstants";
 
 const HotelsContainer = ({
+  name,
   city,
   priceL,
   priceB,
   findEvent,
 }: {
   city: string;
+  name: string;
   priceL: number;
   priceB: number;
   findEvent: boolean;
@@ -32,6 +31,7 @@ const HotelsContainer = ({
   const fetchData = async () => {
     const payload = await hotelsApi.getFilteredHotels({
       city,
+      name,
       priceLT: priceL,
       priceGT: priceB,
       limit: PageSize,
@@ -45,6 +45,7 @@ const HotelsContainer = ({
 
   const fetchDataPaginated = async () => {
     const payload = await hotelsApi.getFilteredHotels({
+      name,
       city,
       priceLT: priceL,
       priceGT: priceB,
