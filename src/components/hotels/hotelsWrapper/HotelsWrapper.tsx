@@ -8,9 +8,11 @@ import HotelsContainer from "../hotelsContainer/hotelsContainer";
 import styles from "./styles.module.scss";
 
 const HotelsWrapper = () => {
-  const [filters, setFilters] = useState<hotelFiltersType>({ city: "", priceB: "", priceL: "" });
+  const [filters, setFilters] = useState<hotelFiltersType>({ city: "", priceB: 0, priceL: 10000 });
   const [toplineClass, setTopLineClass] = useState(styles.initBorderLine);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [findEvent, setFindEvent] = useState(false);
+
   useEffect(() => {
     setTopLineClass(styles.endBorderLine);
   }, []);
@@ -32,6 +34,7 @@ const HotelsWrapper = () => {
   const handleApply = () => {
     const q = queryBuilder(filters);
     navigate(`?${q}`);
+    setFindEvent((s) => !s);
   };
 
   return (
@@ -61,7 +64,13 @@ const HotelsWrapper = () => {
           </div>
           <div className={`${styles.borderLine} ${toplineClass}`} />
         </div>
-        <HotelsContainer name="" city={filters.city} priceL={filters.priceL} priceB={filters.priceB} />
+        <HotelsContainer
+          name=""
+          city={filters.city}
+          priceL={filters.priceL}
+          priceB={filters.priceB}
+          findEvent={findEvent}
+        />
       </div>
     </div>
   );

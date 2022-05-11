@@ -11,24 +11,55 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import HotelCard from "../HotelCard/HotelCard";
 import styles from "./styles.module.scss";
+import { PageSize } from "@/common/paginationConstants";
 
 const HotelsContainer = ({
-  name,
   city,
   priceL,
   priceB,
+  findEvent,
 }: {
-  name: string;
   city: string;
   priceL: number;
   priceB: number;
+  findEvent: boolean;
 }) => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
-  useEffect(async () => {
-    const payload = await hotelsApi.getAllHotels();
+
+  const [page, setPage] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  const fetchData = async () => {
+    const payload = await hotelsApi.getFilteredHotels({
+      city,
+      priceLT: priceL,
+      priceGT: priceB,
+      limit: PageSize,
+      offset: 0,
+    });
+    setPage(0);
     const res: Hotel[] = Object.keys(payload.data).map((el) => payload.data[el]);
     setHotels(res || []);
-  }, []);
+    setTotal(payload.total);
+  };
+
+  const fetchDataPaginated = async () => {
+    const payload = await hotelsApi.getFilteredHotels({
+      city,
+      priceLT: priceL,
+      priceGT: priceB,
+      limit: PageSize,
+      offset: (page + 1) * PageSize,
+    });
+    setPage(page + 1);
+    const res: Hotel[] = Object.keys(payload.data).map((el) => payload.data[el]);
+    setHotels((s) => [...s, ...res]);
+    setTotal(payload.total);
+  };
+
+  useEffect(async () => {
+    await fetchData();
+  }, [findEvent]);
 
   //const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
   const [isOpen, setIsOpen] = useState(false);
@@ -122,6 +153,16 @@ const HotelsContainer = ({
       <div className={styles.hotelsContainer}>
         {hotels.length > 0 &&
           hotels.map((el) => <HotelCard hotelItem={el} updateHandler={handleUpdate} deleteHandler={handleDelete} />)}
+
+        {(page + 1) * PageSize < total && (
+          <button
+            onClick={() => {
+              fetchDataPaginated();
+            }}
+          >
+            Give me more
+          </button>
+        )}
       </div>
 
       <DialogComponent

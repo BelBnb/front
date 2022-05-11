@@ -5,15 +5,15 @@ import styles from "./styles.module.scss";
 
 export type hotelFiltersType = {
   city: string;
-  priceL: string;
-  priceB: string;
+  priceL: number;
+  priceB: number;
 };
 
 interface HotelFiltersProps {
   setValue: (e: string, prop: keyof hotelFiltersType) => void;
   city: string;
-  priceL: string;
-  priceB: string;
+  priceL: number;
+  priceB: number;
   handleApply: () => void;
 }
 
@@ -28,11 +28,11 @@ const HotelFilters: React.FC<HotelFiltersProps> = ({ city, priceL, priceB, setVa
         <label>City</label>
       </div>
       <div className={styles.group}>
-        <input type="text" value={priceL} onChange={(e) => changeHandler(e, "priceL")} />
+        <input type="number" min={0} max={100000} value={priceB} onChange={(e) => changeHandler(e, "priceB")} />
         <label>Price from</label>
       </div>
       <div className={styles.group}>
-        <input type="text" value={priceB} onChange={(e) => changeHandler(e, "priceB")} />
+        <input type="number" min={0} max={100000} value={priceL} onChange={(e) => changeHandler(e, "priceL")} />
         <label>Price to</label>
       </div>
       <div className={styles.button}>

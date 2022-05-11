@@ -28,10 +28,9 @@ const getAllHotels = async () => {
 };
 
 interface HotelsFilter {
-  name: string;
   city: string;
-  priceL: number;
-  priceB: number;
+  priceLT: number;
+  priceGT: number;
 
   limit: number;
   offset: number;
@@ -52,4 +51,4 @@ const updateHotel = async (id: string, formData: FormData) => {
   return result.data;
 };
 
-export default { createHotel, getHotel, getAllHotels, deleteHotel, updateHotel };
+export default { createHotel, getHotel, getAllHotels, deleteHotel, updateHotel, getFilteredHotels };
