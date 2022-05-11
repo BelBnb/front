@@ -3,6 +3,7 @@ import { Hotel } from "@/redux/reducers/hotelsReducer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
+import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import Carousel from "../Carousel/Carousel/carousel";
 import CarouselItem from "../Carousel/CarouselItem/carouselItem";
@@ -33,7 +34,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem, updateHandler, deleteH
         <div className={styles.bottomButtons}>
           <div>
             <button type="button">
-              <a href={`/hotels/${hotelItem.id}`}>Details</a>
+              <Link to={`/hotel/${hotelItem.id}`}>Details</Link>
             </button>
             <button type="button">Book</button>
           </div>

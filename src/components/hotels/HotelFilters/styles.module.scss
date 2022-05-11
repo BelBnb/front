@@ -1,0 +1,62 @@
+.inputWrapper {
+  margin-top: 8px;
+  padding: 8px;
+  gap: 8px;
+  position: absolute;
+  background-color: $bn-white;
+
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  z-index: 11;
+
+  input {
+    border-radius: 4px;
+    background-color: transparent;
+    border: 2px solid $bn-black;
+    padding: 10px 12px 4px;
+    outline: none;
+  }
+
+  .button {
+    width: 49%;
+    display: flex;
+    align-self: flex-end;
+
+    button {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+}
+
+.group {
+  position: relative;
+}
+
+input:focus ~ label,
+textarea:focus ~ label,
+input:valid ~ label,
+textarea:valid ~ label {
+  top: -6px;
+  font-size: 12px;
+  color: $bn-claucos;
+  background-color: $bn-white;
+}
+
+input:focus ~ .bar:before,
+textarea:focus ~ .bar:before {
+  width: 320px;
+}
+
+label {
+  color: #c6c6c6;
+  font-size: 14px;
+  padding: 0 2px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 12px;
+  top: 16px;
+  transition: 300ms ease all;
+}

@@ -29,6 +29,12 @@
         display: flex;
         gap: 8px;
         justify-content: space-between;
+        flex-wrap: wrap;
+
+        button {
+          display: flex;
+          flex: 1 47%;
+        }
       }
       gap: 8px;
       flex-direction: column;

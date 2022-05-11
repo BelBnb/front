@@ -67,37 +67,37 @@ const NeighboursMain: React.FC = (): JSX.Element => {
       <div>
         <MeNeighboursMain />
         <div>
-          <input type={"text"} placeholder={"City"} value={city} onChange={(e) => setCity(e.target.value)} />
+          <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
 
           <input
-            type={"number"}
+            type="number"
             min={18}
             max={100}
-            placeholder={"Age min"}
+            placeholder="Age min"
             value={ageMin}
             onChange={(e) => setAgeMin(e.target.value)}
           />
           <input
-            type={"number"}
+            type="number"
             min={18}
             max={100}
-            placeholder={"Age max"}
+            placeholder="Age max"
             value={ageMax}
             onChange={(e) => setAgeMax(e.target.value)}
           />
           <input
-            type={"date"}
+            type="date"
             min={18}
             max={100}
-            placeholder={"Start date"}
+            placeholder="Start date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           />
           <input
-            type={"date"}
+            type="date"
             min={18}
             max={100}
-            placeholder={"End date"}
+            placeholder="End date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
           />
@@ -106,7 +106,7 @@ const NeighboursMain: React.FC = (): JSX.Element => {
             Sex?
             <select value={sex} onChange={(e) => setSex(e.target.value)}>
               <option selected value={SexEnum.Whatever}>
-                Похуй
+                Давай
               </option>
               <option value={SexEnum.Female}>Бабу мне</option>
               <option value={SexEnum.Male}>Мужика</option>
@@ -118,24 +118,22 @@ const NeighboursMain: React.FC = (): JSX.Element => {
       </div>
       <div>
         <div>
-          {neighbours?.map((item) => {
-            return (
-              <div>
-                <img src={item.userImage} />
-                <span>
-                  {item.userFirstName} {item.userLastName}
-                </span>
-                <span>
-                  {item.birthDate} {item.userLastName}
-                </span>
-                <span>{new Date().getFullYear() - new Date(item.birthDate).getFullYear()} years</span>
-                <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
-                <span>{item.startDate}</span>
-                <span>{item.endDate}</span>
-                <span>{item.description}</span>
-              </div>
-            );
-          })}
+          {neighbours?.map((item) => (
+            <div>
+              <img src={item.userImage} />
+              <span>
+                {item.userFirstName} {item.userLastName}
+              </span>
+              <span>
+                {item.birthDate} {item.userLastName}
+              </span>
+              <span>{new Date().getFullYear() - new Date(item.birthDate).getFullYear()} years</span>
+              <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
+              <span>{item.startDate}</span>
+              <span>{item.endDate}</span>
+              <span>{item.description}</span>
+            </div>
+          ))}
           {page * PageSize < total && <button onClick={getMoreNeighbours}>Dai mne ische</button>}
         </div>
       </div>
