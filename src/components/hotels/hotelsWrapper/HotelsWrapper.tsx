@@ -11,6 +11,7 @@ const HotelsWrapper = () => {
   }, []);
 
   const [name, setName] = useState("");
+  const [city, setCity] = useState("Minsk");
   const [priceL, setPriceL] = useState(0);
   const [priceB, setPriceB] = useState(10000);
 
@@ -21,9 +22,20 @@ const HotelsWrapper = () => {
           <div className={styles.topItems}>
             <ColoredButton coloredLabel="Add hotel" onClick={() => {}} />
             <div>
-              <input type={"text"} value={name} placeholder={"City name"} />
-              <input type={"text"} value={priceL} placeholder={"Price from"} />
-              <input type={"text"} value={priceB} placeholder={"Price to"} />
+              <input type={"text"} onChange={(e) => setName(e.target.value)} value={name} placeholder={"Hotel name"} />
+              <input type={"city"} onChange={(e) => setCity(e.target.value)} value={city} placeholder={"City"} />
+              <input
+                type={"number"}
+                onChange={(e) => setPriceL(e.target.value)}
+                value={priceL}
+                placeholder={"Price from"}
+              />
+              <input
+                type={"number"}
+                onChange={(e) => setPriceB(e.target.value)}
+                value={priceB}
+                placeholder={"Price to"}
+              />
             </div>
             <div className={styles.searchBarContainer}>
               <Searchbar />
@@ -31,7 +43,7 @@ const HotelsWrapper = () => {
           </div>
           <div className={`${styles.borderLine} ${toplineClass}`} />
         </div>
-        <HotelsContainer />
+        <HotelsContainer name={name} city={city} priceL={priceL} priceB={priceB} />
       </div>
     </div>
   );

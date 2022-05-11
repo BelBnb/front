@@ -20,10 +20,17 @@ import OutlinedButton from "@/elements/common/buttons/outlinedButton";
 import BookedPeople from "../bookedPeople/BookedPeople";
 import neighboursApi from "@/api/neighbours/neighboursApi";
 import { createNeighbourDto } from "@/types/dto/neighbours/createNeighbourDto";
+import hotelsApi from "@/api/hotels/hotelsApi";
 
 const ParticularHotel = () => {
-  const { hotels, user } = useSelector<RootState, { hotels: Hotel[]; user: User }>((app) => ({
-    hotels: app.hotels,
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  useEffect(async () => {
+    const payload = await hotelsApi.getAllHotels();
+    const res: Hotel[] = Object.keys(payload.data).map((el) => payload.data[el]);
+    setHotels(res || []);
+  }, []);
+
+  const { user } = useSelector<RootState, { user: User }>((app) => ({
     user: app.user,
   }));
 
@@ -37,16 +44,11 @@ const ParticularHotel = () => {
   const [wannaNeighbour, setWannaNeigbour] = useState<boolean>(false);
   const [neighbourDescription, setNeighbourDescription] = useState("");
 
-  const dispatch: AppDispatch = useDispatch();
   const params = useParams();
 
   const handleSelect = (ranges: RangeKeyDict) => {
     setSelecton(ranges?.selection);
   };
-
-  useEffect(() => {
-    dispatch(getHotelsThunk());
-  }, []);
 
   const handleBook = async () => {
     if (!user.authorized || !hotel) {
