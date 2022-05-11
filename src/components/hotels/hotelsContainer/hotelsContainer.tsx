@@ -153,13 +153,19 @@ const HotelsContainer = ({
 
   const onFileUpload = () => {
     const formData = new FormData();
-    if (!files || (!polygonItem?.hotel && polygonItem?.method !== "create") || !editableItem) {
-      toast.error("Select file pizdoglazoye mudilo");
+    if (
+      (polygonItem?.method === "create" && !files) ||
+      (!polygonItem?.hotel && polygonItem?.method !== "create") ||
+      !editableItem
+    ) {
+      toast.error("Select file");
       return;
     }
-    files.forEach((file) => {
-      formData.append("images", file, file.name);
-    });
+
+    files &&
+      files.forEach((file) => {
+        formData.append("images", file, file.name);
+      });
 
     formData.append("lat", "0");
     formData.append("long", "0");
@@ -170,7 +176,8 @@ const HotelsContainer = ({
         }
         if (editableItem[key] || editableItem[key] === 1) formData.append(key, editableItem[key] || "");
       });
-      toast.promise(hotelsApi.updateHotel(polygonItem?.hotel.id, formData), {
+      console.log(polygonItem?.hotel?.id);
+      toast.promise(hotelsApi.updateHotel(polygonItem?.hotel?.id, formData), {
         pending: "Updating",
         success: "Updated",
         error: "Somthing went wrong",

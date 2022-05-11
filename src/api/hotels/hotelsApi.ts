@@ -47,7 +47,7 @@ const deleteHotel = async (id: string) => {
 };
 const updateHotel = async (id: string, formData: FormData) => {
   // was neeeded to send ultipart data lol
-  const result = await requestWithFormData(updateHotelRoute + id, methods.PUT, formData);
+  const result = await requestWithFormData(updateHotelRoute + id, methods.PATCH, formData);
   return result.data;
 };
 
