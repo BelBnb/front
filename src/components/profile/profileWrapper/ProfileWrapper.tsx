@@ -52,7 +52,6 @@ const ParticularUser = () => {
 
   const onFileUpload = () => {
     const formData = new FormData();
-    console.log(file);
     if (!file || !user) {
       toast.error("Select file pizdoglazoye mudilo");
       return;

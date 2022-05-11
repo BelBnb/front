@@ -16,12 +16,14 @@ const HotelsContainer = ({
   priceL,
   priceB,
   findEvent,
+  invokeAddHotel,
 }: {
   city: string;
   name: string;
   priceL: number;
   priceB: number;
   findEvent: boolean;
+  invokeAddHotel: number;
 }) => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
 
@@ -65,8 +67,8 @@ const HotelsContainer = ({
   //const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
   const [isOpen, setIsOpen] = useState(false);
   const [polygonItem, setPolygonItem] = useState<{
-    hotel: Hotel;
-    method: "delete" | "update";
+    hotel?: Hotel;
+    method: "delete" | "update" | "create";
   }>();
   const [editableItem, setEditableItem] = useState<Hotel>({
     id: "",
@@ -78,9 +80,24 @@ const HotelsContainer = ({
     location: { coordinates: [], type: "" },
   });
 
+  const [creatableItem, setCreateableItem] = useState<Hotel>({
+    id: "",
+    name: "",
+    authorId: "",
+    city: "",
+    description: "",
+    images: "",
+    location: { coordinates: [], type: "" },
+  });
+
   const [files, setFiles] = useState<File[]>();
 
-  const title = () => (polygonItem?.method === "update" ? `Update ${polygonItem.hotel.name}` : `Did you think twice?`);
+  const title = () =>
+    polygonItem?.method === "update"
+      ? `Update ${polygonItem?.hotel?.name}`
+      : polygonItem?.method === "create"
+      ? `Create new hotel`
+      : `Did you think twice?`;
   const submitLabel = () => (polygonItem?.method === "update" ? `Update` : `Yes`);
 
   const handleUpdate = (e: Hotel) => {
@@ -88,13 +105,21 @@ const HotelsContainer = ({
     setIsOpen(true);
   };
 
+  useEffect(() => {
+    if (invokeAddHotel > 0) {
+      console.log(invokeAddHotel);
+      setPolygonItem({ method: "create" });
+      setIsOpen(true);
+    }
+  }, [invokeAddHotel]);
+
   const handleDelete = (e: Hotel) => {
     setPolygonItem({ hotel: e, method: "delete" });
     setIsOpen(true);
   };
 
   const submitHandler = () => {
-    if (polygonItem?.method === "delete") {
+    if (polygonItem?.method === "delete" && polygonItem?.hotel?.id) {
       toast.promise(hotelsApi.deleteHotel(polygonItem.hotel.id), {
         success: "Deleted",
         pending: "In progress",
@@ -115,6 +140,11 @@ const HotelsContainer = ({
     console.log(editableItem);
   };
 
+  const updateCreatableProp = (e: string | number | File, prop: keyof Hotel) => {
+    setCreateableItem((prevState) => ({ ...prevState, [prop]: e }));
+    console.log(creatableItem);
+  };
+
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target && event.target.files) {
       setFiles(Array.from(event.target.files));
@@ -123,29 +153,42 @@ const HotelsContainer = ({
 
   const onFileUpload = () => {
     const formData = new FormData();
-    console.log(files);
-    console.log(polygonItem?.hotel);
-    console.log(editableItem);
-    if (!files || !polygonItem?.hotel || !editableItem) {
+    if (!files || (!polygonItem?.hotel && polygonItem?.method !== "create") || !editableItem) {
       toast.error("Select file pizdoglazoye mudilo");
       return;
     }
     files.forEach((file) => {
       formData.append("images", file, file.name);
     });
-    Object.keys(editableItem).forEach((key) => {
-      if (key === "location") {
-        return;
-      }
-      formData.append(key, editableItem[key] || "");
-    });
+
     formData.append("lat", "0");
     formData.append("long", "0");
-    toast.promise(hotelsApi.updateHotel(polygonItem?.hotel.id, formData), {
-      pending: "Updating",
-      success: "Updated",
-      error: "Somthing went wrong",
-    });
+    if (polygonItem?.method == "update") {
+      Object.keys(editableItem).forEach((key) => {
+        if (key === "location") {
+          return;
+        }
+        if (editableItem[key] || editableItem[key] === 1) formData.append(key, editableItem[key] || "");
+      });
+      toast.promise(hotelsApi.updateHotel(polygonItem?.hotel.id, formData), {
+        pending: "Updating",
+        success: "Updated",
+        error: "Somthing went wrong",
+      });
+    }
+    if (polygonItem?.method == "create") {
+      Object.keys(creatableItem).forEach((key) => {
+        if (key === "location") {
+          return;
+        }
+        formData.append(key, creatableItem[key] || "");
+      });
+      toast.promise(hotelsApi.createHotel(formData), {
+        pending: "Creating",
+        success: "Created",
+        error: "Somthing went wrong",
+      });
+    }
   };
 
   return (
@@ -179,13 +222,37 @@ const HotelsContainer = ({
           <div className={styles.dialogUpdate}>
             <InputElement placeholder="Name" onChange={(e) => updateEditableProp(e, "name")} type="text" />
             <textarea
-              placeholder="Desctiption"
+              placeholder="Description"
               onChange={(e) => updateEditableProp(e.currentTarget.value, "description")}
             />
-            <InputElement placeholder="Price" onChange={(e) => updateEditableProp(e, "price")} type="text" />
+            <InputElement placeholder="Price" onChange={(e) => updateEditableProp(e, "price")} type="number" />
             <InputElement placeholder="City" onChange={(e) => updateEditableProp(e, "city")} type="text" />
-            <input type="file" multiple id="qw-item" hidden onChange={(e) => onFileChange(e)} />
-            <label htmlFor="qw-item">Pick an images</label>
+            <input type="file" multiple id="qw-item" onChange={(e) => onFileChange(e)} />
+            <div>
+              <label htmlFor="qw-item">Pick an images</label>
+            </div>
+          </div>
+        )}
+
+        {polygonItem?.method === "create" && (
+          <div className={styles.dialogUpdate}>
+            <InputElement placeholder="Name" onChange={(e) => updateCreatableProp(e, "name")} type="text" />
+            <textarea
+              placeholder="Description"
+              onChange={(e) => updateCreatableProp(e.currentTarget.value, "description")}
+            />
+            <InputElement
+              placeholder="Price"
+              onChange={(e) => updateCreatableProp(e, "price")}
+              type="number"
+              min={0}
+              max={10000}
+            />
+            <InputElement placeholder="City" onChange={(e) => updateCreatableProp(e, "city")} type="text" />
+            <input type="file" multiple id="qw-item" onChange={(e) => onFileChange(e)} />
+            <div>
+              <label htmlFor="qw-item">Pick an images</label>
+            </div>
           </div>
         )}
       </DialogComponent>

@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/apiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsWrapper/HotelsWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsWrapper/HotelsWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/common/searchbar/searchbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/common/searchbar/searchbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/auth/inputElement/InputElement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/auth/inputElement/InputElement.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +131,7 @@
       <workItem from="1652158595996" duration="4346000" />
       <workItem from="1652203497724" duration="757000" />
       <workItem from="1652280106768" duration="483000" />
-      <workItem from="1652292386477" duration="5075000" />
+      <workItem from="1652292386477" duration="6300000" />
     </task>
     <servers />
   </component>

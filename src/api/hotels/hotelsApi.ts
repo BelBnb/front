@@ -13,7 +13,6 @@ import {
 
 const createHotel = async (formData: FormData): Promise<CreateHotelPayload> => {
   const result = await requestWithFormData(createHotelRoute, methods.POST, formData);
-
   return result.data;
 };
 const getHotel = async (id: string): Promise<getHotelPayload> => {

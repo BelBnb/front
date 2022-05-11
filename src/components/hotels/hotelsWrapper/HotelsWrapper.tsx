@@ -14,6 +14,8 @@ const HotelsWrapper = () => {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [findEvent, setFindEvent] = useState(false);
 
+  const [invokeAddHotel, setInvokeAddHotel] = useState(0);
+
   const [hotelName, setHotelName] = useState("");
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const HotelsWrapper = () => {
             </div>
             <div className={styles.searchBarContainer}>
               <Searchbar placeholder="Enter hotel name for search" value={hotelName} valueSetter={nameChanger} />
-              <ColoredButton coloredLabel="Add hotel" onClick={() => {}} />
+              <ColoredButton coloredLabel="Add hotel" onClick={() => setInvokeAddHotel((s) => s + 1)} />
             </div>
           </div>
           <div className={`${styles.borderLine} ${toplineClass}`} />
@@ -85,6 +87,7 @@ const HotelsWrapper = () => {
           priceL={filters.priceL}
           priceB={filters.priceB}
           findEvent={findEvent}
+          invokeAddHotel={invokeAddHotel}
         />
       </div>
     </div>
