@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsWrapper/HotelsWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsWrapper/HotelsWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsWrapper/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsWrapper/styles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/neighbours" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -126,6 +129,7 @@
       <workItem from="1652108840239" duration="16540000" />
       <workItem from="1652158595996" duration="4346000" />
       <workItem from="1652203497724" duration="757000" />
+      <workItem from="1652280106768" duration="310000" />
     </task>
     <servers />
   </component>

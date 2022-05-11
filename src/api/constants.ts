@@ -21,6 +21,7 @@ export const createHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + 
 export const updateHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
 export const deleteHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
 export const getAllHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/all`;
+export const getFilteredHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/filtered`;
 export const getHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/`;
 
 // feedbacks

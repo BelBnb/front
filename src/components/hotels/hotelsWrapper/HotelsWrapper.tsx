@@ -61,7 +61,7 @@ const HotelsWrapper = () => {
           </div>
           <div className={`${styles.borderLine} ${toplineClass}`} />
         </div>
-        <HotelsContainer />
+        <HotelsContainer name={name} city={city} priceL={priceL} priceB={priceB} />
       </div>
     </div>
   );

@@ -12,8 +12,25 @@ import { toast } from "react-toastify";
 import HotelCard from "../HotelCard/HotelCard";
 import styles from "./styles.module.scss";
 
-const HotelsContainer = () => {
-  const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
+const HotelsContainer = ({
+  name,
+  city,
+  priceL,
+  priceB,
+}: {
+  name: string;
+  city: string;
+  priceL: number;
+  priceB: number;
+}) => {
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  useEffect(async () => {
+    const payload = await hotelsApi.getAllHotels();
+    const res: Hotel[] = Object.keys(payload.data).map((el) => payload.data[el]);
+    setHotels(res || []);
+  }, []);
+
+  //const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
   const [isOpen, setIsOpen] = useState(false);
   const [polygonItem, setPolygonItem] = useState<{
     hotel: Hotel;
@@ -30,10 +47,6 @@ const HotelsContainer = () => {
   });
 
   const [files, setFiles] = useState<File[]>();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getHotelsThunk());
-  }, []);
 
   const title = () => (polygonItem?.method === "update" ? `Update ${polygonItem.hotel.name}` : `Did you think twice?`);
   const submitLabel = () => (polygonItem?.method === "update" ? `Update` : `Yes`);
