@@ -29,8 +29,8 @@ const ParticularUser = () => {
     editBody: false,
   });
   const [isOpen, setOpen] = useState(false);
-  const [firstName, setFirstNameValue] = useState(user?.firstName || "");
-  const [lastName, setLastName] = useState(user?.lastName || "");
+  const [firstName, setFirstNameValue] = useState("");
+  const [lastName, setLastName] = useState("");
   const [paginationProps, setPaginationProps] = useState<{ limit: number; offset: number }>({ limit: 10, offset: 0 });
   const [userBookingsArray, setUserBookings] = useState<userBookingPayload>({
     data: [],
@@ -81,7 +81,7 @@ const ParticularUser = () => {
   useEffect(() => {
     async function load() {
       if (params.id) {
-        if (params.id === user.id) {
+        if (params.id === appUser.id) {
           setIsMyself(true);
         } else {
           const data = await request(getUserById(params.id), "GET");
@@ -92,6 +92,7 @@ const ParticularUser = () => {
             navigate("/");
           }
           setUser(suspect);
+          setIsMyself(false);
         }
       } else {
         setUser(appUser);
@@ -106,7 +107,7 @@ const ParticularUser = () => {
       await fetchUserBookings();
     }
     load();
-  }, [paginationProps, user]);
+  }, [paginationProps, params]);
 
   const setEditPhoto = () => {
     setIsEdit((prevState) => ({ ...prevState, editPhoto: true }));
@@ -152,6 +153,10 @@ const ParticularUser = () => {
     // }
   };
 
+  const openChat = (id: string) => {
+    navigate(`/messenger/${id}`);
+  };
+
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.contentContaienr}>
@@ -179,7 +184,7 @@ const ParticularUser = () => {
 
             <div className={styles.buttonContainer}>
               {!isMyself && (
-                <button type="button" className={styles.outlineButton}>
+                <button type="button" className={styles.outlineButton} onClick={() => openChat(user.id)}>
                   Open chat
                 </button>
               )}

@@ -1,5 +1,9 @@
 TODO:
+-sign in wrong payload display toast
+-sign up wrong payload display toast
+-соседи onclick redirect to user
 -hotel pagination and filter
+-change kek to 404
 -neighbours service
 -admin part
 -messenger
