@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/feedback/comment/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/neighbours/neighbourComponent/NeighbourComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/neighbours/neighbourComponent/NeighbourComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/router/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/router/app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/feedback/comment/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/comment/Comment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/feedback/notMyComment/addNewComment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/notMyComment/addNewComment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/feedback/notMyComment/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/notMyComment/styles.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/feedback/comment" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -62,11 +64,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/feedback/comment" />
       <recent name="$PROJECT_DIR$/src/common" />
       <recent name="$PROJECT_DIR$/src/api/neighbours" />
       <recent name="$PROJECT_DIR$/src/common/types" />
       <recent name="$PROJECT_DIR$/src/components/feedback/commentInputs" />
-      <recent name="$PROJECT_DIR$/src/components/profile/profileWrapper" />
     </key>
   </component>
   <component name="RunManager" selected="npm.serve-proxy">
@@ -129,7 +131,7 @@
       <workItem from="1652203497724" duration="757000" />
       <workItem from="1652280106768" duration="483000" />
       <workItem from="1652292386477" duration="6300000" />
-      <workItem from="1652340896549" duration="6613000" />
+      <workItem from="1652340896549" duration="11146000" />
     </task>
     <servers />
   </component>

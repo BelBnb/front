@@ -17,6 +17,7 @@ import FeedBackDialog from "./feedbackDialog/feedbackDialog";
 import AddNewComment from "./notMyComment/addNewComment";
 import MyComment from "./myComment/myComment";
 import CommentComponent from "./comment/Comment";
+import CoolLabel from "@/elements/common/coolLabel/coolLabel";
 
 interface FeedbackComponentProps {
   entityId: string;
@@ -124,6 +125,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
         />
       )}
 
+      {comments?.length > 0 && <CoolLabel>Feedbacks</CoolLabel>}
       <div>
         {comments
           .filter((comment) => comment.creator_Id !== user.id)

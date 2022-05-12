@@ -1,5 +1,7 @@
 import React from "react";
+import styles from "@/components/feedback/notMyComment/styles.module.scss";
 import CommentInputs from "../commentInputs/commentInputs";
+import ColoredButton from "@/elements/common/buttons/buttons";
 
 interface AddNewCommentProps {
   textValue: string;
@@ -16,16 +18,16 @@ const AddNewComment: React.FC<AddNewCommentProps> = ({
   setStarsValue,
   sendComment,
 }) => (
-  <div>
+  <div className={styles.createFeedback}>
     <CommentInputs
       textValue={textValue}
       setTextValue={setTextValue}
       starsValue={starsValue}
       setStarsValue={setStarsValue}
     />
-    <button type="button" onClick={sendComment}>
-      Send
-    </button>
+    <div className={styles.createFeedbackButtonContainer}>
+      <ColoredButton coloredLabel="Send" onClick={sendComment} />
+    </div>
   </div>
 );
 
