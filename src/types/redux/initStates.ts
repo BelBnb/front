@@ -1,5 +1,6 @@
 import { SexEnum } from "@/common/sex.enum";
 import { getHotelPayload } from "../dto/apiPayloads/getAllHotelsPayload";
+import { RoleEnum } from "@/common/role.enum";
 
 export type User = {
   email: string;
@@ -7,6 +8,7 @@ export type User = {
   lastName: string;
   id: string;
   roles: string[];
+  role: RoleEnum;
   profilePic: string;
   authorized: boolean;
   birthDate: Date;
@@ -20,6 +22,7 @@ export const userInitState: User = {
   lastName: "",
   id: "",
   roles: [],
+  role: RoleEnum.User,
   authorized: false,
   password: "",
   sex: SexEnum.Male,
