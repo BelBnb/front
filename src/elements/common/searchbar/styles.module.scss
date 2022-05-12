@@ -2,3 +2,22 @@
   display: flex;
   width: 100%;
 }
+
+.searchbarContainer {
+  position: relative;
+  width: 100%;
+  margin-left: 10px;
+
+  input {
+    height: 100%;
+    padding-right: 52px !important;
+  }
+
+  img {
+    position: absolute;
+    right: 12px;
+    top: 20%;
+    width: 26px;
+    height: 26px;
+  }
+}

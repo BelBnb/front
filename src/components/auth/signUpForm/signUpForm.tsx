@@ -1,7 +1,5 @@
 import FormWrapper from "@/elements/auth/formWrapper/formWrapper";
 import InputElement from "@/elements/auth/inputElement/InputElement";
-import CoolLabel from "@/elements/common/coolLabel/coolLabel";
-import GoogleButton from "@/elements/common/googleButton/googleButton";
 import SubmitButton from "@/elements/common/submitButton/button";
 import React from "react";
 import styles from "./styles.module.scss";
@@ -12,6 +10,10 @@ const SignUpForm = () => (
       <InputElement placeholder="Email" />
       <InputElement placeholder="Password" />
       <InputElement placeholder="Phone (optional)" />
+      <InputElement placeholder="First name" />
+      <InputElement placeholder="Last name" />
+      <InputElement placeholder="Sex" />
+      <InputElement placeholder="Birth date" />
     </div>
 
     <div className={styles.bottomItems}>
@@ -21,9 +23,6 @@ const SignUpForm = () => (
           console.log("signUp");
         }}
       />
-      <CoolLabel>OR</CoolLabel>
-
-      <GoogleButton />
     </div>
   </FormWrapper>
 );

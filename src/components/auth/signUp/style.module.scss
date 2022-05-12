@@ -8,17 +8,17 @@
 .row {
   margin-top: 100px;
   display: flex;
-  justify-content: space-between;
   height: 500px;
+  width: 50%;
+  margin: auto;
 }
 
 .leftCol {
-  margin-left: 150px;
   background-color: rgba($color: $bn-light-grey, $alpha: 0.9);
   padding: 40px;
   border-radius: 8px;
   height: 100%;
-  width: 600px;
+  width: 100%;
 }
 
 .loginLabel {
