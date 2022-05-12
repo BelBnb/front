@@ -54,6 +54,11 @@ export const getAllUsers = `${gatewayPreffix + usersPreffix + apiPreffix + users
 export const updateUserRoute = (userId: string) =>
   `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/${userId}`;
 
+// messenger
+const messengerPreffix = "/messenger";
+export const postMessage = `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/create`;
+export const getAllMessages = `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/`;
+
 //neighbours
 const neighboursPreffix = "/neighbours";
 export const allNeighboursRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/all`;

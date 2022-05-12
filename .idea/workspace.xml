@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/types/Message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/messenger/messengerApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common/types" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/messenger" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -60,11 +61,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/api/messenger" />
       <recent name="$PROJECT_DIR$/src/common/types" />
       <recent name="$PROJECT_DIR$/src/components/feedback/comment" />
       <recent name="$PROJECT_DIR$/src/common" />
       <recent name="$PROJECT_DIR$/src/api/neighbours" />
-      <recent name="$PROJECT_DIR$/src/components/feedback/commentInputs" />
     </key>
   </component>
   <component name="RunManager" selected="npm.serve-proxy">
@@ -127,7 +128,7 @@
       <workItem from="1652203497724" duration="757000" />
       <workItem from="1652280106768" duration="483000" />
       <workItem from="1652292386477" duration="6300000" />
-      <workItem from="1652340896549" duration="13196000" />
+      <workItem from="1652340896549" duration="14252000" />
     </task>
     <servers />
   </component>
