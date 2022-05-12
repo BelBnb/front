@@ -17,7 +17,7 @@ const userBookingColumns: TableColumn<BookingEntityFilled>[] = [
   {
     name: "Hotel",
     selector: (row: { hotelName: string; hotelId: string }) => (
-      <Link to={`/hotels/${row.hotelId}`}>{row.hotelName}</Link>
+      <Link to={`/hotel/${row.hotelId}`}>{row.hotelName}</Link>
     ),
     sortable: true,
   },
