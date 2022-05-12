@@ -27,14 +27,13 @@ const NeighbourComponent: React.FC<NeighbourComponentProps> = ({ item, isMine, i
             <span>
               {item.userFirstName} {item.userLastName}
             </span>
-            <span>{item.birthDate}</span>
           </div>
           <div className={styles.dates}>
             <span>
-              from <span>{item.startDate}</span>
+              Period: <span> {item.startDate} </span>
             </span>
             <span>
-              to<span>{item.endDate}</span>
+              - <span> {item.endDate} </span>
             </span>
           </div>
         </div>

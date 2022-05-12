@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/admin/adminPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/user/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user/userApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/neighbours/neighbourComponent/NeighbourComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/neighbours/neighbourComponent/NeighbourComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/router/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/router/app.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +129,7 @@
       <workItem from="1652203497724" duration="757000" />
       <workItem from="1652280106768" duration="483000" />
       <workItem from="1652292386477" duration="6300000" />
-      <workItem from="1652340896549" duration="5688000" />
+      <workItem from="1652340896549" duration="6613000" />
     </task>
     <servers />
   </component>
