@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/feedback/comment/styles.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/feedback/comment/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/comment/Comment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/feedback/notMyComment/addNewComment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/notMyComment/addNewComment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/feedback/notMyComment/styles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/notMyComment/styles.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +126,7 @@
       <workItem from="1652203497724" duration="757000" />
       <workItem from="1652280106768" duration="483000" />
       <workItem from="1652292386477" duration="6300000" />
-      <workItem from="1652340896549" duration="11146000" />
+      <workItem from="1652340896549" duration="11800000" />
     </task>
     <servers />
   </component>

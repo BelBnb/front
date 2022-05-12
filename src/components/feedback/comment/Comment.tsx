@@ -28,13 +28,11 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.imageWrapper}>
-        <img
-          className={styles.roundedImage}
-          src={comment.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}
-          alt="prikol"
-        />
-      </div>
+      <img
+        className={styles.roundedImage}
+        src={comment.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}
+        alt="prikol"
+      />
       <div className={styles.payload}>
         <div className={styles.header}>
           <Link to={`/profile/${comment.creator_Id}`} className={styles.name}>
