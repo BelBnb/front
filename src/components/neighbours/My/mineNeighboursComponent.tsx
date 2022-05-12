@@ -5,8 +5,8 @@ import { User } from "@/types/redux/initStates";
 import { request, requestWithQuerry } from "@/api/apiService";
 import { meNeighbourRoute, removeNeighbourRoute } from "@/api/constants";
 import { Neighbours } from "@/common/types/Neighbours";
-import { SexEnum } from "@/common/sex.enum";
 import { PageSize } from "@/common/paginationConstants";
+import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
 
 const MeNeighboursMain: React.FC = (): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
@@ -50,26 +50,16 @@ const MeNeighboursMain: React.FC = (): JSX.Element => {
     <div>
       <div>
         <div>
-          {neighbours?.map((item) => {
-            return (
-              <div>
-                <img src={item.userImage} />
-                <span>
-                  {item.userFirstName} {item.userLastName}
-                </span>
-                <span>
-                  {item.birthDate} {item.userLastName}
-                </span>
-                <span>{new Date().getFullYear() - new Date(item.birthDate).getFullYear()} years</span>
-                <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
-                <span>{item.startDate}</span>
-                <span>{item.endDate}</span>
-                <span>{item.description}</span>
-                <button onClick={() => remove(item.id)}>Remove</button>
-              </div>
-            );
-          })}
-          {page * PageSize < total && <button onClick={getMoreNeighbours}>Dai mne ische</button>}
+          {neighbours?.map((item) => (
+            <div>
+              <NeighbourComponent item={item} isMine isDelete={{ label: "Remove", onDelete: remove }} />
+            </div>
+          ))}
+          {page * PageSize < total && (
+            <button type="button" onClick={getMoreNeighbours}>
+              Dai mne ische
+            </button>
+          )}
         </div>
       </div>
     </div>

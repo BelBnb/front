@@ -7,7 +7,12 @@ import { allNeighboursRoute } from "@/api/constants";
 import { Neighbours } from "@/common/types/Neighbours";
 import { SexEnum } from "@/common/sex.enum";
 import { PageSize } from "@/common/paginationConstants";
-import MeNeighboursMain from "@/components/neighbours/mineNeighboursComponent";
+import MeNeighboursMain from "@/components/neighbours/My/mineNeighboursComponent";
+import OutlinedButton from "@/elements/common/buttons/outlinedButton";
+import CoolLabel from "@/elements/common/coolLabel/coolLabel";
+import { DateRange } from "react-date-range";
+import styles from "./styles.module.scss";
+import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
 
 const NeighboursMain: React.FC = (): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
@@ -63,9 +68,32 @@ const NeighboursMain: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <MeNeighboursMain />
+    <div className={styles.pageWrapper}>
+      <div className={styles.pageContainer}>
+        <div className={styles.columns}>
+          <div className={styles.leftColumn}>
+            <MeNeighboursMain />
+            {neighbours?.map((item) => (
+              <div>
+                <NeighbourComponent isMine={false} item={item} />
+              </div>
+            ))}
+            {page * PageSize < total && (
+              <button type="button" onClick={getMoreNeighbours}>
+                Dai mne ische
+              </button>
+            )}
+          </div>
+          <div className={styles.rightCol}>
+            <CoolLabel>Filters </CoolLabel>
+            <DateRange ranges={[]} rangeColors={["#2d2d2d"]} onChange={(e) => e} />
+
+            <div className={styles.buttonContainer}>
+              <OutlinedButton outlineLabel="Book" onClick={} />
+            </div>
+            <CoolLabel>Feedback</CoolLabel>
+          </div>
+        </div>
         <div>
           <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
 
@@ -114,27 +142,6 @@ const NeighboursMain: React.FC = (): JSX.Element => {
           </label>
 
           <button onClick={getStartNeighbours}>Search</button>
-        </div>
-      </div>
-      <div>
-        <div>
-          {neighbours?.map((item) => (
-            <div>
-              <img src={item.userImage} />
-              <span>
-                {item.userFirstName} {item.userLastName}
-              </span>
-              <span>
-                {item.birthDate} {item.userLastName}
-              </span>
-              <span>{new Date().getFullYear() - new Date(item.birthDate).getFullYear()} years</span>
-              <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
-              <span>{item.startDate}</span>
-              <span>{item.endDate}</span>
-              <span>{item.description}</span>
-            </div>
-          ))}
-          {page * PageSize < total && <button onClick={getMoreNeighbours}>Dai mne ische</button>}
         </div>
       </div>
     </div>

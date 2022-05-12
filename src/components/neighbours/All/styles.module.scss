@@ -1,0 +1,52 @@
+.pageWrapper {
+  height: calc(100vh - 80px);
+  width: 100%;
+
+  .pageContainer {
+    width: 75%;
+    margin: 40px auto auto;
+  }
+
+  .columns {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+
+    & > div:first-child {
+      display: flex;
+      flex: 1 70%;
+    }
+
+    & > div:last-child {
+      display: flex;
+      flex: 1 40%;
+      flex-direction: column;
+      background-color: $bn-white;
+      padding: 12px;
+      border-radius: 6px;
+    }
+
+    .sepLine {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .flexDown {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price {
+      font-family: "DaysOne", sans-serif;
+      font-size: 18px;
+    }
+
+    .name {
+    }
+  }
+
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+  }
+}

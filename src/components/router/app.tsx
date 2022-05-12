@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import NeighboursMain from "@/components/neighbours/neighboursComponent";
 import Main from "../main/mainComponent";
 import { ProtectedRoute, UnprotectedRoute } from "./protectedRoute";
 import Header from "../header/headerComponent";
@@ -16,6 +15,7 @@ import MessengerMain from "../mesenger/messengerMain/messengerMain";
 import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
 import ParticularHotel from "../hotels/particularHotel/ParticularHotel";
 import ProfileWrapper from "../profile/profileWrapper/ProfileWrapper";
+import NeighboursMain from "../neighbours/All/neighboursComponent";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);

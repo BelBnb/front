@@ -3,11 +3,8 @@
 import hotelsApi from "@/api/hotels/hotelsApi";
 import InputElement from "@/elements/auth/inputElement/InputElement";
 import DialogComponent from "@/elements/common/dialog/dialog";
-import { RootState } from "@/redux/store";
-import getHotelsThunk from "@/redux/thunks/hotels/getHotelsThunk";
 import { Hotel } from "@/types/redux/initStates";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import HotelCard from "../HotelCard/HotelCard";
 import styles from "./styles.module.scss";
@@ -30,7 +27,6 @@ const HotelsContainer = ({
     setHotels(res || []);
   }, []);
 
-  //const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
   const [isOpen, setIsOpen] = useState(false);
   const [polygonItem, setPolygonItem] = useState<{
     hotel: Hotel;
