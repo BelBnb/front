@@ -6,7 +6,10 @@ import { request, requestWithQuerry } from "@/api/apiService";
 import { meNeighbourRoute, removeNeighbourRoute } from "@/api/constants";
 import { Neighbours } from "@/common/types/Neighbours";
 import { PageSize } from "@/common/paginationConstants";
+import CoolLabel from "@/elements/common/coolLabel/coolLabel";
+import ColoredButton from "@/elements/common/buttons/buttons";
 import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
+import styles from "./styles.module.scss";
 
 const MeNeighboursMain: React.FC = (): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
@@ -50,15 +53,18 @@ const MeNeighboursMain: React.FC = (): JSX.Element => {
     <div>
       <div>
         <div>
-          {neighbours?.map((item) => (
-            <div>
-              <NeighbourComponent item={item} isMine isDelete={{ label: "Remove", onDelete: remove }} />
-            </div>
-          ))}
+          <div>{neighbours?.length > 0 && <CoolLabel>Your cards</CoolLabel>}</div>
+          <div className={styles.commentsContainer}>
+            {neighbours?.map((item) => (
+              <div>
+                <NeighbourComponent item={item} isMine isDelete={{ label: "Remove", onDelete: remove }} />
+              </div>
+            ))}
+          </div>
           {page * PageSize < total && (
-            <button type="button" onClick={getMoreNeighbours}>
-              Dai mne ische
-            </button>
+            <div className={styles.loadButton}>
+              <ColoredButton coloredLabel="Load more" onClick={getMoreNeighbours} />
+            </div>
           )}
         </div>
       </div>

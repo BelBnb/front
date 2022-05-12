@@ -1,0 +1,15 @@
+.loadButton {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+
+  button {
+    width: 100%;
+  }
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
