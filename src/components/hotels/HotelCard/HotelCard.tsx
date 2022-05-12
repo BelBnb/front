@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import Carousel from "../Carousel/Carousel/carousel";
 import CarouselItem from "../Carousel/CarouselItem/carouselItem";
+import { RoleEnum } from "@/common/role.enum";
 
 type HotelCardProps = {
   hotelItem: Hotel;
@@ -38,7 +39,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem, updateHandler, deleteH
             </button>
             <button type="button">Book</button>
           </div>
-          {hotelItem.authorId === user.id && (
+          {(hotelItem.authorId === user.id || user.role === RoleEnum.Admin) && (
             <>
               <button type="button" onClick={() => updateHandler(hotelItem)}>
                 Update

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/redux/store";
-import getHotelsThunk from "@/redux/thunks/hotels/getHotelsThunk";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 import CoolLabel from "@/elements/common/coolLabel/coolLabel";
-import { RangeKeyDict, DateRange } from "react-date-range";
+import { DateRange, RangeKeyDict } from "react-date-range";
 import { Hotel, User } from "@/types/redux/initStates";
 import { diffInDays } from "@/helpers/dateDiffHelper";
 import bookingApi from "@/api/booking/bookingApi";
@@ -21,6 +20,7 @@ import BookedPeople from "../bookedPeople/BookedPeople";
 import neighboursApi from "@/api/neighbours/neighboursApi";
 import { createNeighbourDto } from "@/types/dto/neighbours/createNeighbourDto";
 import hotelsApi from "@/api/hotels/hotelsApi";
+import { RoleEnum } from "@/common/role.enum";
 
 const ParticularHotel = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -144,7 +144,7 @@ const ParticularHotel = () => {
             <div className={styles.feedbackContainer}>{hotel && <FeedbackComponent entityId={hotel.id} />}</div>
           </div>
         </div>
-        {hotel?.authorId === user.id && <BookedPeople />}
+        {(hotel?.authorId === user.id || user.role === RoleEnum.Admin) && <BookedPeople />}
       </div>
     </div>
   );

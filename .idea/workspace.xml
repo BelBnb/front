@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/common/role.enum.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/apiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hotels/HotelCard/HotelCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/HotelCard/HotelCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/redux/initStates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/redux/initStates.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -62,11 +63,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/common" />
       <recent name="$PROJECT_DIR$/src/api/neighbours" />
       <recent name="$PROJECT_DIR$/src/common/types" />
       <recent name="$PROJECT_DIR$/src/components/feedback/commentInputs" />
       <recent name="$PROJECT_DIR$/src/components/profile/profileWrapper" />
-      <recent name="$PROJECT_DIR$/src/components/bookings" />
     </key>
   </component>
   <component name="RunManager" selected="npm.serve-proxy">
