@@ -16,6 +16,7 @@ import MessengerMain from "../mesenger/messengerMain/messengerMain";
 import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
 import ParticularHotel from "../hotels/particularHotel/ParticularHotel";
 import ProfileWrapper from "../profile/profileWrapper/ProfileWrapper";
+import AdminPanel from "@/components/admin/adminPanel";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -48,6 +49,7 @@ export default function App() {
             />
             <Route path="/messenger" element={<MessengerMain />} />
             <Route path="/neighbours" element={<NeighboursMain />} />
+            <Route path="/admin" element={<AdminPanel />} />
             <Route
               path="/profile/:id"
               element={

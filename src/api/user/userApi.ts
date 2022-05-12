@@ -1,5 +1,5 @@
-import { requestWithBody, requestWithFormData } from "@/api/apiService";
-import { methods, updateUserRoute } from "../constants";
+import { requestWithBody, requestWithFormData, requestWithQuerry } from "@/api/apiService";
+import { getAllUsers, methods, updateUserRoute } from "../constants";
 
 const updateAvatar = async (formData: FormData, id: string) => {
   const result = await requestWithFormData(updateUserRoute(id), methods.PATCH, formData);
@@ -10,4 +10,9 @@ const updateUser = async (obj: { firstName: string; lastName: string }, id: stri
   return result;
 };
 
-export default { updateAvatar, updateUser };
+const getUsers = async (obj: { limit: number; offset: number }) => {
+  const result = await requestWithQuerry(getAllUsers, methods.GET, obj);
+  return result;
+};
+
+export default { updateAvatar, updateUser, getUsers };
