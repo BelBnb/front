@@ -1,3 +1,4 @@
+import searchIcon from "@/assets/images/icons/search.png";
 import styles from "./styles.module.scss";
 
 const Searchbar = ({
@@ -9,13 +10,16 @@ const Searchbar = ({
   valueSetter: (s: string) => void;
   value: string;
 }) => (
-  <input
-    placeholder={placeholder || ""}
-    onChange={(e) => valueSetter(e.target.value)}
-    value={value}
-    className={styles.input}
-    type="text"
-  />
+  <div className={styles.searchbarContainer}>
+    <input
+      placeholder={placeholder || ""}
+      onChange={(e) => valueSetter(e.target.value)}
+      value={value}
+      className={styles.input}
+      type="text"
+    />
+    <img src={searchIcon} alt="search" />
+  </div>
 );
 
 export default Searchbar;
