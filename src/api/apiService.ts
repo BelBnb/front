@@ -41,10 +41,13 @@ export function requestWithQuerry(
 }
 
 export function requestWithFormData(url: string, method: string, body: FormData) {
-  return axios.patch(url, body, {
+  return axios({
+    method,
+    url,
+    data: body,
     headers: {
       Authorization: `Bearer ${getToken()}`,
-      "Content-type": "multipart/form-data",
+      "Content-type": `multipart/form-data; boundary=${body._boundary}`,
     },
   });
 }

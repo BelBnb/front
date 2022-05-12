@@ -13,7 +13,6 @@ import {
 
 const createHotel = async (formData: FormData): Promise<CreateHotelPayload> => {
   const result = await requestWithFormData(createHotelRoute, methods.POST, formData);
-
   return result.data;
 };
 const getHotel = async (id: string): Promise<getHotelPayload> => {
@@ -28,10 +27,10 @@ const getAllHotels = async () => {
 };
 
 interface HotelsFilter {
-  name: string;
   city: string;
-  priceL: number;
-  priceB: number;
+  name: string;
+  priceLT: number;
+  priceGT: number;
 
   limit: number;
   offset: number;
@@ -48,8 +47,8 @@ const deleteHotel = async (id: string) => {
 };
 const updateHotel = async (id: string, formData: FormData) => {
   // was neeeded to send ultipart data lol
-  const result = await requestWithFormData(updateHotelRoute + id, methods.PUT, formData);
+  const result = await requestWithFormData(updateHotelRoute + id, methods.PATCH, formData);
   return result.data;
 };
 
-export default { createHotel, getHotel, getAllHotels, deleteHotel, updateHotel };
+export default { createHotel, getHotel, getAllHotels, deleteHotel, updateHotel, getFilteredHotels };
