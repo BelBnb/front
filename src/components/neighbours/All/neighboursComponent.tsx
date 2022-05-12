@@ -8,9 +8,9 @@ import { Neighbours } from "@/common/types/Neighbours";
 import { SexEnum } from "@/common/sex.enum";
 import { PageSize } from "@/common/paginationConstants";
 import MeNeighboursMain from "@/components/neighbours/My/mineNeighboursComponent";
-import OutlinedButton from "@/elements/common/buttons/outlinedButton";
 import CoolLabel from "@/elements/common/coolLabel/coolLabel";
 import { DateRange } from "react-date-range";
+import ColoredButton from "@/elements/common/buttons/buttons";
 import styles from "./styles.module.scss";
 import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
 
@@ -89,7 +89,7 @@ const NeighboursMain: React.FC = (): JSX.Element => {
             <DateRange ranges={[]} rangeColors={["#2d2d2d"]} onChange={(e) => e} />
 
             <div className={styles.buttonContainer}>
-              <OutlinedButton outlineLabel="Book" onClick={} />
+              <ColoredButton coloredLabel="Search" onClick={} />
             </div>
             <CoolLabel>Feedback</CoolLabel>
           </div>

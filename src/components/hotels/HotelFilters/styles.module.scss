@@ -4,14 +4,17 @@
   gap: 8px;
   position: absolute;
   background-color: $bn-white;
+  width: 200px;
 
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   z-index: 11;
 
-  input {
+  input[type="text"],
+  input[type="number"] {
     border-radius: 4px;
+    width: 100%;
     background-color: transparent;
     border: 2px solid $bn-black;
     padding: 10px 12px 4px;

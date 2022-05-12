@@ -16,30 +16,37 @@ const NeighbourComponent: React.FC<NeighbourComponentProps> = ({ item, isMine, i
   console.log(item);
   return (
     <div className={styles.container}>
-      <div className={styles.topLine}>
+      {item.userImage && (
         <div>
-          <span>
-            {item.userFirstName} {item.userLastName}
-          </span>
-          <span>{item.birthDate}</span>
+          <img src={item.userImage} alt="альт" />
         </div>
-        <div className={styles.dates}>
-          <span>
-            from <span>{item.startDate}</span>
-          </span>
-          <span>
-            to<span>{item.endDate}</span>
-          </span>
+      )}
+      <div className={styles.flexDown}>
+        <div className={styles.topLine}>
+          <div>
+            <span>
+              {item.userFirstName} {item.userLastName}
+            </span>
+            <span>{item.birthDate}</span>
+          </div>
+          <div className={styles.dates}>
+            <span>
+              from <span>{item.startDate}</span>
+            </span>
+            <span>
+              to<span>{item.endDate}</span>
+            </span>
+          </div>
         </div>
+        <span>{new Date().getFullYear() - new Date(item.birthDate).getFullYear()} years</span>
+        <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
+        <span>{item.description}</span>
+        {isMine && isDelete && (
+          <button type="button" onClick={() => isDelete.onDelete(item.id)}>
+            Remove
+          </button>
+        )}{" "}
       </div>
-      <span>{new Date().getFullYear() - new Date(item.birthDate).getFullYear()} years</span>
-      <span>{item.sex === SexEnum.Female ? "F" : "M"}</span>
-      <span>{item.description}</span>
-      {isMine && isDelete && (
-        <button type="button" onClick={() => isDelete.onDelete(item.id)}>
-          Remove
-        </button>
-      )}{" "}
     </div>
   );
 };
