@@ -5,6 +5,12 @@
   .pageContainer {
     width: 75%;
     margin: 40px auto auto;
+
+    input {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 2px solid $bn-black;
+    }
   }
 
   .columns {
@@ -59,4 +65,43 @@
   button {
     width: 100%;
   }
+}
+
+.colInputs {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+
+  input {
+    flex: 1 48%;
+  }
+}
+
+.inputs {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+}
+
+.genderContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+
+  select {
+    padding: 4px 8px;
+    border: 2px solid $bn-black;
+  }
+}
+
+.loadMore {
+  display: flex;
+  width: 100%;
 }

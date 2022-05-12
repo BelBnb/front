@@ -25,15 +25,15 @@ const HotelFilters: React.FC<HotelFiltersProps> = ({ city, priceL, priceB, setVa
     <div className={styles.inputWrapper}>
       <div className={styles.group}>
         <input type="text" value={city} onChange={(e) => changeHandler(e, "city")} />
-        <label>City</label>
+        <label className={styles.label}>City</label>
       </div>
       <div className={styles.group}>
         <input type="number" min={0} max={100000} value={priceB} onChange={(e) => changeHandler(e, "priceB")} />
-        <label>Price from</label>
+        <label className={styles.label}>Price from</label>
       </div>
       <div className={styles.group}>
         <input type="number" min={0} max={100000} value={priceL} onChange={(e) => changeHandler(e, "priceL")} />
-        <label>Price to</label>
+        <label className={styles.label}>Price to</label>
       </div>
       <div className={styles.button}>
         <ColoredButton

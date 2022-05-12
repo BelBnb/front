@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -9,7 +10,7 @@ import { SexEnum } from "@/common/sex.enum";
 import { PageSize } from "@/common/paginationConstants";
 import MeNeighboursMain from "@/components/neighbours/My/mineNeighboursComponent";
 import CoolLabel from "@/elements/common/coolLabel/coolLabel";
-import { DateRange } from "react-date-range";
+import { DateRange, RangeKeyDict } from "react-date-range";
 import ColoredButton from "@/elements/common/buttons/buttons";
 import styles from "./styles.module.scss";
 import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
@@ -23,8 +24,14 @@ const NeighboursMain: React.FC = (): JSX.Element => {
   const [ageMax, setAgeMax] = useState(100);
   const [city, setCity] = useState("Minsk");
 
-  const [startDate, setStartDate] = useState("2020-01-01");
-  const [endDate, setEndDate] = useState("2030-01-01");
+  const [selection, setSelecton] = useState({
+    startDate: new Date(),
+    endDate: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
+    key: "selection",
+  });
+  const handleSelect = (ranges: RangeKeyDict) => {
+    setSelecton(ranges?.selection);
+  };
 
   const [sex, setSex] = useState(SexEnum.Whatever);
 
@@ -37,8 +44,8 @@ const NeighboursMain: React.FC = (): JSX.Element => {
       city,
       ageMin,
       ageMax,
-      startDate,
-      endDate,
+      startDate: selection.startDate.toString(),
+      endDate: selection.endDate.toString(),
       sex,
     });
     const parsed = await data.json();
@@ -54,8 +61,8 @@ const NeighboursMain: React.FC = (): JSX.Element => {
       city,
       ageMin,
       ageMax,
-      startDate,
-      endDate,
+      startDate: selection.startDate.toString(),
+      endDate: selection.endDate.toString(),
       sex,
     });
     const parsed = await data.json();
@@ -78,70 +85,48 @@ const NeighboursMain: React.FC = (): JSX.Element => {
                 <NeighbourComponent isMine={false} item={item} />
               </div>
             ))}
-            {page * PageSize < total && (
-              <button type="button" onClick={getMoreNeighbours}>
-                Dai mne ische
-              </button>
-            )}
+            {page * PageSize < total && <ColoredButton coloredLabel="Load more" onClick={getMoreNeighbours} />}
           </div>
           <div className={styles.rightCol}>
-            <CoolLabel>Filters </CoolLabel>
-            <DateRange ranges={[]} rangeColors={["#2d2d2d"]} onChange={(e) => e} />
+            <CoolLabel>{"filters".toUpperCase()}</CoolLabel>
+            <div className={styles.inputs}>
+              <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
+
+              <div className={styles.colInputs}>
+                <input
+                  type="number"
+                  min={18}
+                  max={100}
+                  placeholder="Min age"
+                  value={ageMin}
+                  onChange={(e) => setAgeMin(e.target.value)}
+                />
+                <input
+                  type="number"
+                  min={18}
+                  max={100}
+                  placeholder="Max age"
+                  value={ageMax}
+                  onChange={(e) => setAgeMax(e.target.value)}
+                />
+              </div>
+              <div className={styles.genderContainer}>
+                <span>Neighboor gender</span>
+                <select value={sex} onChange={(e) => setSex(e.target.value)}>
+                  <option selected value={SexEnum.Whatever}>
+                    Don't care
+                  </option>
+                  <option value={SexEnum.Female}>Female</option>
+                  <option value={SexEnum.Male}>Male</option>
+                </select>
+              </div>
+            </div>
+            <DateRange ranges={[selection]} rangeColors={["#2d2d2d"]} onChange={(e) => handleSelect(e)} />
 
             <div className={styles.buttonContainer}>
-              <ColoredButton coloredLabel="Search" onClick={} />
+              <ColoredButton coloredLabel="Search" onClick={getStartNeighbours} />
             </div>
-            <CoolLabel>Feedback</CoolLabel>
           </div>
-        </div>
-        <div>
-          <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
-
-          <input
-            type="number"
-            min={18}
-            max={100}
-            placeholder="Age min"
-            value={ageMin}
-            onChange={(e) => setAgeMin(e.target.value)}
-          />
-          <input
-            type="number"
-            min={18}
-            max={100}
-            placeholder="Age max"
-            value={ageMax}
-            onChange={(e) => setAgeMax(e.target.value)}
-          />
-          <input
-            type="date"
-            min={18}
-            max={100}
-            placeholder="Start date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-          <input
-            type="date"
-            min={18}
-            max={100}
-            placeholder="End date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-
-          <label>
-            Sex?
-            <select value={sex} onChange={(e) => setSex(e.target.value)}>
-              <option selected value={SexEnum.Whatever}>
-                Давай
-              </option>
-              <option value={SexEnum.Female}>Бабу мне</option>
-              <option value={SexEnum.Male}>Мужика</option>
-            </select>
-          </label>
-
-          <button onClick={getStartNeighbours}>Search</button>
         </div>
       </div>
     </div>

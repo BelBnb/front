@@ -17,7 +17,7 @@ const NeighbourComponent: React.FC<NeighbourComponentProps> = ({ item, isMine, i
   return (
     <div className={styles.container}>
       {item.userImage && (
-        <div>
+        <div className={styles.imageContainer}>
           <img src={item.userImage} alt="альт" />
         </div>
       )}
