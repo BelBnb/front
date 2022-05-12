@@ -4,10 +4,12 @@
   background-color: $bn-white;
   border-radius: 4px;
   padding: 12px;
+  gap: 12px;
 }
 
 .flexDown {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
 }
 
@@ -20,5 +22,54 @@
     width: 100%;
     border-radius: 50%;
     height: 100%;
+  }
+}
+
+.topLineName {
+  display: flex;
+  font-family: "DaysOne", sans-serif;
+  text-transform: uppercase;
+  align-items: center;
+
+  span:first-child {
+    margin-right: 10px;
+  }
+
+  span:not(:first-child) {
+    font-size: 12px;
+    color: #999;
+  }
+  gap: 4px;
+}
+
+.rightColumn {
+  font-family: "DaysOne", sans-serif;
+  width: 160px;
+
+  button {
+    margin-top: 6px;
+    width: 100%;
+  }
+
+  .dates {
+    display: flex;
+    width: 100%;
+
+    & > span:first-child {
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    & > span {
+      font-size: 12px;
+
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    flex-direction: column;
+  }
+
+  .date {
   }
 }
