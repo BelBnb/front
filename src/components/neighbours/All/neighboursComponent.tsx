@@ -80,12 +80,19 @@ const NeighboursMain: React.FC = (): JSX.Element => {
         <div className={styles.columns}>
           <div className={styles.leftColumn}>
             <MeNeighboursMain />
-            {neighbours?.map((item) => (
-              <div>
-                <NeighbourComponent isMine={false} item={item} />
+            <CoolLabel>All cards</CoolLabel>
+            <div className={styles.commentsContainer}>
+              {neighbours?.map((item) => (
+                <div>
+                  <NeighbourComponent isMine={false} item={item} />
+                </div>
+              ))}
+            </div>
+            {page * PageSize < total && (
+              <div className={styles.loadButton}>
+                <ColoredButton coloredLabel="Load more" onClick={getMoreNeighbours} />
               </div>
-            ))}
-            {page * PageSize < total && <ColoredButton coloredLabel="Load more" onClick={getMoreNeighbours} />}
+            )}
           </div>
           <div className={styles.rightCol}>
             <CoolLabel>{"filters".toUpperCase()}</CoolLabel>

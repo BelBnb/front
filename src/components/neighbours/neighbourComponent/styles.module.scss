@@ -18,6 +18,10 @@
   width: 36px;
   height: 36px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   img {
     width: 100%;
     border-radius: 50%;
@@ -26,6 +30,10 @@
 }
 
 .topLineName {
+  &:hover {
+    cursor: pointer;
+  }
+
   display: flex;
   font-family: "DaysOne", sans-serif;
   text-transform: uppercase;

@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { SexEnum } from "@/common/sex.enum";
 import { Neighbours } from "@/common/types/Neighbours";
-import ColoredButton from "@/elements/common/buttons/buttons";
+import OutlinedButton from "@/elements/common/buttons/outlinedButton";
 import { RootState } from "@/redux/store";
 import { User, userInitState } from "@/types/redux/initStates";
 import React from "react";
@@ -56,7 +56,7 @@ const NeighbourComponent: React.FC<NeighbourComponentProps> = ({ item, isMine, i
             <span className={styles.date}>{item.endDate} </span>
           </span>
         </div>
-        {isMine && isDelete && <ColoredButton coloredLabel="Remove" onClick={() => isDelete.onDelete(item.id)} />}{" "}
+        {isMine && isDelete && <OutlinedButton outlineLabel="Remove" onClick={() => isDelete.onDelete(item.id)} />}{" "}
       </div>
     </div>
   );
