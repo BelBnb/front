@@ -1,8 +1,11 @@
 .pageWrapper {
   height: calc(100vh - 80px);
   width: 100%;
+  background-color: $bn-light-grey;
+  display: flex;
 
   .pageContainer {
+    display: flex;
     width: 75%;
     margin: 40px auto auto;
 
@@ -28,7 +31,7 @@
       flex: 1 40%;
       flex-direction: column;
       background-color: $bn-white;
-      padding: 12px;
+      padding: 12px 12px 20px;
       border-radius: 6px;
     }
 
