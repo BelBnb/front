@@ -64,7 +64,6 @@ const HotelsContainer = ({
     await fetchData();
   }, [findEvent]);
 
-  //const hotels = useSelector<RootState, Hotel[]>((app) => app.hotels);
   const [isOpen, setIsOpen] = useState(false);
   const [polygonItem, setPolygonItem] = useState<{
     hotel?: Hotel;

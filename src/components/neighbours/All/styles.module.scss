@@ -1,0 +1,110 @@
+.pageWrapper {
+  height: calc(100vh - 80px);
+  width: 100%;
+  background-color: $bn-light-grey;
+  display: flex;
+
+  .pageContainer {
+    display: flex;
+    width: 75%;
+    margin: 40px auto auto;
+
+    input {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 2px solid $bn-black;
+    }
+  }
+
+  .columns {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+
+    & > div:first-child {
+      display: flex;
+      flex: 1 70%;
+    }
+
+    & > div:last-child {
+      display: flex;
+      flex: 1 40%;
+      flex-direction: column;
+      background-color: $bn-white;
+      padding: 12px 12px 20px;
+      border-radius: 6px;
+    }
+
+    .sepLine {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .flexDown {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price {
+      font-family: "DaysOne", sans-serif;
+      font-size: 18px;
+    }
+
+    .name {
+    }
+  }
+
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+
+  button {
+    width: 100%;
+  }
+}
+
+.colInputs {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+
+  input {
+    flex: 1 48%;
+  }
+}
+
+.inputs {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+}
+
+.genderContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+
+  select {
+    padding: 4px 8px;
+    border: 2px solid $bn-black;
+  }
+}
+
+.loadMore {
+  display: flex;
+  width: 100%;
+}
