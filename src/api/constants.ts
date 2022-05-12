@@ -58,11 +58,12 @@ export const updateUserRoute = (userId: string) =>
 const messengerPreffix = "/messenger";
 export const postMessage = `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/create`;
 export const getAllMessages = `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/`;
+export const getMessage_ = (id: string) => `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/${id}`;
 
 //neighbours
 const neighboursPreffix = "/neighbours";
 export const allNeighboursRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/all`;
 export const meNeighbourRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/my`;
-export const removeNeighbourRoute = (id) =>
+export const removeNeighbourRoute = (id: string) =>
   `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/${id}`;
 export const createNeighbourRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/create`;
