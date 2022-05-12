@@ -16,8 +16,8 @@ const Dialog: React.FC<DialogProps> = ({ id }) => {
   const [message, setMessage] = useState("");
   useEffect(() => {
     async function load() {
-      const res = await messengerApi.getMessages({ from: user.id, to: id, limit: 100, offset: 0 });
-      setResult(res);
+      const res = await (await messengerApi.getMessages({ from: user.id, to: id, limit: 100, offset: 0 })).json();
+      setResult(res.data);
     }
     load();
   }, []);

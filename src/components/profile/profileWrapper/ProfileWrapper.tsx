@@ -84,6 +84,9 @@ const ParticularUser = () => {
         if (params.id === appUser.id) {
           setIsMyself(true);
         } else {
+          if (user.id === params.id) {
+            return;
+          }
           const data = await request(getUserById(params.id), "GET");
           const suspect = await data.json();
           // todo: redirect to 404
