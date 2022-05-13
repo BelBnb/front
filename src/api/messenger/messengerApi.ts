@@ -1,5 +1,5 @@
 import { request, requestWithBody, requestWithQuerry } from "@/api/apiService";
-import { getAllMessages, getMessage_, methods, postMessage } from "../constants";
+import { getAllMessages, getDialogs_, getMessage_, methods, postMessage } from "../constants";
 
 const createMessage = async (obj: { from: string; to: string; text: string }) => {
   const result = await requestWithBody(postMessage, methods.POST, obj);
@@ -16,4 +16,9 @@ const getMessage = async (id: string) => {
   return result;
 };
 
-export default { createMessage, getMessages, getMessage };
+const getDialogs = async (id: string, dto: { limit: number; offset: number }) => {
+  const result = await requestWithQuerry(getDialogs_(id), methods.GET, dto);
+  return result;
+};
+
+export default { createMessage, getMessages, getMessage, getDialogs };

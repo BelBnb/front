@@ -60,6 +60,9 @@ export const postMessage = `${gatewayPreffix + messengerPreffix + apiPreffix + m
 export const getAllMessages = `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/`;
 export const getMessage_ = (id: string) => `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/${id}`;
 
+const dialogsPreffix = "/dialogs";
+export const getDialogs_ = (id: string) => `${gatewayPreffix + messengerPreffix + apiPreffix + dialogsPreffix}/${id}`;
+
 // neighbours
 const neighboursPreffix = "/neighbours";
 export const allNeighboursRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/all`;
