@@ -60,7 +60,7 @@ const SignUpForm = () => {
               <InputElement onChange={(e) => onChangeDto(e, "lastName")} placeholder="Last name" type="text" />
             </div>
           </div>
-          <Calendar date={dto.birthDate} onChange={(e) => onChangeDto(e, "birthDate")} />
+          <Calendar color="#2d2d2d" date={dto.birthDate} onChange={(e) => onChangeDto(e, "birthDate")} />
         </div>
       </div>
 
