@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 8px;
   overflow-y: auto;
+  padding-right: 8px;
 
   & > div:last-child {
     margin-top: 8px;
@@ -30,4 +31,47 @@
 
 .bottomItems {
   margin-top: 40px;
+}
+
+.columns {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+
+  & > div {
+    flex: 0 48%;
+  }
+
+  div:first-child {
+  }
+}
+
+.singleColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnsNested {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+
+  & > div {
+    display: flex;
+    align-self: center;
+    width: 48px;
+    flex: 0 48%;
+  }
+
+  select {
+    width: 100%;
+    display: flex;
+    background-color: transparent;
+    border: 2px solid $bn-black;
+    border-radius: 4px;
+    outline: none;
+  }
 }

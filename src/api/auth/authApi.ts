@@ -14,11 +14,8 @@ export const signIn = async (dto: SignInDto): Promise<SignInPayload> => {
   return result.json();
 };
 
-export const signUp = async (dto: SignUpDto): Promise<SignUpPayload> => {
-  const result = await fetch(signUpRoute, {
-    method: "POST",
-    body: JSON.stringify(dto),
-  });
+const signUp = async (dto: SignUpDto): Promise<SignUpPayload> => {
+  const result = await requestWithBody(signUpRoute, methods.POST, dto);
   return result.json();
 };
 
