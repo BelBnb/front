@@ -1,7 +1,5 @@
 import FormWrapper from "@/elements/auth/formWrapper/formWrapper";
 import InputElement from "@/elements/auth/inputElement/InputElement";
-import CoolLabel from "@/elements/common/coolLabel/coolLabel";
-import GoogleButton from "@/elements/common/googleButton/googleButton";
 import SubmitButton from "@/elements/common/submitButton/button";
 import { AppDispatch } from "@/redux/store";
 import { signUserIn } from "@/redux/thunks/auth/signInThunk";
@@ -57,8 +55,6 @@ const LoginForm = () => {
       <div className={styles.bottomItems}>
         <div className={styles.buttonsContainer}>
           <SubmitButton text="Login" onClick={() => handleLogin()} />
-          <CoolLabel>OR</CoolLabel>
-          <GoogleButton />
         </div>
       </div>
     </FormWrapper>

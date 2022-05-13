@@ -14,7 +14,7 @@ const apiPreffix = "/api";
 
 export const signInRoute = `${gatewayPreffix}/auth/auth/login`;
 export const getTokenInfoRoute = `${gatewayPreffix}/users/api/users/`;
-export const signUpRoute = `${gatewayPreffix}/auth/sign-up`;
+export const signUpRoute = `${gatewayPreffix}/users/api/users/`;
 
 const hotelPreffix = "/hotels";
 export const createHotelRoute = `${gatewayPreffix + hotelPreffix + apiPreffix + hotelPreffix}/create`;
@@ -60,7 +60,7 @@ export const postMessage = `${gatewayPreffix + messengerPreffix + apiPreffix + m
 export const getAllMessages = `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/`;
 export const getMessage_ = (id: string) => `${gatewayPreffix + messengerPreffix + apiPreffix + messengerPreffix}/${id}`;
 
-//neighbours
+// neighbours
 const neighboursPreffix = "/neighbours";
 export const allNeighboursRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/all`;
 export const meNeighbourRoute = `${gatewayPreffix + neighboursPreffix + apiPreffix + neighboursPreffix}/my`;
