@@ -91,6 +91,8 @@ const ParticularHotel = () => {
     if (params.id) {
       setHotel(hotels.find((el) => el.id === params.id));
     }
+    console.log(hotels);
+    console.log(hotels.find((el) => el.id === params.id));
   }, [params, hotels]);
 
   return (
@@ -110,6 +112,7 @@ const ParticularHotel = () => {
             <div className={styles.sepLine}>
               <span className={styles.price}>{hotel?.price}$</span>
               <span className={styles.name}>{hotel?.name}</span>
+              <span className={styles.city}>City: {hotel?.city}</span>
             </div>
             <aside>{hotel?.description}</aside>
             <CoolLabel>Booking </CoolLabel>
