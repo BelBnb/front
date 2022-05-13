@@ -24,10 +24,12 @@ module.exports = (env, argv) => {
     target: "web", // force target otherwise HMR doesn't work for style-loader
     /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
+      https: true,
       // proxy config will be remove if target is empty
       proxy: {
         // requires for ignoring CORS issues
-        "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
+        "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false, ws: true },
+        ws: true,
       },
       hot: undefined === env.hot,
       liveReload: undefined === env.hot,
