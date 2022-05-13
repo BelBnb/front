@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/message/message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/messenger/messengerApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/messenger/messengerApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user/userApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogPreview/dialogPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogPreview/dialogPreview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mesenger/messengerMain/messengerMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/messengerMain.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mesenger/singleDialog/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/singleDialog/dialog.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +136,7 @@
       <workItem from="1652292386477" duration="6300000" />
       <workItem from="1652340896549" duration="17282000" />
       <workItem from="1652425387433" duration="5790000" />
-      <workItem from="1652463848161" duration="880000" />
+      <workItem from="1652463848161" duration="3341000" />
     </task>
     <servers />
   </component>

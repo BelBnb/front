@@ -5,13 +5,14 @@ import { User } from "@/types/redux/initStates";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
-import styles from "./styles.module.scss";
+import Message from "@/components/mesenger/messengerMain/message/message";
 
 interface DialogProps {
   id: string;
+  users: User[];
 }
 
-const Dialog: React.FC<DialogProps> = ({ id }) => {
+const Dialog: React.FC<DialogProps> = ({ id, users }) => {
   const user = useSelector<RootState, User>((app) => app.user);
   const [messages, setMessages] = useState();
   const [message, setMessage] = useState("");
@@ -22,7 +23,7 @@ const Dialog: React.FC<DialogProps> = ({ id }) => {
     socketRef.current = io(SERVER_URL);
 
     socketRef.current.on("message", async (d) => {
-      console.log("New message ", d);
+      if (d.data.from !== user.id && d.data.to !== user.id) return;
       const data = await messengerApi.getMessage(d.data.id);
       const newMessage = await data.json();
       if (!newMessage.error) {
@@ -38,7 +39,7 @@ const Dialog: React.FC<DialogProps> = ({ id }) => {
       setMessages(res.data);
     }
     load();
-  }, []);
+  }, [id]);
 
   const handleSendMessage = async () => {
     const res = await messengerApi.createMessage({ from: user.id, to: id, text: message });
@@ -48,8 +49,9 @@ const Dialog: React.FC<DialogProps> = ({ id }) => {
 
   return (
     <div>
-      hi
-      <div className={styles.prevMessages}>{JSON.stringify(messages)}</div>
+      {messages?.map((item) => {
+        return <Message user={users.find((u) => u.id === item.from || u.id === item.to)} message={item} />;
+      })}
       <input type="text" value={message} onChange={(e) => setMessage(e.currentTarget.value)} />
       <ColoredButton coloredLabel="Send" onClick={handleSendMessage} />
     </div>
