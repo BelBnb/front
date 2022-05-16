@@ -29,7 +29,13 @@ module.exports = (env, argv) => {
       proxy: {
         // requires for ignoring CORS issues
         "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false, ws: true },
-        ws: true,
+        "/socket.io": {
+          target: "http://localhost:2998/",
+          changeOrigin: true,
+          withCredentials: false,
+          secure: false,
+          ws: true,
+        },
       },
       hot: undefined === env.hot,
       liveReload: undefined === env.hot,

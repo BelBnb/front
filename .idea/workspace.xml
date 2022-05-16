@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/message/message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/user/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user/userApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogPreview/dialogPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogPreview/dialogPreview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/dialogs/dialogs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mesenger/messengerMain/messengerMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/messengerMain.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mesenger/messengerMain/message/message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/message/message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mesenger/singleDialog/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/singleDialog/dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.devServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.devServer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/messenger" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/mesenger/messengerMain/message" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -67,14 +63,22 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/mesenger/messengerMain/message" />
       <recent name="$PROJECT_DIR$/src/api/messenger" />
       <recent name="$PROJECT_DIR$/src/common/types" />
       <recent name="$PROJECT_DIR$/src/components/feedback/comment" />
       <recent name="$PROJECT_DIR$/src/common" />
-      <recent name="$PROJECT_DIR$/src/api/neighbours" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.serve-proxy">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="http" />
+    </option>
+  </component>
+  <component name="RunManager" selected="HTTP Request.rest-api_1 | #1">
+    <configuration name="rest-api_1 | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="serve-proxy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -107,6 +111,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.rest-api_1 | #1" />
         <item itemvalue="npm.serve-proxy" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.serve" />
@@ -136,7 +141,9 @@
       <workItem from="1652292386477" duration="6300000" />
       <workItem from="1652340896549" duration="17282000" />
       <workItem from="1652425387433" duration="5790000" />
-      <workItem from="1652463848161" duration="3341000" />
+      <workItem from="1652463848161" duration="2098000" />
+      <workItem from="1652543480767" duration="32000" />
+      <workItem from="1652677425285" duration="4133000" />
     </task>
     <servers />
   </component>

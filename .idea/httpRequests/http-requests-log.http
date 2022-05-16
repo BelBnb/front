@@ -1,0 +1,86 @@
+GET http://localhost:2998/soket.io
+Origin: https://localhost:8080
+Pragma: no-cache
+Sec-WebSocket-Key: EAUNcSFlJJnJ1bBTbZ5rWw==
+Sec-WebSocket-Version: 13
+Upgrade: websocket
+Sec-WebSocket-Extensions: permessage-deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15
+Cache-Control: no-cache
+Connection: Upgrade
+
+<> 2022-05-16T085214.404.html
+
+###
+
+GET http://localhost:2998/ws
+Origin: https://localhost:8080
+Pragma: no-cache
+Sec-WebSocket-Key: EAUNcSFlJJnJ1bBTbZ5rWw==
+Sec-WebSocket-Version: 13
+Upgrade: websocket
+Sec-WebSocket-Extensions: permessage-deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15
+Cache-Control: no-cache
+Connection: Upgrade
+
+<> 2022-05-16T085207.404.html
+
+###
+
+GET http://localhost:2998
+Origin: https://localhost:8080
+Pragma: no-cache
+Sec-WebSocket-Key: EAUNcSFlJJnJ1bBTbZ5rWw==
+Sec-WebSocket-Version: 13
+Upgrade: websocket
+Sec-WebSocket-Extensions: permessage-deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15
+Cache-Control: no-cache
+Connection: Upgrade
+
+<> 2022-05-16T085151.404.html
+
+###
+
+GET https://localhost:2998
+Origin: https://localhost:8080
+Pragma: no-cache
+Sec-WebSocket-Key: EAUNcSFlJJnJ1bBTbZ5rWw==
+Sec-WebSocket-Version: 13
+Upgrade: websocket
+Sec-WebSocket-Extensions: permessage-deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15
+Cache-Control: no-cache
+Connection: Upgrade
+
+###
+
+GET http://localhost:2998
+Origin: https://localhost:8080
+Pragma: no-cache
+Sec-WebSocket-Key: EAUNcSFlJJnJ1bBTbZ5rWw==
+Sec-WebSocket-Version: 13
+Upgrade: websocket
+Sec-WebSocket-Extensions: permessage-deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15
+Cache-Control: no-cache
+Connection: Upgrade
+
+<> 2022-05-16T085136.404.html
+
+###
+
+GET http://localhost:8080/ws
+Origin: https://localhost:8080
+Pragma: no-cache
+Sec-WebSocket-Key: EAUNcSFlJJnJ1bBTbZ5rWw==
+Sec-WebSocket-Version: 13
+Upgrade: websocket
+Sec-WebSocket-Extensions: permessage-deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15
+Cache-Control: no-cache
+Connection: Upgrade
+
+###
+

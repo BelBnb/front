@@ -17,7 +17,7 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
   const [messages, setMessages] = useState();
   const [message, setMessage] = useState("");
   const socketRef = useRef(null);
-  const SERVER_URL = "http://localhost:3005/";
+  const SERVER_URL = "/";
 
   useEffect(() => {
     socketRef.current = io(SERVER_URL);
@@ -50,7 +50,7 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
   return (
     <div>
       {messages?.map((item) => {
-        return <Message user={users.find((u) => u.id === item.from || u.id === item.to)} message={item} />;
+        return <Message user={users.find((u) => u.id === item.from)} message={item} />;
       })}
       <input type="text" value={message} onChange={(e) => setMessage(e.currentTarget.value)} />
       <ColoredButton coloredLabel="Send" onClick={handleSendMessage} />
