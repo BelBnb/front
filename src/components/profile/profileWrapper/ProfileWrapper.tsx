@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { SexEnum } from "@/common/sex.enum";
-import { User } from "@/types/redux/initStates";
+import { User, userInitState } from "@/types/redux/initStates";
 import FeedbackComponent from "@/components/feedback/feedbackComponent";
 import { userBookingPayload } from "@/types/dto/apiPayloads/booking/userBookingsPayload";
 import bookingApi from "@/api/booking/bookingApi";
@@ -167,7 +167,7 @@ const ParticularUser = () => {
           <div className={styles.rightColumn}>
             <div className={styles.avatarContainer}>
               <label htmlFor="my-file" onClick={setEditPhoto} onKeyDown={setEditPhoto}>
-                <img src={user?.profilePic} alt="pirkol" />
+                <img src={user?.profilePic || userInitState.profilePic} alt="pirkol" />
               </label>
               <input id="my-file" type="file" hidden onChange={(e) => onFileChange(e)} />
             </div>

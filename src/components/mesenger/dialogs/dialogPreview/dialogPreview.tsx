@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 
 const DialogPreview: React.FC<DialogPreviewType> = ({ address, date, lastMessage, pic, id }) => (
-  <Link to={"/messenger/" + id}>
+  <Link to={`/messenger/${id}`}>
     <div className={styles.previewContainer}>
       <div className={styles.imgContainer}>
-        <img src={pic} alt="image" />
+        <img src={pic} alt="avatar" />
       </div>
       <div className={styles.addressInfo}>
         <span>{address}</span>

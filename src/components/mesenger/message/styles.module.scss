@@ -1,0 +1,58 @@
+.imageWrapper {
+  display: flex;
+  width: 36px;
+  height: 36px;
+
+  img {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.left {
+  align-self: flex-start;
+}
+
+.right {
+  align-self: flex-end;
+}
+
+.messageWrapper {
+  display: flex;
+  padding: 6px 12px;
+  width: 260px;
+  gap: 10px;
+  border: 2px solid rgba($color: $bn-black, $alpha: 00.5);
+  border-radius: 4px;
+}
+
+.messageContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  span:first-child {
+    font-family: "DaysOne", sans-serif;
+    text-transform: uppercase;
+  }
+}
+
+.topLine {
+  & > span:first-child {
+    font-size: 13px;
+  }
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  font-size: 9px;
+  color: $bn-semi-black;
+
+  span:last-child {
+    margin-top: -4px;
+  }
+}

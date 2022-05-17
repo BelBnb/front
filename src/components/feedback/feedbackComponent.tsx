@@ -13,11 +13,11 @@ import { FeedbackConstant } from "@/common/types/FeedbackConstant";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
+import CoolLabel from "@/elements/common/coolLabel/coolLabel";
 import FeedBackDialog from "./feedbackDialog/feedbackDialog";
 import AddNewComment from "./notMyComment/addNewComment";
 import MyComment from "./myComment/myComment";
 import CommentComponent from "./comment/Comment";
-import CoolLabel from "@/elements/common/coolLabel/coolLabel";
 
 interface FeedbackComponentProps {
   entityId: string;
@@ -42,7 +42,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
   const loadMine = async () => {
     const data = await request(getMyFeedbackFor(entityId, user.id), methods.GET);
     const parsed = await data.json();
-    if (parsed.statusCode !== 404) {
+    if (parsed.status !== 404) {
       setMyComment(parsed);
       setTextValue(parsed.text);
       setStarsValue(parsed.stars);

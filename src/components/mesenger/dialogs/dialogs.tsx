@@ -1,8 +1,7 @@
-import { DialogPreviewType } from "@/types/dialogs";
 import React, { useState } from "react";
+import { User, userInitState } from "@/types/redux/initStates";
 import DialogPreview from "./dialogPreview/dialogPreview";
 import styles from "./styles.module.scss";
-import { User } from "@/types/redux/initStates";
 
 interface MessengerDialogProps {
   selectDialog: (e: string) => void;
@@ -18,9 +17,9 @@ const MessengerDialogs: React.FC<MessengerDialogProps> = ({ selectDialog, dialog
         <DialogPreview
           id={el.companion.id}
           address={el.companion.firstName}
-          date={""}
-          pic={el.companion.profilePic}
-          lastMessage={""}
+          date=""
+          pic={el.companion.profilePic || userInitState.profilePic}
+          lastMessage=""
         />
       ))}
     </div>

@@ -3,4 +3,5 @@ export type DialogPreviewType = {
   date: string;
   pic: string;
   lastMessage: string;
+  id: string;
 };

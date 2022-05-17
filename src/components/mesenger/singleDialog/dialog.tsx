@@ -5,7 +5,8 @@ import { User } from "@/types/redux/initStates";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
-import Message from "@/components/mesenger/messengerMain/message/message";
+import MessageComponent from "../message/MessageComponent";
+import styles from "./styles.module.scss";
 
 interface DialogProps {
   id: string;
@@ -14,6 +15,7 @@ interface DialogProps {
 
 const Dialog: React.FC<DialogProps> = ({ id, users }) => {
   const user = useSelector<RootState, User>((app) => app.user);
+  const ref = useRef<HTMLDivElement>();
   const [messages, setMessages] = useState();
   const [message, setMessage] = useState("");
   const socketRef = useRef(null);
@@ -30,13 +32,28 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
         console.log(newMessage);
         setMessages((s) => [...s, newMessage]);
       }
+
+      scroll();
     });
   }, []);
+
+  const scroll = () => {
+    console.log(ref);
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    const scrolledY = window.scrollY;
+
+    if (scrolledY) {
+      window.scroll(0, scrolledY - 80);
+    }
+  };
 
   useEffect(() => {
     async function load() {
       const res = await (await messengerApi.getMessages({ from: user.id, to: id, limit: 100, offset: 0 })).json();
-      setMessages(res.data);
+      setMessages(res.data.reverse());
+      setTimeout(() => {
+        scroll();
+      }, 200);
     }
     load();
   }, [id]);
@@ -47,13 +64,23 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
     setMessage("");
   };
 
+  useEffect(() => {}, [messages]);
+
   return (
     <div>
-      {messages?.map((item) => {
-        return <Message user={users.find((u) => u.id === item.from)} message={item} />;
-      })}
-      <input type="text" value={message} onChange={(e) => setMessage(e.currentTarget.value)} />
-      <ColoredButton coloredLabel="Send" onClick={handleSendMessage} />
+      <div className={styles.contentWrapper}>
+        <div className={styles.messagesWrapper}>
+          {messages?.map((item, index) => {
+            const us = users.find((u) => u.id === item.from);
+
+            return <MessageComponent ref={ref} user={us} message={item} />;
+          })}
+        </div>
+        <div className={styles.bottomElements}>
+          <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)} />
+          <ColoredButton coloredLabel="Send" onClick={handleSendMessage} />
+        </div>
+      </div>
     </div>
   );
 };
