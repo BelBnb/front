@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
         // requires for ignoring CORS issues
         "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false, ws: true },
         "/socket.io": {
-          target: "http://localhost:2998/",
+          target: "http://localhost:2999/",
           changeOrigin: true,
           withCredentials: false,
           secure: false,

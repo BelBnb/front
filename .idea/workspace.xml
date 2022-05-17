@@ -4,8 +4,6 @@
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mesenger/messengerMain/message/message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/message/message.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mesenger/singleDialog/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/singleDialog/dialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.devServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.devServer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +141,8 @@
       <workItem from="1652425387433" duration="5790000" />
       <workItem from="1652463848161" duration="2098000" />
       <workItem from="1652543480767" duration="32000" />
-      <workItem from="1652677425285" duration="4133000" />
+      <workItem from="1652677425285" duration="6518000" />
+      <workItem from="1652816367481" duration="284000" />
     </task>
     <servers />
   </component>
