@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackMockServer = require("webpack-mock-server");
 const path = require("path");
+const fs = require("fs");
 const dev = require("./webpack.dev");
 const assets = require("./webpack.common").assetsPath;
 
@@ -24,11 +25,15 @@ module.exports = (env, argv) => {
     target: "web", // force target otherwise HMR doesn't work for style-loader
     /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
-      https: true,
+      https: {
+        key: fs.readFileSync("./keys/server.key"),
+        cert: fs.readFileSync("./keys/server.crt"),
+        ca: fs.readFileSync("./keys/ca.key"),
+      },
       // proxy config will be remove if target is empty
       proxy: {
         // requires for ignoring CORS issues
-        "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false, ws: true },
+        "/gateway": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
         "/socket.io": {
           target: "http://localhost:2999/",
           changeOrigin: true,

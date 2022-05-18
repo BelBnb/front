@@ -13,10 +13,19 @@ interface DialogProps {
   users: User[];
 }
 
+interface messageType {
+  id: string;
+  from: string;
+  to: string;
+  text: string;
+  timestamp: Date;
+  hashed: string;
+}
+
 const Dialog: React.FC<DialogProps> = ({ id, users }) => {
   const user = useSelector<RootState, User>((app) => app.user);
   const ref = useRef<HTMLDivElement>();
-  const [messages, setMessages] = useState();
+  const [messages, setMessages] = useState<messageType[]>([]);
   const [message, setMessage] = useState("");
   const socketRef = useRef(null);
   const SERVER_URL = "/";
@@ -64,17 +73,21 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
     setMessage("");
   };
 
-  useEffect(() => {}, [messages]);
+  useEffect(() => {
+    console.log("    messages", messages);
+  }, [messages]);
 
   return (
     <div>
       <div className={styles.contentWrapper}>
         <div className={styles.messagesWrapper}>
-          {messages?.map((item, index) => {
-            const us = users.find((u) => u.id === item.from);
+          {messages
+            ?.filter((el) => el?.from === user.id || el?.to === user.id)
+            .map((item) => {
+              const us = users.find((u) => u.id === item.from);
 
-            return <MessageComponent ref={ref} user={us} message={item} />;
-          })}
+              return <MessageComponent ref={ref} user={us} message={item} />;
+            })}
         </div>
         <div className={styles.bottomElements}>
           <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)} />
