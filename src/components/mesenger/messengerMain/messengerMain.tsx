@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import MessengerDialogs from "../dialogs/dialogs";
-import Dialog from "../singleDialog/dialog";
-import styles from "./styles.module.scss";
 import messengerApi from "@/api/messenger/messengerApi";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
 import { PageSize } from "@/common/paginationConstants";
 import userApi from "@/api/user/userApi";
+import messengerPic from "@/assets/images/backgrounds/messenger.png";
+import styles from "./styles.module.scss";
+import Dialog from "../singleDialog/dialog";
+import MessengerDialogs from "../dialogs/dialogs";
 
 const MessengerMain = () => {
   const user = useSelector<RootState, User>((el) => el.user);
@@ -66,6 +67,9 @@ const MessengerMain = () => {
         {params && params.id && (
           <div className={styles.selectedDialog}>
             <Dialog users={users} id={params.id} />
+            <div className={styles.backgroundImage}>
+              <img src={messengerPic} alt="background" />
+            </div>
           </div>
         )}
       </div>

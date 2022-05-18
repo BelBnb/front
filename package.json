@@ -4,18 +4,18 @@
   "description": "Must-have config for Webpack 5",
   "main": "main.tsx",
   "scripts": {
-    "serve": "./node_modules/.bin/webpack serve --open --config webpack.devServer.js",
+    "serve": ".\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js",
     "dev": "set HTTPS=true&&npm run serve-proxy",
-    "serve-proxy": "npm run serve -- --env=proxy=http://localhost:2999/ --https",
-    "serve-proxy-mac": "npm run serve -- --env=proxy=http://localhost:2999/ --env=hot=false --https",
-    "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
+    "serve-proxy": "npm run serve -- --env=proxy=http://localhost:2999/ ",
+    "serve-proxy-mac": "npm run serve -- --env=proxy=http://localhost:2999/ --env=hot=false ",
+    "build-prod": ".\\node_modules\\.bin\\webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "npm run build-prod -- --sourceMap",
-    "build-dev": "./node_modules/.bin/webpack --mode development --config webpack.dev.js --env=proxy=http://localhost:2999/",
+    "build-dev": ".\\node_modules\\.bin\\webpack --mode development --config webpack.dev.js --env=proxy=http://localhost:2999/",
     "lint": "npm run lint-es && npm run lint-styles && npm run lint-ts && npm run lint-md",
-    "lint-ts": "./node_modules/.bin/tsc -- skipLibCheck --incremental --noEmit",
-    "lint-es": "./node_modules/.bin/eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
-    "lint-styles": "./node_modules/.bin/stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --loglevel warn",
-    "lint-md": "./node_modules/.bin/markdownlint --fix **/*.md --ignore node_modules"
+    "lint-ts": ".\\node_modules\\.bin\\tsc -- skipLibCheck --incremental --noEmit",
+    "lint-es": ".\\node_modules\\.bin\\eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
+    "lint-styles": ".\\node_modules\\.bin\\stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --loglevel warn",
+    "lint-md": ".\\node_modules\\.bin\\markdownlint --fix **/*.md --ignore node_modules"
   },
   "engines": {
     "node": ">=12.22.0 <13 || >=14.17.0 <17"

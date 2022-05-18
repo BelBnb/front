@@ -1,10 +1,10 @@
 import messengerApi from "@/api/messenger/messengerApi";
-import ColoredButton from "@/elements/common/buttons/buttons";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
+import sendImage from "@/assets/images/icons/send.svg";
 import MessageComponent from "../message/MessageComponent";
 import styles from "./styles.module.scss";
 
@@ -48,7 +48,7 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
 
   const scroll = () => {
     console.log(ref);
-    ref.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     const scrolledY = window.scrollY;
 
     if (scrolledY) {
@@ -73,6 +73,18 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
     setMessage("");
   };
 
+  const listenEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    console.log(e);
+    if (e.key === "Enter" && e.ctrlKey) {
+      console.log("kek");
+      return;
+    }
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
   useEffect(() => {
     console.log("    messages", messages);
   }, [messages]);
@@ -90,8 +102,14 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
             })}
         </div>
         <div className={styles.bottomElements}>
-          <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)} />
-          <ColoredButton coloredLabel="Send" onClick={handleSendMessage} />
+          <textarea
+            value={message}
+            onKeyDown={(e) => listenEnter(e)}
+            onChange={(e) => setMessage(e.currentTarget.value)}
+          />
+          <button type="button" className={styles.imageContainer} onClick={handleSendMessage}>
+            <img src={sendImage} alt="send" />
+          </button>
         </div>
       </div>
     </div>

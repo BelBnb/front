@@ -7,38 +7,70 @@
 .messagesWrapper {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px - 120px);
+  height: calc(100vh - 80px - 160px);
   overflow-y: auto;
+  box-shadow: inset 0px 5px 5px none;
+  padding: 8px;
   padding-right: 10px;
   gap: 9px;
 }
 
 .contentWrapper {
+  background: rgba($color: $bn-white, $alpha: 0.8);
   margin: 20px auto;
+  border-radius: 4px;
 
+  padding: 20px 20px 10px;
+  max-width: 728px;
   display: flex;
   flex-direction: column;
-  width: 728px;
 }
 
 .bottomElements {
-  position: fixed;
-  bottom: 40px;
+  border: 1px solid $bn-black;
+  padding: 12px;
   display: flex;
-  margin-top: 20px;
-  gap: 8px;
-  width: 728px;
+  margin-top: 10px;
+  align-items: center;
+  border-radius: 4px;
+  gap: 20px;
 
   textarea {
-    padding: 4px 12px;
+    flex: 1;
+    padding: 4px 48px 4px 12px;
     font-size: 14px;
     border: 1px solid $bn-black;
     box-shadow: 0 0 5px $bn-black;
     width: 100%;
-    height: 40px;
+    height: 60px;
+
+    resize: none;
   }
 
   button {
     max-width: 10%;
+    height: 42px;
+    transition: all 0.4s;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: $bn-claucos;
+    }
+
+    &:focus {
+      background-color: $bn-claucos;
+    }
+  }
+}
+
+.imageContainer {
+  display: flex;
+  padding: 2px 8px;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 24px;
+    height: 24px;
   }
 }
