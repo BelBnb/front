@@ -1,9 +1,10 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/no-unescaped-entities */
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
-import { useEffect, useState } from "react";
-import { updateBooking, updateUserRoute } from "@/api/constants";
+import React, { useEffect, useState } from "react";
+import { updateUserRoute } from "@/api/constants";
 import { PageSize } from "@/common/paginationConstants";
 import userApi from "@/api/user/userApi";
 import { BookingEntityFilled } from "@/common/types/Booking";
@@ -13,6 +14,7 @@ import styles from "@/components/hotels/bookedPeople/styles.module.scss";
 import DataTable from "react-data-table-component";
 import { toast } from "react-toastify";
 import { RoleEnum } from "@/common/role.enum";
+import FilterComponent from "@/elements/admin/FilterComponent/FilterComponent";
 
 const changeStatusButton = (isBlocked: boolean, itemId: string, user = null) => {
   if (user?.id === itemId) return "I am";
@@ -57,6 +59,8 @@ const changeStatusButton = (isBlocked: boolean, itemId: string, user = null) => 
 };
 
 const AdminPanel = () => {
+  const user = useSelector<RootState, User>((el) => el.user);
+
   const columns = [
     {
       name: "",
@@ -73,13 +77,11 @@ const AdminPanel = () => {
     },
     {
       name: "Name",
-      selector: (row: { firstName: string; lastName: string; id: string }) => {
-        return (
-          <Link to={`/profile/${row.id}`}>
-            {row.firstName} {row.lastName}
-          </Link>
-        );
-      },
+      selector: (row: { firstName: string; lastName: string; id: string }) => (
+        <Link to={`/profile/${row.id}`}>
+          {row.firstName} {row.lastName}
+        </Link>
+      ),
     },
     {
       name: "Role",
@@ -90,9 +92,6 @@ const AdminPanel = () => {
       selector: (row: { isBanned: boolean; id: string }) => changeStatusButton(row.isBanned, row.id, user),
     },
   ];
-
-  const user = useSelector<RootState, User>((el) => el.user);
-
   const [users, setUsers] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -102,13 +101,16 @@ const AdminPanel = () => {
 
   const params = useParams();
 
-  useEffect(async () => {
-    const data = await userApi.getUsers({
-      limit: PageSize,
-      offset: 0,
-    });
-    const parsed = await data.json();
-    setUsers(parsed.data);
+  useEffect(() => {
+    async function load() {
+      const data = await userApi.getUsers({
+        limit: PageSize,
+        offset: 0,
+      });
+      const parsed = await data.json();
+      setUsers(parsed.data);
+    }
+    load();
   }, []);
 
   const loadMore = async (page = 1) => {
@@ -150,6 +152,29 @@ const AdminPanel = () => {
     console.log(e);
   };
 
+  const [filterText, setFilterText] = React.useState("");
+  const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+  // const filteredItems = fakeUsers.filter(
+  //   (item) => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
+  // );
+
+  const subHeaderComponentMemo = React.useMemo(() => {
+    const handleClear = () => {
+      if (filterText) {
+        setResetPaginationToggle(!resetPaginationToggle);
+        setFilterText("");
+      }
+    };
+
+    return (
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={() => handleClear()}
+        filterText={filterText}
+      />
+    );
+  }, [filterText, resetPaginationToggle]);
+
   return (
     <div className={styles.marginBot}>
       <DataTable
@@ -162,8 +187,11 @@ const AdminPanel = () => {
         data={users}
         theme="appTheme"
         progressPending={loading}
+        persistTableHead
         pagination
         paginationServer
+        subHeader
+        subHeaderComponent={subHeaderComponentMemo}
         paginationTotalRows={totalRows}
         paginationPerPage={PageSize}
         paginationRowsPerPageOptions={[PageSize]}

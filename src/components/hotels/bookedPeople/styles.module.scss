@@ -10,7 +10,10 @@
 }
 
 .marginBot {
-  margin-bottom: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .roundedImage {
