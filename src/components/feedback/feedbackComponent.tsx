@@ -18,7 +18,6 @@ import FeedBackDialog from "./feedbackDialog/feedbackDialog";
 import AddNewComment from "./notMyComment/addNewComment";
 import MyComment from "./myComment/myComment";
 import CommentComponent from "./comment/Comment";
-import log from "webpack-mock-server/lib/log";
 
 interface FeedbackComponentProps {
   entityId: string;
@@ -72,7 +71,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
       await loadMore();
     }
     loadPrikoli();
-  }, []);
+  }, [entityId]);
 
   const showMore = async () => {
     await loadMore();
