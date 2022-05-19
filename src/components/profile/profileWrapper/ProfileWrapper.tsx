@@ -16,9 +16,9 @@ import EditProfileDialog from "@/components/profile/profileWrapper/editProfileDi
 import { toast } from "react-toastify";
 import userApi from "@/api/user/userApi";
 import { getTokenInfoThunk } from "@/redux/thunks/auth/getTokenThunk";
+import { RoleEnum } from "@/common/role.enum";
 import UserBookings from "../UserBookings/UserBookings";
 import styles from "./styles.module.scss";
-import { RoleEnum } from "@/common/role.enum";
 
 const ParticularUser = () => {
   const params = useParams();
@@ -104,7 +104,7 @@ const ParticularUser = () => {
       }
     }
     load();
-  }, [user, appUser]);
+  }, [user, appUser, params]);
 
   useEffect(() => {
     async function load() {
