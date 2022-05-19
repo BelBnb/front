@@ -54,7 +54,8 @@ const ParticularUser = () => {
   const onFileUpload = () => {
     const formData = new FormData();
     if (!file || !user) {
-      toast.error("Select file pizdoglazoye mudilo");
+      toast.error("File wasn't selected");
+      setNotEditPhoto();
       return;
     }
     formData.append("file", file.selectedFile, file.selectedFile.name);
@@ -167,10 +168,16 @@ const ParticularUser = () => {
         <div className={styles.columns}>
           <div className={styles.rightColumn}>
             <div className={styles.avatarContainer}>
-              <label htmlFor="my-file" onClick={setEditPhoto} onKeyDown={setEditPhoto}>
+              {isMyself ? (
+                <>
+                  <label htmlFor="my-file" onClick={setEditPhoto} onKeyDown={setEditPhoto}>
+                    <img src={user?.profilePic || userInitState.profilePic} alt="pirkol" />
+                  </label>
+                  <input id="my-file" type="file" hidden onChange={(e) => onFileChange(e)} />
+                </>
+              ) : (
                 <img src={user?.profilePic || userInitState.profilePic} alt="pirkol" />
-              </label>
-              <input id="my-file" type="file" hidden onChange={(e) => onFileChange(e)} />
+              )}
             </div>
           </div>
           <div>
@@ -178,11 +185,11 @@ const ParticularUser = () => {
               <span className={styles.name}>
                 {user?.firstName} {user?.lastName}
               </span>
-              <span>{user?.sex === SexEnum.Female ? "feMale" : "Male"}</span>
-              <span>Sex? {user?.sex === SexEnum.Female ? "Yes" : "No"}</span>
+              <span>{user?.sex === SexEnum.Female ? "Female" : "Male"}</span>
 
-              <span className={styles.name}>
-                {new Date().getFullYear() - (new Date(user?.birthDate || "").getFullYear() || 2001)} years
+              <span>
+                {new Date(user?.birthDate || "").toLocaleDateString()} (
+                {new Date().getFullYear() - (new Date(user?.birthDate || "").getFullYear() || 2001)} years)
               </span>
             </div>
 
@@ -223,14 +230,16 @@ const ParticularUser = () => {
           </div>
         </div>
         {userBookingsArray && (user.role === RoleEnum.Admin || isMyself) && (
-          <UserBookings
-            totalRows={totalCount}
-            data={userBookingsArray.data}
-            onChangeRowsPerPage={(e) => setPaginationProps((prevState) => ({ ...prevState, limit: e }))}
-            onChangePage={(e) =>
-              setPaginationProps((prevState) => ({ ...prevState, offset: (e - 1) * prevState.limit }))
-            }
-          />
+          <div className={styles.table}>
+            <UserBookings
+              totalRows={totalCount}
+              data={userBookingsArray.data}
+              onChangeRowsPerPage={(e) => setPaginationProps((prevState) => ({ ...prevState, limit: e }))}
+              onChangePage={(e) =>
+                setPaginationProps((prevState) => ({ ...prevState, offset: (e - 1) * prevState.limit }))
+              }
+            />
+          </div>
         )}
       </div>
     </div>

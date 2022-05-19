@@ -1,13 +1,7 @@
 TODO:
 
--move check is user in this dialog up
--disable image pick on wrong account
--snyat prikoli
--click on dialog or message should go to profile
-
 -sign in wrong payload display toast
 -sign up wrong payload display toast
--соседи onclick redirect to user
 -hotel pagination and filter
 -change kek to 404
 -neighbours service
@@ -25,3 +19,10 @@ DONE:
 -ability to look already booked
 -ability block bookings
 -logout
+-соседи onclick redirect to user
+
+// 19.05
+-snyat prikoli
+-disable image pick on wrong account
+-move check is user in this dialog up
+-click on dialog or message should go to profile
