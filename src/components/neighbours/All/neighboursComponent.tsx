@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
-import { requestWithQuerry } from "@/api/apiService";
-import { allNeighboursRoute } from "@/api/constants";
+import { request, requestWithQuerry } from "@/api/apiService";
+import { allNeighboursRoute, removeNeighbourRoute } from "@/api/constants";
 import { Neighbours } from "@/common/types/Neighbours";
 import { SexEnum } from "@/common/sex.enum";
 import { PageSize } from "@/common/paginationConstants";
@@ -14,6 +14,7 @@ import { DateRange, RangeKeyDict } from "react-date-range";
 import ColoredButton from "@/elements/common/buttons/buttons";
 import styles from "./styles.module.scss";
 import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
+import { RoleEnum } from "@/common/role.enum";
 
 const NeighboursMain: React.FC = (): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
@@ -70,6 +71,11 @@ const NeighboursMain: React.FC = (): JSX.Element => {
     setPage((s) => s + 1);
   };
 
+  const remove = async (id: string) => {
+    await request(removeNeighbourRoute(id), "DELETE");
+    setNeighbours((s) => s?.filter((item) => item.id !== id));
+  };
+
   useEffect(async () => {
     await getStartNeighbours();
   }, []);
@@ -84,7 +90,11 @@ const NeighboursMain: React.FC = (): JSX.Element => {
             <div className={styles.commentsContainer}>
               {neighbours?.map((item) => (
                 <div>
-                  <NeighbourComponent isMine={false} item={item} />
+                  <NeighbourComponent
+                    isMine={false}
+                    item={item}
+                    isDelete={user.role === RoleEnum.Admin ? { label: "Remove", onDelete: remove } : undefined}
+                  />
                 </div>
               ))}
             </div>

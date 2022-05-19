@@ -61,6 +61,8 @@ const changeStatusButton = (isBlocked: boolean, itemId: string, user = null) => 
 const AdminPanel = () => {
   const user = useSelector<RootState, User>((el) => el.user);
 
+  if (user.role !== RoleEnum.Admin) return <>You are not admin.</>;
+
   const columns = [
     {
       name: "",

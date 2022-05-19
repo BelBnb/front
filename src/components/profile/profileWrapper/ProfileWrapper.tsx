@@ -18,6 +18,7 @@ import userApi from "@/api/user/userApi";
 import { getTokenInfoThunk } from "@/redux/thunks/auth/getTokenThunk";
 import UserBookings from "../UserBookings/UserBookings";
 import styles from "./styles.module.scss";
+import { RoleEnum } from "@/common/role.enum";
 
 const ParticularUser = () => {
   const params = useParams();
@@ -221,7 +222,7 @@ const ParticularUser = () => {
             <FeedbackComponent entityId={user?.id || ""} />
           </div>
         </div>
-        {userBookingsArray && (
+        {userBookingsArray && (user.role === RoleEnum.Admin || isMyself) && (
           <UserBookings
             totalRows={totalCount}
             data={userBookingsArray.data}

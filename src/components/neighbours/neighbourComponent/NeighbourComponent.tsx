@@ -9,6 +9,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
+import { RoleEnum } from "@/common/role.enum";
 
 interface NeighbourComponentProps {
   item: Neighbours;
@@ -56,7 +57,9 @@ const NeighbourComponent: React.FC<NeighbourComponentProps> = ({ item, isMine, i
             <span className={styles.date}>{item.endDate} </span>
           </span>
         </div>
-        {isMine && isDelete && <OutlinedButton outlineLabel="Remove" onClick={() => isDelete.onDelete(item.id)} />}{" "}
+        {(isMine || user?.role === RoleEnum.Admin) && isDelete && (
+          <OutlinedButton outlineLabel="Remove" onClick={() => isDelete.onDelete(item.id)} />
+        )}{" "}
       </div>
     </div>
   );

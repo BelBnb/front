@@ -18,6 +18,7 @@ import FeedBackDialog from "./feedbackDialog/feedbackDialog";
 import AddNewComment from "./notMyComment/addNewComment";
 import MyComment from "./myComment/myComment";
 import CommentComponent from "./comment/Comment";
+import log from "webpack-mock-server/lib/log";
 
 interface FeedbackComponentProps {
   entityId: string;
@@ -42,11 +43,13 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
   const loadMine = async () => {
     const data = await request(getMyFeedbackFor(entityId, user.id), methods.GET);
     const parsed = await data.json();
-    if (parsed.status !== 404) {
-      setMyComment(parsed);
-      setTextValue(parsed.text);
-      setStarsValue(parsed.stars);
-    } else setMyComment(undefined);
+    if (parsed.status === 404 || parsed.statusCode === 404) {
+      setMyComment(undefined);
+      return;
+    }
+    setMyComment(parsed);
+    setTextValue(parsed.text);
+    setStarsValue(parsed.stars);
   };
 
   const loadMore = async () => {
@@ -56,7 +59,8 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     });
     const parsed = await data.json();
 
-    console.log("Parsed ", parsed);
+    if (parsed.error) return;
+
     setComments((cm) => [...cm, ...parsed.data]);
     setHasMore(parsed.limit + parsed.offset < parsed.total);
     setCurrentPage((s) => s + 1);
@@ -105,6 +109,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
 
   return (
     <>
+      {console.log("myComment", myComment)}
       {myComment && <MyComment comment={myComment} setOpen={setOpen} removeComment={removeComment} />}
       <FeedBackDialog
         setOpen={setOpen}
