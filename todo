@@ -1,4 +1,10 @@
 TODO:
+
+-move check is user in this dialog up
+-disable image pick on wrong account
+-snyat prikoli
+-click on dialog or message should go to profile
+
 -sign in wrong payload display toast
 -sign up wrong payload display toast
 -соседи onclick redirect to user

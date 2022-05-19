@@ -105,6 +105,7 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     });
     await loadMine();
   };
+  const notMineComments = comments.filter((comment) => comment.creator_Id !== user.id);
 
   return (
     <>
@@ -129,13 +130,11 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
         />
       )}
 
-      {comments?.length > 0 && <CoolLabel>Feedbacks</CoolLabel>}
+      {notMineComments.length > 0 && <CoolLabel>Feedbacks</CoolLabel>}
       <div>
-        {comments
-          .filter((comment) => comment.creator_Id !== user.id)
-          .map((comment) => (
-            <CommentComponent comment={comment} />
-          ))}
+        {notMineComments.map((comment) => (
+          <CommentComponent comment={comment} />
+        ))}
         {hasMore && (
           <button type="button" onClick={showMore}>
             Show more
