@@ -84,56 +84,35 @@ const ParticularUser = () => {
     console.log("kek");
     setUserBookings({ data: [], limit: 0, offset: 0, total: 0 });
   };
+
+  const checkPermissions = () => user.id === appUser.id;
+
   useEffect(() => {
     async function load() {
       if (params.id) {
-        if (params.id === appUser.id) {
-          setIsMyself(true);
-        } else {
-          if (user.id === params.id) {
-            return;
-          }
-
-          const data = await request(getUserById(params.id), "GET");
-          const suspect = await data.json();
-          // todo: redirect to 404
-          if (suspect?.error) {
-            toast.error("No such user");
-            navigate("/");
-          }
-          console.log("AppUser", appUser);
-          console.log("suspect", suspect);
-          setUser(suspect);
-          setIsMyself(false);
-        }
+        const data = await request(getUserById(params.id), "GET");
+        const suspect = await data.json();
+        setUser(suspect);
+        setIsMyself(false);
       } else {
         setUser(appUser);
         setIsMyself(true);
+        fetchUserBookings();
       }
     }
     load();
-  }, [user, appUser, params]);
+  }, [params]);
 
   useEffect(() => {
     async function load() {
-      console.log("!!!user.id ", user.id);
-      console.log("!!!appUser.id ", appUser.id);
-
-      console.log("LOADDDDD");
-      if (!(user.id === appUser.id || !params.id)) {
-        console.log("INSIDE IF_ELSE");
-        console.log("user.id === appUser.id ", user.id === appUser.id);
-        console.log("!params.id ", !params.id);
-        console.log("CONDITION ", !(user.id === appUser.id || !params.id));
+      if (!checkPermissions()) {
         return;
       }
-      console.log("user.id === appUser.id", user.id === appUser.id);
-      console.log("params.id", params.id);
-      console.log("***");
+
       await fetchUserBookings();
     }
     load();
-  }, [paginationProps, params]);
+  }, [paginationProps]);
 
   const setEditPhoto = () => {
     setIsEdit((prevState) => ({ ...prevState, editPhoto: true }));
