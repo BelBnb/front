@@ -28,7 +28,15 @@ const changeStatusButton = (isBlocked: boolean, itemId: string, user = null) => 
               requestWithBody(updateUserRoute(itemId), "PUT", {
                 isBanned: true,
               }),
-              { pending: "Otpravlyaem", success: "Ezhzhzhi", error: "Ashibka" }
+              {
+                pending: "Otpravlyaem",
+                success: "Ezhzhzhi",
+                error: {
+                  render({ data }) {
+                    return data.message[0] || data.message;
+                  },
+                },
+              }
             );
           }
         }}
@@ -47,7 +55,15 @@ const changeStatusButton = (isBlocked: boolean, itemId: string, user = null) => 
             requestWithBody(updateUserRoute(itemId), "PUT", {
               isBanned: false,
             }),
-            { pending: "Otpravlyaem", success: "Ezhzhzhi", error: "Ashibka" }
+            {
+              pending: "Otpravlyaem",
+              success: "Ezhzhzhi",
+              error: {
+                render({ data }) {
+                  return data.message[0] || data.message;
+                },
+              },
+            }
           );
         }
       }}

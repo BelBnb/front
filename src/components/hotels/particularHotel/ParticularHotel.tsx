@@ -62,10 +62,15 @@ const ParticularHotel = () => {
       endDate: selection.endDate,
     };
 
-    const result = await bookingApi.createBooking(bookingDto);
-    if (result) {
-      toast.success("Booked successfully");
-    }
+    toast.promise(bookingApi.createBooking(bookingDto), {
+      pending: "Booking in progress",
+      success: "Booked successfully!",
+      error: {
+        render({ data }) {
+          return data.message[0] || data.message;
+        },
+      },
+    });
   };
 
   const handleNeighbour = async () => {
@@ -80,8 +85,10 @@ const ParticularHotel = () => {
       toast.promise(neighboursApi.createNeighboursRequest(neighbourDto), {
         pending: "Loading",
         success: "Neighbour request created successfully. You can find it on neighbours page!",
-        error: (e) => {
-          return e.message;
+        error: {
+          render({ data }) {
+            return data.message[0] || data.message;
+          },
         },
       });
     }

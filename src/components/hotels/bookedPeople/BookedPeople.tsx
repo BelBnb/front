@@ -62,7 +62,15 @@ const changeStatusButton = (isActive: boolean, itemId: string) => {
               requestWithBody(updateBooking(itemId), "PATCH", {
                 isActive: false,
               }),
-              { pending: "Otpravlyaem", success: "Ezhzhzhi", error: "Ashibka" }
+              {
+                pending: "Otpravlyaem",
+                success: "Ezhzhzhi",
+                error: {
+                  render({ data }) {
+                    return data.message[0] || data.message;
+                  },
+                },
+              }
             );
           }
         }}
@@ -81,7 +89,15 @@ const changeStatusButton = (isActive: boolean, itemId: string) => {
             requestWithBody(updateBooking(itemId), "PATCH", {
               isActive: true,
             }),
-            { pending: "Otpravlyaem", success: "Ezhzhzhi", error: "Ashibka" }
+            {
+              pending: "Otpravlyaem",
+              success: "Ezhzhzhi",
+              error: {
+                render({ data }) {
+                  return data.message[0] || data.message;
+                },
+              },
+            }
           );
         }
       }}
