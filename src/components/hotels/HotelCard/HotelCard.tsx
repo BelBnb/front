@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
 import { Link } from "react-router-dom";
+import { RoleEnum } from "@/common/role.enum";
 import styles from "./styles.module.scss";
 import Carousel from "../Carousel/Carousel/carousel";
 import CarouselItem from "../Carousel/CarouselItem/carouselItem";
-import { RoleEnum } from "@/common/role.enum";
 
 type HotelCardProps = {
   hotelItem: Hotel;
@@ -37,7 +37,6 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem, updateHandler, deleteH
             <button type="button">
               <Link to={`/hotel/${hotelItem.id}`}>Details</Link>
             </button>
-            <button type="button">Book</button>
           </div>
           {(hotelItem.authorId === user.id || user.role === RoleEnum.Admin) && (
             <>
