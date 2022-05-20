@@ -51,10 +51,6 @@ const ParticularUser = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("USer empty UE", user);
-  }, [user]);
-
   const onFileUpload = () => {
     const formData = new FormData();
     if (!file || !user) {

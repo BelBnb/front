@@ -77,13 +77,13 @@ const ParticularHotel = () => {
         city: hotel?.city,
         description: neighbourDescription,
       };
-      const neighbourResult = await neighboursApi.createNeighboursRequest(neighbourDto);
-      if (!neighbourResult.error) {
-        toast.success("Neighbour request created successfully. You can find it on neighbours page!");
-      } else {
-        if (Array.isArray(neighbourResult.message)) toast.error(neighbourResult.message[0]);
-        else toast.error(neighbourResult.message);
-      }
+      toast.promise(neighboursApi.createNeighboursRequest(neighbourDto), {
+        pending: "Loading",
+        success: "Neighbour request created successfully. You can find it on neighbours page!",
+        error: (e) => {
+          return e.message;
+        },
+      });
     }
   };
 
