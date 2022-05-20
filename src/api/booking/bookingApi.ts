@@ -10,6 +10,7 @@ const createBooking = async (dto: createBookingDto) => {
 };
 
 const userBooking = async (dto: userBookingsDto): Promise<userBookingPayload> => {
+  console.log("dto", { ...dto });
   const result = await requestWithQuerry(userBookingsRoute, methods.GET, { ...dto });
 
   return result.json();

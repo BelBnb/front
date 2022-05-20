@@ -80,6 +80,10 @@ const ParticularUser = () => {
     return result;
   };
 
+  const resetProfile = () => {
+    console.log("kek");
+    setUserBookings({ data: [], limit: 0, offset: 0, total: 0 });
+  };
   useEffect(() => {
     async function load() {
       if (params.id) {
@@ -89,6 +93,7 @@ const ParticularUser = () => {
           if (user.id === params.id) {
             return;
           }
+
           const data = await request(getUserById(params.id), "GET");
           const suspect = await data.json();
           // todo: redirect to 404
@@ -109,6 +114,10 @@ const ParticularUser = () => {
 
   useEffect(() => {
     async function load() {
+      if (user.id === appUser.id || !params.id) {
+        return;
+      }
+      console.log("hui");
       await fetchUserBookings();
     }
     load();
