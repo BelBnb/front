@@ -67,10 +67,10 @@ const ParticularUser = () => {
     dispatch(getTokenInfoThunk());
   };
 
-  const fetchUserBookings = async () => {
+  const fetchUserBookings = async (id: string) => {
     const dto: userBookingsDto = {
       dateFilter: "ALL",
-      userId: user.id,
+      userId: id,
       limit: paginationProps.limit,
       offset: paginationProps.offset,
     };
@@ -97,7 +97,7 @@ const ParticularUser = () => {
       } else {
         setUser(appUser);
         setIsMyself(true);
-        fetchUserBookings();
+        fetchUserBookings(appUser.id);
       }
     }
     load();
@@ -109,7 +109,7 @@ const ParticularUser = () => {
         return;
       }
 
-      await fetchUserBookings();
+      await fetchUserBookings(user.id);
     }
     load();
   }, [paginationProps]);
