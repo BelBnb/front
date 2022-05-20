@@ -58,7 +58,12 @@ const getFilteredHotels = async (data: HotelsFilter) => {
 
 const deleteHotel = async (id: string) => {
   const result = await request(deleteHotelRoute + id, methods.DELETE);
-  return result;
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 const updateHotel = async (id: string, formData: FormData) => {
   // was neeeded to send ultipart data lol

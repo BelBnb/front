@@ -82,11 +82,11 @@ const AdminPanel = () => {
   const columns = [
     {
       name: "",
-      selector: (row: { userImage: string }) => (
+      selector: (row: { profilePic: string }) => (
         <div className={styles.imageWrapper}>
           <img
             className={styles.roundedImage}
-            src={row.userImage || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}
+            src={row.profilePic || "https://media2.giphy.com/media/7ZKpmNlwNnHWM/giphy.gif"}
             alt="prikol"
           />
         </div>

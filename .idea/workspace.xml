@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/apiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/auth/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth/authApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/booking/bookingApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/booking/bookingApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels/hotelsApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/neighbours/neighboursApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/neighbours/neighboursApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user/userApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/admin/adminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/adminPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/feedback/comment/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/comment/Comment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotels/bookedPeople/BookedPeople.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/bookedPeople/BookedPeople.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/hotelsContainer/hotelsContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotels/particularHotel/ParticularHotel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +145,7 @@
       <workItem from="1652816367481" duration="2696000" />
       <workItem from="1652878126899" duration="5702000" />
       <workItem from="1652982350237" duration="2423000" />
-      <workItem from="1653064900901" duration="11796000" />
+      <workItem from="1653064900901" duration="12900000" />
     </task>
     <servers />
   </component>
