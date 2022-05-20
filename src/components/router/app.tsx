@@ -17,6 +17,7 @@ import MessengerMain from "../mesenger/messengerMain/messengerMain";
 import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
 import ParticularHotel from "../hotels/particularHotel/ParticularHotel";
 import ProfileWrapper from "../profile/profileWrapper/ProfileWrapper";
+import NotFound from "../notFound/NotFound";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -59,7 +60,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<span>kek</span>} />
+            <Route path="*" element={<NotFound />} />
             <Route
               path="/profile"
               element={
