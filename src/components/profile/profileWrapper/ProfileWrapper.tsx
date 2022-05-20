@@ -23,7 +23,7 @@ import styles from "./styles.module.scss";
 const ParticularUser = () => {
   const params = useParams();
   const appUser = useSelector<RootState, User>((state) => state.user);
-  const [user, setUser] = useState<User>(appUser);
+  const [user, setUser] = useState<User>(userInitState);
   const [isMyself, setIsMyself] = useState(false);
   const [isEdit, setIsEdit] = useState<{ editPhoto: boolean; editBody: boolean }>({
     editPhoto: false,
@@ -50,6 +50,10 @@ const ParticularUser = () => {
       setFile({ selectedFile: event.target.files[0] });
     }
   };
+
+  useEffect(() => {
+    console.log("USer empty UE", user);
+  }, [user]);
 
   const onFileUpload = () => {
     const formData = new FormData();
@@ -101,6 +105,8 @@ const ParticularUser = () => {
             toast.error("No such user");
             navigate("/");
           }
+          console.log("AppUser", appUser);
+          console.log("suspect", suspect);
           setUser(suspect);
           setIsMyself(false);
         }
@@ -114,10 +120,20 @@ const ParticularUser = () => {
 
   useEffect(() => {
     async function load() {
-      if (user.id === appUser.id || !params.id) {
+      console.log("!!!user.id ", user.id);
+      console.log("!!!appUser.id ", appUser.id);
+
+      console.log("LOADDDDD");
+      if (!(user.id === appUser.id || !params.id)) {
+        console.log("INSIDE IF_ELSE");
+        console.log("user.id === appUser.id ", user.id === appUser.id);
+        console.log("!params.id ", !params.id);
+        console.log("CONDITION ", !(user.id === appUser.id || !params.id));
         return;
       }
-      console.log("hui");
+      console.log("user.id === appUser.id", user.id === appUser.id);
+      console.log("params.id", params.id);
+      console.log("***");
       await fetchUserBookings();
     }
     load();

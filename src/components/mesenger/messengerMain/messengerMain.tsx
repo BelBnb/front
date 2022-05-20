@@ -26,7 +26,7 @@ const MessengerMain = () => {
   const params = useParams<{ id: string }>();
   useEffect(() => {
     async function load() {
-      const d = await (await messengerApi.getDialogs(user.id, { limit: PageSize, offset: 0 })).json();
+      const d = await (await messengerApi.getDialogs(user.id, { limit: 100, offset: 0 })).json();
 
       const arr = [];
 
@@ -36,7 +36,9 @@ const MessengerMain = () => {
       });
 
       const s = Array.from(new Set(arr));
-      console.log("d.data", s);
+      console.log("d.data", d.data);
+
+      console.log("s", s);
 
       const result = await userApi.getUsersByIds({
         ids: JSON.stringify(s),
@@ -44,6 +46,7 @@ const MessengerMain = () => {
       const u = await result.json();
       u.push(user);
       setUsers(u);
+      console.log("Users for dialogs ", u);
 
       d.data = d.data.map((item) => {
         const userFrom = u.find((_user) => _user.id === item.from);
@@ -52,7 +55,7 @@ const MessengerMain = () => {
         return { ...item, companion: userFrom };
       });
 
-      console.log(d.data);
+      console.log("Dialogs ", d.data);
 
       setDialogs(d.data);
     }

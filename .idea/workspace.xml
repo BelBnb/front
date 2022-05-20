@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6fe2e149-fb67-4a15-9866-82aee1a7bf58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/adminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/adminPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/feedback/feedbackComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/neighbours/All/neighboursComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/neighbours/All/neighboursComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/neighbours/neighbourComponent/NeighbourComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/neighbours/neighbourComponent/NeighbourComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mesenger/messengerMain/messengerMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mesenger/messengerMain/messengerMain.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profileWrapper/ProfileWrapper.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/mesenger/messengerMain/message" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -148,6 +144,8 @@
       <workItem from="1652677425285" duration="6518000" />
       <workItem from="1652816367481" duration="2696000" />
       <workItem from="1652878126899" duration="5702000" />
+      <workItem from="1652982350237" duration="2423000" />
+      <workItem from="1653064900901" duration="7114000" />
     </task>
     <servers />
   </component>
