@@ -175,11 +175,15 @@ const HotelsContainer = ({
         }
         if (editableItem[key] || editableItem[key] === 1) formData.append(key, editableItem[key] || "");
       });
-      console.log(polygonItem?.hotel?.id);
       toast.promise(hotelsApi.updateHotel(polygonItem?.hotel?.id, formData), {
         pending: "Updating",
         success: "Updated",
-        error: "Somthing went wrong",
+        error: {
+          render(data) {
+            const error = JSON.parse(data.data.request.response);
+            return error.message[0];
+          },
+        },
       });
     }
     if (polygonItem?.method == "create") {
@@ -189,10 +193,16 @@ const HotelsContainer = ({
         }
         formData.append(key, creatableItem[key] || "");
       });
+
       toast.promise(hotelsApi.createHotel(formData), {
         pending: "Creating",
         success: "Created",
-        error: "Somthing went wrong",
+        error: {
+          render(data) {
+            const error = JSON.parse(data.data.request.response);
+            return error.message[0];
+          },
+        },
       });
     }
   };

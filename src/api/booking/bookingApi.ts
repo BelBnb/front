@@ -5,15 +5,22 @@ import { createBookingRoute, methods, userBookingsRoute } from "../constants";
 
 const createBooking = async (dto: createBookingDto) => {
   const result = await requestWithBody(createBookingRoute, methods.POST, dto);
-
-  return result.json();
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 
 const userBooking = async (dto: userBookingsDto): Promise<userBookingPayload> => {
-  console.log("dto", { ...dto });
   const result = await requestWithQuerry(userBookingsRoute, methods.GET, { ...dto });
-
-  return result.json();
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 
 export default { createBooking, userBooking };

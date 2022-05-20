@@ -4,13 +4,24 @@ import { createNeighbourDto } from "@/types/dto/neighbours/createNeighbourDto";
 
 const createNeighboursRequest = async (neighbourDate: createNeighbourDto) => {
   const result = await requestWithBody(createNeighbourRoute, methods.POST, neighbourDate);
-  return result.json();
+
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 
 //todo: fix
 const getNeighboursRequest = async (neighbourDate: createNeighbourDto) => {
   const result = await requestWithBody(createNeighbourRoute, methods.GET, neighbourDate);
-  return result.json();
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 
 export default { createNeighboursRequest, getNeighboursRequest };

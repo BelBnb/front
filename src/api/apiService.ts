@@ -14,7 +14,6 @@ export function requestWithBody<T>(url: string, method: string, body: T) {
 }
 
 export function request(ur: string, method: string): Promise<Response> {
-  console.log(ur);
   return fetch(ur, {
     method,
     headers: new Headers({

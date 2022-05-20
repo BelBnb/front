@@ -22,7 +22,11 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
     toast.promise(request(deleteFeedback(comment.id), "DELETE"), {
       pending: "Deleting...",
       success: "Deleted!",
-      error: "Not deleted!",
+      error: {
+        render({ data }) {
+          return data.message[0] || data.message;
+        },
+      },
     });
   };
 

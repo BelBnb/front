@@ -62,7 +62,11 @@ const ParticularUser = () => {
     toast.promise(userApi.updateAvatar(formData, user?.id), {
       pending: "Updating",
       success: "Updated",
-      error: "Somthing went wrong",
+      error: {
+        render({ data }) {
+          return "Error: " + data.message[0] || data.message;
+        },
+      },
     });
     dispatch(getTokenInfoThunk());
   };
@@ -144,7 +148,15 @@ const ParticularUser = () => {
         },
         user?.id
       ),
-      { success: "Updated", error: "Failed", pending: "Pending" }
+      {
+        success: "Updated",
+        error: {
+          render({ data }) {
+            return "Failed: " + data.message[0] || data.message;
+          },
+        },
+        pending: "Pending",
+      }
     );
     dispatch(getTokenInfoThunk());
   };

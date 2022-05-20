@@ -17,13 +17,23 @@ const createHotel = async (formData: FormData): Promise<CreateHotelPayload> => {
 };
 const getHotel = async (id: string): Promise<getHotelPayload> => {
   const result = await request(getHotelRoute + id, methods.GET);
-  return result.json();
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 
 const getAllHotels = async () => {
   const token = localStorage.getItem("token");
   const result = await request(getAllHotelRoute, methods.GET);
-  return result.json();
+  return new Promise((res, rej) => {
+    result.json().then((data) => {
+      if (data.error) rej(data);
+      res(data);
+    });
+  });
 };
 
 interface HotelsFilter {
@@ -38,7 +48,12 @@ interface HotelsFilter {
 
 const getFilteredHotels = async (data: HotelsFilter) => {
   const result = await requestWithQuerry(getFilteredHotelRoute, methods.GET, data);
-  return result.json();
+  return new Promise((res, rej) => {
+    result.json().then((dd) => {
+      if (dd.error) rej(dd);
+      res(dd);
+    });
+  });
 };
 
 const deleteHotel = async (id: string) => {
