@@ -51,28 +51,56 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     setStarsValue(parsed.stars);
   };
 
-  const loadMore = async () => {
+  const loadInit = async () => {
     const data = await requestWithQuerry(getFeedbackFor(entityId), methods.GET, {
+      offset: 0,
       limit: PageSize,
-      offset: currentPage,
     });
     const parsed = await data.json();
 
     if (parsed.error) return;
 
-    setComments((cm) => [...cm, ...parsed.data]);
-    setHasMore(parsed.limit + parsed.offset < parsed.total);
+    setComments(parsed.data);
+
+    setHasMore(parsed.limit + parsed.offset < parsed.total - (myComment ? 0 : -1));
     setCurrentPage((s) => s + 1);
   };
 
   useEffect(() => {
+    console.log("currentPage", currentPage);
+  }, [currentPage]);
+
+  const loadMore = async () => {
+    const data = await requestWithQuerry(getFeedbackFor(entityId), methods.GET, {
+      limit: PageSize,
+      offset: currentPage * PageSize,
+    });
+    const parsed = await data.json();
+
+    if (parsed.error) return;
+
+    setComments((cm) => cm.concat(parsed.data));
+    setHasMore(parsed.limit + parsed.offset < parsed.total);
+
+    setCurrentPage((s) => s + 1);
+  };
+
+  const resetData = () => {
+    setComments([]);
+    setCurrentPage(0);
+    setTextValue("");
+    setStarsValue(0);
+  };
+  useEffect(() => {
+    resetData();
     async function loadPrikoli() {
       await loadMine();
-      await loadMore();
+      await loadInit();
     }
     loadPrikoli();
   }, [entityId]);
 
+  console.log("moi id", entityId);
   const showMore = async () => {
     await loadMore();
   };
@@ -106,10 +134,10 @@ const FeedbackComponent: React.FC<FeedbackComponentProps> = ({ entityId }): JSX.
     await loadMine();
   };
   const notMineComments = comments.filter((comment) => comment.creator_Id !== user.id);
-
+  console.log("comments", comments);
+  console.log("notMineComments", notMineComments);
   return (
     <>
-      {console.log("myComment", myComment)}
       {myComment && <MyComment comment={myComment} setOpen={setOpen} removeComment={removeComment} />}
       <FeedBackDialog
         setOpen={setOpen}
