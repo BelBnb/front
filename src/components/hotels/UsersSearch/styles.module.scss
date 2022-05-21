@@ -36,6 +36,7 @@
   display: flex;
   transition: all 0.3s;
   padding: 6px;
+  align-items: center;
 
   border-radius: 4px;
 
@@ -48,6 +49,12 @@
     }
   }
   gap: 8px;
+
+  span:first-child {
+    font-family: "DaysOne", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
 
   span:last-child {
     color: $bn-black;

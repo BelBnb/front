@@ -19,6 +19,7 @@ type Errors = {
   phone: string;
   firstName: string;
   lastName: string;
+  username: string;
 };
 
 const SignUpForm = () => {
@@ -32,7 +33,14 @@ const SignUpForm = () => {
     lastName: "",
   });
   const [signUpStatus, setSignUpStatus] = useState(false);
-  const [errors, setErrors] = useState<Errors>({ email: "", firstName: "", lastName: "", password: "", phone: "" });
+  const [errors, setErrors] = useState<Errors>({
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    phone: "",
+    username: "",
+  });
 
   const user = useSelector<RootState, User>((app) => app.user);
 
@@ -68,6 +76,10 @@ const SignUpForm = () => {
     errors.lastName = e.length > 0 ? "" : "Field is required";
 
     onChangeDto(e, "lastName");
+  };
+  const handleLUsernameChange = (e: string) => {
+    errors.username = e.length > 0 ? "" : "Field is required";
+    onChangeDto(e, "username");
   };
 
   const handleSubmit = () => {
@@ -109,23 +121,28 @@ const SignUpForm = () => {
         <div className={styles.columns}>
           <div className={styles.singleColumn}>
             <div className={styles.columnsNested}>
-              <InputErrorContainer isErrorr={errors.phone.length > 0} message={errors.phone}>
-                <InputElement type="phone" onChange={handlePhoneChange} placeholder="Phone" />
-              </InputErrorContainer>
-              <div>
-                <select onChange={(e) => onChangeDto(e.currentTarget.value, "sex")}>
-                  <option value="0">Male</option>
-                  <option value="1">Female</option>
-                </select>
-              </div>
-            </div>
-            <div className={styles.columnsNested}>
               <InputErrorContainer isErrorr={errors.firstName.length > 0} message={errors.firstName}>
                 <InputElement onChange={handleFNameChange} placeholder="First name" type="text" />
               </InputErrorContainer>
               <InputErrorContainer isErrorr={errors.lastName.length > 0} message={errors.lastName}>
                 <InputElement onChange={handleLNameChange} placeholder="Last name" type="text" />
               </InputErrorContainer>
+            </div>
+
+            <InputErrorContainer isErrorr={errors.username.length > 0} message={errors.username}>
+              <InputElement type="text" onChange={handleLUsernameChange} placeholder="Username" />
+            </InputErrorContainer>
+            <div className={styles.columnsNested}>
+              <InputErrorContainer isErrorr={errors.phone.length > 0} message={errors.phone}>
+                <InputElement type="phone" onChange={handlePhoneChange} placeholder="Phone" />
+              </InputErrorContainer>
+
+              <div>
+                <select onChange={(e) => onChangeDto(e.currentTarget.value, "sex")}>
+                  <option value="0">Male</option>
+                  <option value="1">Female</option>
+                </select>
+              </div>
             </div>
           </div>
           <Calendar color="#2d2d2d" date={dto.birthDate} onChange={(e) => onChangeDto(e, "birthDate")} />

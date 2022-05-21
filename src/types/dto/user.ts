@@ -5,6 +5,7 @@ export type SignUpDto = {
   sex: number;
   firstName: string;
   lastName: string;
+  username: string;
   birthDate: Date;
 };
 export type SignInDto = {

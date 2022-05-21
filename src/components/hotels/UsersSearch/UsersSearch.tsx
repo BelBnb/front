@@ -47,6 +47,7 @@ const UsersSearch: React.FC = () => {
             onBlur();
           }, 200);
         }}
+        placeholder="Username"
         ref={ref}
         value={tex}
         onChange={(e) => nameChanger(e.currentTarget.value)}
