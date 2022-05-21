@@ -1,13 +1,9 @@
 TODO:
--sign in wrong payload display toast
--sign up wrong payload display toast
+-book status from
 -hotel pagination and filter
 -neighbours service
 -admin part
 -messenger
-
--profile changing
--image styling in tables
 
 -ws
 -https
@@ -30,3 +26,7 @@ DONE:
 -change kek to 404
 -fix bookings for user
 -fix feedbacks for user
+
+//21.05
+-sign up message display
+-sign in message display

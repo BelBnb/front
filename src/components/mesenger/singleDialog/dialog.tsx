@@ -36,7 +36,7 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
     socketRef.current.on("message", async (d) => {
       if (d.data.from !== user.id && d.data.to !== user.id) return;
       const data = await messengerApi.getMessage(d.data.id);
-      const newMessage = await data.json();
+      const newMessage = data;
       if (!newMessage.error) {
         console.log(newMessage);
         setMessages((s) => [...s, newMessage]);
@@ -58,8 +58,8 @@ const Dialog: React.FC<DialogProps> = ({ id, users }) => {
 
   useEffect(() => {
     async function load() {
-      const res = await (await messengerApi.getMessages({ from: user.id, to: id, limit: 100, offset: 0 })).json();
-      setMessages(res.data.reverse());
+      const res = await messengerApi.getMessages({ from: user.id, to: id, limit: 100, offset: 0 });
+      setMessages(res.data.messages.reverse());
       setTimeout(() => {
         scroll();
       }, 200);

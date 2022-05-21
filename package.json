@@ -4,7 +4,7 @@
   "description": "Must-have config for Webpack 5",
   "main": "main.tsx",
   "scripts": {
-    "serve": "./node_modules/.bin/webpack serve --open --config webpack.devServer.js",
+    "serve": ".\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js",
     "dev": "set HTTPS=true&&npm run serve-proxy",
     "serve-proxy": "npm run serve -- --env=proxy=http://localhost:2999/ ",
     "serve-proxy-mac": "npm run serve -- --env=proxy=http://localhost:2999/ --env=hot=false ",

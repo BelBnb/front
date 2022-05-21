@@ -1,3 +1,4 @@
+/* eslint-disable prefer-regex-literals */
 import FormWrapper from "@/elements/auth/formWrapper/formWrapper";
 import InputElement from "@/elements/auth/inputElement/InputElement";
 import SubmitButton from "@/elements/common/submitButton/button";
@@ -10,12 +11,21 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import styles from "./styles.module.scss";
 
+interface errors {
+  email: string;
+  password: string;
+}
+
 const LoginForm = () => {
   const [user, setUser] = useState<SignInDto>({ email: "", password: "" });
   const [apiStatus, setApiStatus] = useState(false);
+  const [errors, setErrors] = useState<errors>({ email: "", password: "" });
   const emailRef = React.createRef<HTMLInputElement>();
   const passRef = React.createRef<HTMLInputElement>();
 
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
   const dispatch: AppDispatch = useDispatch();
 
   const handleLogin = () => {
@@ -39,15 +49,27 @@ const LoginForm = () => {
     setUser((prevState) => ({ ...prevState, [key]: value }));
   };
 
-  const emailChange = (val: string) => handleInput("email", val);
-  const passwordChange = (val: string) => handleInput("password", val);
+  const emailChange = (val: string) => {
+    errors.email = validEmailRegex.test(val) ? "" : "Email is not valid!";
+    handleInput("email", val);
+  };
+  const passwordChange = (val: string) => {
+    errors.password = val.length < 8 ? "Password must be at least 8 characters long!" : "";
+    handleInput("password", val);
+  };
 
   return (
     <FormWrapper>
       <div>
         <div className={styles.inputs}>
-          <InputElement ref={emailRef} type="text" placeholder="Email" onChange={emailChange} />
-          <InputElement ref={passRef} type="password" placeholder="Password" onChange={passwordChange} />
+          <div className={errors.email.length > 0 ? styles.error : ""}>
+            <InputElement ref={emailRef} type="text" placeholder="Email" onChange={emailChange} />
+            <span>{errors.email.length > 0 && <span className="error">{errors.email}</span>}</span>{" "}
+          </div>
+          <div className={errors.password.length > 0 ? styles.error : ""}>
+            <InputElement ref={passRef} type="password" placeholder="Password" onChange={passwordChange} />
+            <span>{errors.password.length > 0 && <span className="error">{errors.password}</span>}</span>
+          </div>
         </div>
         <div className={styles.bottomItems}>
           <span>

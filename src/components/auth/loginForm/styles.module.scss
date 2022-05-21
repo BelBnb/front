@@ -24,3 +24,15 @@
   gap: 7px;
 }
 
+.error {
+  & > span {
+    padding: 8px 0 0 8px;
+    color: $bn-terra-cota;
+  }
+
+  & > div {
+    & > span {
+      background: $bn-terra-cota;
+    }
+  }
+}
