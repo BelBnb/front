@@ -26,9 +26,9 @@ module.exports = (env, argv) => {
     /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
       https: {
-        key: fs.readFileSync("./keys/server.key"),
-        cert: fs.readFileSync("./keys/server.crt"),
-        ca: fs.readFileSync("./keys/ca.key"),
+        key: fs.readFileSync("./keys/cert.key"),
+        cert: fs.readFileSync("./keys/cert.crt"),
+        ca: fs.readFileSync("./keys/ca.crt"),
       },
       // proxy config will be remove if target is empty
       proxy: {
