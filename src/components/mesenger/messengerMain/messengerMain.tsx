@@ -26,7 +26,7 @@ const MessengerMain = () => {
   const params = useParams<{ id: string }>();
   useEffect(() => {
     async function load() {
-      const d = await (await messengerApi.getDialogs(user.id, { limit: 100, offset: 0 })).json();
+      const d = await messengerApi.getDialogs(user.id, { limit: 100, offset: 0 });
 
       const arr = [];
 
@@ -43,7 +43,7 @@ const MessengerMain = () => {
       const result = await userApi.getUsersByIds({
         ids: JSON.stringify(s),
       });
-      const u = await result.json();
+      const u = result;
       u.push(user);
       setUsers(u);
       console.log("Users for dialogs ", u);

@@ -166,6 +166,7 @@ const BookedPeople = () => {
       limit: PageSize,
       offset: (page - 1) * PageSize,
     });
+    console.log("before await data.json()", data);
     const loaded = await data.json();
 
     setTotalRows(loaded.total);

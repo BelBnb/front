@@ -4,6 +4,16 @@ import "./overrides.scss";
 import { BookingEntityFilled } from "@/common/types/Booking";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import { toast } from "react-toastify";
+import { requestWithBody } from "@/api/apiService";
+import { updateBooking } from "@/api/constants";
+
+const statusLabel = (isActive: boolean, itemId: string) => {
+  if (isActive) {
+    return <span style={{ color: "green" }}>Active</span>;
+  }
+  return <span style={{ color: "red" }}>Disabled</span>;
+};
 
 const userBookingColumns: TableColumn<BookingEntityFilled>[] = [
   {
@@ -23,6 +33,10 @@ const userBookingColumns: TableColumn<BookingEntityFilled>[] = [
   },
   { name: "Start date", selector: (row: { startDate: Date }) => row.startDate, sortable: true },
   { name: "End date", selector: (row: { endDate: Date }) => row.endDate, sortable: true },
+  {
+    name: "Status",
+    selector: (row: { isActive: boolean; id: string }) => statusLabel(row.isActive, row.id),
+  },
 ];
 
 interface UserBookingsProps {
