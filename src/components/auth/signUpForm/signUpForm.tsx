@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { signUserUp } from "@/redux/thunks/auth/signUpThunk";
 import { SignUpDto } from "@/types/dto/user";
 import { User } from "@/types/redux/initStates";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,7 @@ const SignUpForm = () => {
     firstName: "",
     lastName: "",
   });
+  const [signUpStatus, setSignUpStatus] = useState(false);
 
   const user = useSelector<RootState, User>((app) => app.user);
 
@@ -32,9 +33,21 @@ const SignUpForm = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(signUserUp(dto));
-    navigate("/sign-in");
+    dispatch(
+      signUserUp({
+        user: dto,
+        setStatus(e) {
+          setSignUpStatus(e);
+        },
+      })
+    );
   };
+
+  useEffect(() => {
+    if (signUpStatus) {
+      navigate("/sign-in");
+    }
+  }, [signUpStatus]);
 
   console.log(dto);
   return (

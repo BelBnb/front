@@ -13,14 +13,14 @@ import FeedbackComponent from "@/components/feedback/feedbackComponent";
 import Carousel from "../Carousel/Carousel/carousel";
 import CarouselItem from "../Carousel/CarouselItem/carouselItem";
 import "./overrideStyles.scss";
-import styles from "./styles.module.scss";
 import ColoredButton from "@/elements/common/buttons/buttons";
 import OutlinedButton from "@/elements/common/buttons/outlinedButton";
-import BookedPeople from "../bookedPeople/BookedPeople";
 import neighboursApi from "@/api/neighbours/neighboursApi";
 import { createNeighbourDto } from "@/types/dto/neighbours/createNeighbourDto";
 import hotelsApi from "@/api/hotels/hotelsApi";
 import { RoleEnum } from "@/common/role.enum";
+import BookedPeople from "../bookedPeople/BookedPeople";
+import styles from "./styles.module.scss";
 
 const ParticularHotel = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -133,7 +133,7 @@ const ParticularHotel = () => {
             <div className={styles.buttonContainer}>
               <OutlinedButton outlineLabel="Book" onClick={handleBook} />
               <ColoredButton
-                coloredLabel={!wannaNeighbour ? "Find neighbour?" : "Hide neighbours finding"}
+                coloredLabel={!wannaNeighbour ? "Find neighbour" : "I want to rest alone"}
                 onClick={() => {
                   setWannaNeigbour((s) => !s);
                 }}

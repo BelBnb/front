@@ -1,9 +1,7 @@
 TODO:
--remove book button from hotels
 -sign in wrong payload display toast
 -sign up wrong payload display toast
 -hotel pagination and filter
--change kek to 404
 -neighbours service
 -admin part
 -messenger
@@ -26,3 +24,9 @@ DONE:
 -disable image pick on wrong account
 -move check is user in this dialog up
 -click on dialog or message should go to profile
+
+//20.05
+-remove book button from hotels
+-change kek to 404
+-fix bookings for user
+-fix feedbacks for user
