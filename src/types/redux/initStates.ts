@@ -1,6 +1,6 @@
 import { SexEnum } from "@/common/sex.enum";
-import { getHotelPayload } from "../dto/apiPayloads/getAllHotelsPayload";
 import { RoleEnum } from "@/common/role.enum";
+import { getHotelPayload } from "../dto/apiPayloads/getAllHotelsPayload";
 
 export type User = {
   email: string;
@@ -10,6 +10,7 @@ export type User = {
   roles: string[];
   role: RoleEnum;
   profilePic: string;
+  username?: string;
   authorized: boolean;
   birthDate: Date;
   password: string;

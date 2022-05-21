@@ -21,9 +21,11 @@ import hotelsApi from "@/api/hotels/hotelsApi";
 import { RoleEnum } from "@/common/role.enum";
 import BookedPeople from "../bookedPeople/BookedPeople";
 import styles from "./styles.module.scss";
+import UsersSearch from "../UsersSearch/UsersSearch";
 
 const ParticularHotel = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
+
   useEffect(async () => {
     const payload = await hotelsApi.getAllHotels();
     const res: Hotel[] = Object.keys(payload.data).map((el) => payload.data[el]);
@@ -116,9 +118,10 @@ const ParticularHotel = () => {
             </Carousel>
           </div>
           <div className={styles.rightCol}>
+            <span className={styles.name}>{hotel?.name}</span>
+
             <div className={styles.sepLine}>
               <span className={styles.price}>{hotel?.price}$</span>
-              <span className={styles.name}>{hotel?.name}</span>
               <span className={styles.city}>City: {hotel?.city}</span>
             </div>
             <aside>{hotel?.description}</aside>
@@ -132,6 +135,7 @@ const ParticularHotel = () => {
             </div>
             <div className={styles.buttonContainer}>
               <OutlinedButton outlineLabel="Book" onClick={handleBook} />
+              {wannaNeighbour && <CoolLabel>Neighboors</CoolLabel>}
               <ColoredButton
                 coloredLabel={!wannaNeighbour ? "Find neighbour" : "I want to rest alone"}
                 onClick={() => {
@@ -140,6 +144,7 @@ const ParticularHotel = () => {
               />
               {wannaNeighbour && (
                 <div className={styles.findNeighboursContent}>
+                  <UsersSearch />
                   <textarea
                     placeholder="Share aims of your visit: "
                     name="text"

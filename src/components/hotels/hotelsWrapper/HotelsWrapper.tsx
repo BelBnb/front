@@ -3,10 +3,10 @@ import Searchbar from "@/elements/common/searchbar/searchbar";
 import queryBuilder from "@/helpers/queryBuilder";
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import * as debounce from "lodash.debounce";
 import HotelFilters, { hotelFiltersType } from "../HotelFilters/HotelFIlters";
 import HotelsContainer from "../hotelsContainer/hotelsContainer";
 import styles from "./styles.module.scss";
-import * as debounce from "lodash.debounce";
 
 const HotelsWrapper = () => {
   const [filters, setFilters] = useState<hotelFiltersType>({ city: "", priceB: 0, priceL: 10000 });
@@ -42,17 +42,17 @@ const HotelsWrapper = () => {
     setFindEvent((s) => !s);
   };
 
-  const nameChanger = (val: string) => {
-    setHotelName(val);
-    nameChangerDebouncer();
-  };
-
   const nameChangerDebouncer = useCallback(
     debounce(() => {
       setFindEvent((s) => !s);
     }, 300),
     []
   );
+
+  const nameChanger = (val: string) => {
+    setHotelName(val);
+    nameChangerDebouncer();
+  };
 
   return (
     <div className={styles.hotelsWrapper}>

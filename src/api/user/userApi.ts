@@ -1,4 +1,6 @@
 import { requestWithBody, requestWithFormData, requestWithQuerry } from "@/api/apiService";
+import { Paginator } from "@/types/dto/pagination/paginator";
+import { User } from "@/types/redux/initStates";
 import {
   getAllUsers,
   getAllUsersFiltered,
@@ -31,7 +33,8 @@ const getUsers = async (obj: { limit: number; offset: number }) => {
     });
   });
 };
-const getUsersFiltered = async (obj: { limit: number; offset: number; text?: string }) => {
+
+const getUsersFiltered = async (obj: { limit: number; offset: number; text?: string }): Promise<Paginator<User[]>> => {
   const result = await requestWithQuerry(getAllUsersFiltered, methods.GET, {
     text: obj.text || "",
     limit: obj.limit,
