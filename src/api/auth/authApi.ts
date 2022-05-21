@@ -14,6 +14,7 @@ export const signIn = async (dto: SignInDto): Promise<SignInPayload> => {
   return new Promise((res, rej) => {
     result.json().then((data) => {
       if (data.error) rej(data);
+      else if (data.message) rej(data);
       res(data);
     });
   });

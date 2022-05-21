@@ -12,6 +12,7 @@ import styles from "./styles.module.scss";
 
 const LoginForm = () => {
   const [user, setUser] = useState<SignInDto>({ email: "", password: "" });
+  const [apiStatus, setApiStatus] = useState(false);
   const emailRef = React.createRef<HTMLInputElement>();
   const passRef = React.createRef<HTMLInputElement>();
 
@@ -24,7 +25,14 @@ const LoginForm = () => {
       toast.warn("Empty fields");
       return;
     }
-    dispatch(signUserIn({ email, password }));
+    dispatch(
+      signUserIn({
+        user: { email, password },
+        setStatus(e) {
+          setApiStatus(e);
+        },
+      })
+    );
   };
 
   const handleInput = (key: keyof SignInDto, value: string) => {

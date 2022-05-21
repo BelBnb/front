@@ -7,8 +7,8 @@ import { signUpPreffix } from "./prefixes";
 
 const signUpHandler = async (props: { user: SignUpDto; setStatus: (e: boolean) => void }) => {
   const res = await toast.promise(authApi.signUp(props.user), {
-    pending: "Otpravlyaem",
-    success: "Ezhzhzhi",
+    pending: "Signing up",
+    success: "Success",
     error: {
       render({ data }) {
         return data.message[0] || data.message;
