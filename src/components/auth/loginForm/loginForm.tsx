@@ -42,7 +42,6 @@ const LoginForm = () => {
       0
     );
     if (cond) {
-      console.log(cond);
       return;
     }
     dispatch(

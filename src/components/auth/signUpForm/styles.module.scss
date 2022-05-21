@@ -57,17 +57,17 @@
   display: flex;
   width: 100%;
   gap: 8px;
-  align-items: center;
 
   & > div {
     display: flex;
-    align-self: center;
     width: 48px;
     flex: 0 48%;
   }
 
   select {
     width: 100%;
+    margin-top: 8px;
+    height: min-content;
     display: flex;
     background-color: transparent;
     border: 2px solid $bn-black;
