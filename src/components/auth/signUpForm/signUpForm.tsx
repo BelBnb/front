@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 
+type Errors = Partial<SignUpDto>;
+
 const SignUpForm = () => {
   const [dto, setDto] = useState<SignUpDto>({
     email: "",
@@ -22,6 +24,7 @@ const SignUpForm = () => {
     lastName: "",
   });
   const [signUpStatus, setSignUpStatus] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
 
   const user = useSelector<RootState, User>((app) => app.user);
 
@@ -60,7 +63,7 @@ const SignUpForm = () => {
         <div className={styles.columns}>
           <div className={styles.singleColumn}>
             <div className={styles.columnsNested}>
-              <InputElement type="phone" onChange={(e) => onChangeDto(e, "phone")} placeholder="Phone (optional)" />
+              <InputElement type="phone" onChange={(e) => onChangeDto(e, "phone")} placeholder="Phone" />
               <div>
                 <select onChange={(e) => onChangeDto(e.currentTarget.value, "sex")}>
                   <option value="0">Male</option>

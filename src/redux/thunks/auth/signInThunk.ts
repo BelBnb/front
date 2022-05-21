@@ -31,6 +31,7 @@ const signInHandler = async (props: { user: SignInDto; setStatus: (e: boolean) =
     const tokenPayload: User = await getTokenInfo(id);
     tokenPayload.authorized = true;
     tokenPayload.profilePic = tokenPayload.profilePic || userInitState.profilePic;
+    tokenPayload.birthDate = new Date(tokenPayload.birthDate);
     tokenPayload.password = "";
     return tokenPayload;
   }

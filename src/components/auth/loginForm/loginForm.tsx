@@ -1,6 +1,7 @@
 /* eslint-disable prefer-regex-literals */
 import FormWrapper from "@/elements/auth/formWrapper/formWrapper";
 import InputElement from "@/elements/auth/inputElement/InputElement";
+import InputErrorContainer from "@/elements/common/InputErrorContainer/InputErrorContainer";
 import SubmitButton from "@/elements/common/submitButton/button";
 import { AppDispatch } from "@/redux/store";
 import { signUserIn } from "@/redux/thunks/auth/signInThunk";
@@ -14,6 +15,7 @@ import styles from "./styles.module.scss";
 interface errors {
   email: string;
   password: string;
+  [key: string]: string;
 }
 
 const LoginForm = () => {
@@ -33,6 +35,14 @@ const LoginForm = () => {
     console.log(emailRef?.current?.value, passRef?.current?.value);
     if (!email && !password) {
       toast.warn("Empty fields");
+      return;
+    }
+    const cond = Object.keys(errors).reduce(
+      (prev: number, current: string) => prev + (errors[current].length > 0 ? 1 : 0),
+      0
+    );
+    if (cond) {
+      console.log(cond);
       return;
     }
     dispatch(
@@ -62,14 +72,12 @@ const LoginForm = () => {
     <FormWrapper>
       <div>
         <div className={styles.inputs}>
-          <div className={errors.email.length > 0 ? styles.error : ""}>
+          <InputErrorContainer isErrorr={errors.email.length > 0} message={errors.email}>
             <InputElement ref={emailRef} type="text" placeholder="Email" onChange={emailChange} />
-            <span>{errors.email.length > 0 && <span className="error">{errors.email}</span>}</span>{" "}
-          </div>
-          <div className={errors.password.length > 0 ? styles.error : ""}>
-            <InputElement ref={passRef} type="password" placeholder="Password" onChange={passwordChange} />
-            <span>{errors.password.length > 0 && <span className="error">{errors.password}</span>}</span>
-          </div>
+          </InputErrorContainer>
+          <InputErrorContainer isErrorr={errors.password.length > 0} message={errors.password}>
+            <InputElement ref={passRef} type="text" placeholder="Password" onChange={passwordChange} />
+          </InputErrorContainer>
         </div>
         <div className={styles.bottomItems}>
           <span>
