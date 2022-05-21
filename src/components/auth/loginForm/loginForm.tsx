@@ -75,7 +75,7 @@ const LoginForm = () => {
             <InputElement ref={emailRef} type="text" placeholder="Email" onChange={emailChange} />
           </InputErrorContainer>
           <InputErrorContainer isErrorr={errors.password.length > 0} message={errors.password}>
-            <InputElement ref={passRef} type="text" placeholder="Password" onChange={passwordChange} />
+            <InputElement ref={passRef} type="password" placeholder="Password" onChange={passwordChange} />
           </InputErrorContainer>
         </div>
         <div className={styles.bottomItems}>

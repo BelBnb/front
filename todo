@@ -30,3 +30,6 @@ DONE:
 //21.05
 -sign up message display
 -sign in message display
+-style toast messages
+-add validation on sign in
+-add validation on sign up
