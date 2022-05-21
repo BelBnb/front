@@ -102,6 +102,10 @@ const AdminPanel = () => {
       ),
     },
     {
+      name: "Username",
+      selector: (row: { username: string }) => "@" + row.username,
+    },
+    {
       name: "Role",
       selector: (row: { role: RoleEnum }) => (row.role === RoleEnum.User ? "User" : "Admin"),
     },
@@ -119,25 +123,31 @@ const AdminPanel = () => {
 
   const params = useParams();
 
+  const [filterText, setFilterText] = React.useState("");
+  const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+
   useEffect(() => {
     async function load() {
-      const data = await userApi.getUsers({
+      const data = await userApi.getUsersFiltered({
         limit: PageSize,
         offset: 0,
+        text: filterText,
       });
-      const parsed = await data.json();
+      console.log("DAta ", data);
+      const parsed = data;
       setUsers(parsed.data);
     }
     load();
-  }, []);
+  }, [filterText]);
 
   const loadMore = async (page = 1) => {
     setLoading(true);
-    const data = await userApi.getUsers({
+    const data = await userApi.getUsersFiltered({
       limit: PageSize,
       offset: (page - 1) * PageSize,
+      text: filterText,
     });
-    const loaded = await data.json();
+    const loaded = data;
 
     setTotalRows(loaded.total);
 
@@ -170,8 +180,6 @@ const AdminPanel = () => {
     console.log(e);
   };
 
-  const [filterText, setFilterText] = React.useState("");
-  const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
   // const filteredItems = fakeUsers.filter(
   //   (item) => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
   // );

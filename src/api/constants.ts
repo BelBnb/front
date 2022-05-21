@@ -51,7 +51,10 @@ export const updateBooking = (itemId: string) =>
 const usersPreffix = "/users";
 export const getUserById = (userId: string) => `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/${userId}`;
 export const getAllUsers = `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/all`;
+export const getAllUsersFiltered = `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/allByFilters`;
 export const getUsersByIds_ = `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/byIds`;
+export const getUserByUserName = (text: string) =>
+  `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/byUsername/${text}`;
 export const updateUserRoute = (userId: string) =>
   `${gatewayPreffix + usersPreffix + apiPreffix + usersPreffix}/${userId}`;
 
