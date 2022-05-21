@@ -13,15 +13,18 @@ const MessengerDialogs: React.FC<MessengerDialogProps> = ({ selectDialog, dialog
 
   return (
     <div className={styles.dialogsContainer}>
-      {dialogs.map((el) => (
-        <DialogPreview
-          id={el.companion.id}
-          address={el.companion.firstName}
-          date=""
-          pic={el.companion.profilePic || userInitState.profilePic}
-          lastMessage=""
-        />
-      ))}
+      {dialogs.map((el) => {
+        console.log("EL", el);
+        return (
+          <DialogPreview
+            id={el.companion.id}
+            address={el.companion.firstName}
+            date=""
+            pic={el.companion.profilePic || userInitState.profilePic}
+            lastMessage=""
+          />
+        );
+      })}
     </div>
   );
 };
