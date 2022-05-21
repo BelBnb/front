@@ -64,7 +64,7 @@ const ParticularUser = () => {
       success: "Updated",
       error: {
         render({ data }) {
-          return "Error: " + data.message[0] || data.message;
+          return `Error: ${data.message[0]}` || data.message;
         },
       },
     });
@@ -152,7 +152,7 @@ const ParticularUser = () => {
         success: "Updated",
         error: {
           render({ data }) {
-            return "Failed: " + data.message[0] || data.message;
+            return `Failed: ${data.message[0]}` || data.message;
           },
         },
         pending: "Pending",
@@ -197,6 +197,7 @@ const ParticularUser = () => {
               <span className={styles.name}>
                 {user?.firstName} {user?.lastName}
               </span>
+              {user?.username && <span className={styles.username}>@{user?.username}</span>}
               <span>{user?.sex === SexEnum.Female ? "Female" : "Male"}</span>
 
               <span>
