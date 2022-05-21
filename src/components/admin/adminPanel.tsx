@@ -103,7 +103,7 @@ const AdminPanel = () => {
     },
     {
       name: "Username",
-      selector: (row: { username: string }) => "@" + row.username,
+      selector: (row: { username: string }) => `@${row.username}`,
     },
     {
       name: "Role",
