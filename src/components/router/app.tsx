@@ -2,7 +2,7 @@ import { User } from "@/redux/reducers/userReducer";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import AdminPanel from "@/components/admin/adminPanel";
@@ -18,7 +18,6 @@ import HotelsWrapper from "../hotels/hotelsWrapper/HotelsWrapper";
 import ParticularHotel from "../hotels/particularHotel/ParticularHotel";
 import ProfileWrapper from "../profile/profileWrapper/ProfileWrapper";
 import NotFound from "../notFound/NotFound";
-import { userInitState } from "@/types/redux/initStates";
 
 export default function App() {
   const selectore = useSelector<RootState, User>((el) => el.user);
@@ -76,7 +75,7 @@ export default function App() {
         </div>
       </Router>
 
-      <ToastContainer />
+      <ToastContainer transition={Bounce} theme="dark" position="bottom-right" className={styles.prikol} />
     </>
   );
 }
