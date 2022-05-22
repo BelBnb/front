@@ -59,7 +59,7 @@ const NeighbourComponent: React.FC<NeighbourComponentProps> = ({ item, isMine, i
         </div>
         {(isMine || user?.role === RoleEnum.Admin) && isDelete && (
           <OutlinedButton outlineLabel="Remove" onClick={() => isDelete.onDelete(item.id)} />
-        )}{" "}
+        )}
       </div>
     </div>
   );

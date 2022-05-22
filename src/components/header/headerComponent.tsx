@@ -1,6 +1,6 @@
 import React from "react";
 import appWhiteLogo from "src/assets/images/logos/white-logo.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/redux/reducers/userReducer";
@@ -10,14 +10,21 @@ import ProfileButton from "./ProfileButton/profileButton";
 
 const Header = () => {
   const user = useSelector<RootState, User>((state) => state.user);
+  const nav = useNavigate();
+
+  const handleBack = () => {
+    nav("/");
+  };
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerContent}>
         <div className={styles.logoContainer}>
-          <div className={styles.logoImage}>
-            <img src={appWhiteLogo} alt="White Logo" />
+          <div className={styles.pirkol} onClick={() => handleBack()}>
+            <div className={styles.logoImage}>
+              <img src={appWhiteLogo} alt="White Logo" />
+            </div>
+            <span className={styles.logoCaption}>NB</span>
           </div>
-          <span className={styles.logoCaption}>NB</span>
           <div className={styles.linksContainer}>
             {headerLinks.map((el) => (
               <NavLink

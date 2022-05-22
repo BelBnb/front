@@ -40,8 +40,48 @@
   }
 }
 
+.contentWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.center {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  flex-direction: column;
+  height: 40%;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  h2,
+  .header {
+    font-family: "DaysOne", sans-serif;
+    text-transform: uppercase;
+    background-color: transparent;
+  }
+
+  .header {
+    font-size: 24px;
+  }
+
+  & > p {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  p > div {
+    font-size: 22px;
+  }
+}
+
 .content {
   width: 100%;
+  display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -62,7 +102,7 @@
       justify-content: center;
     }
 
-    & span {
+    & > span {
       display: flex;
       width: 100%;
       text-align: center;
@@ -81,6 +121,28 @@
         font-size: 18px;
         padding: 4px 8px;
       }
+    }
+  }
+}
+
+.buttonContainer {
+  margin: 40px auto;
+  width: 30%;
+  padding: 12px;
+  border-radius: 4px;
+  color: $bn-light-grey;
+  background-color: $bn-black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  & > div {
+    display: flex;
+    gap: 20px;
+
+    a {
+      text-shadow: 0 0 2px $bn-light-grey;
     }
   }
 }

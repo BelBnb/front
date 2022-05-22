@@ -9,7 +9,7 @@ interface ErrorContaienrProps {
 const InputErrorContainer: React.FC<ErrorContaienrProps> = ({ isErrorr, message, children }) => (
   <div className={isErrorr ? styles.error : ""}>
     {children}
-    {isErrorr && <span>{message}</span>}{" "}
+    {isErrorr && <span>{message}</span>}
   </div>
 );
 

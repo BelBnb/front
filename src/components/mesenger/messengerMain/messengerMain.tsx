@@ -67,7 +67,7 @@ const MessengerMain = () => {
             <MessengerDialogs dialogs={dialogs} selectDialog={selectDialog} />
           ) : (
             <span className={styles.rColEmpty}>It is so lonely there</span>
-          )}{" "}
+          )}
         </div>
         {params && params.id ? (
           <div className={styles.selectedDialog}>
