@@ -11,7 +11,11 @@ import ColoredButton from "@/elements/common/buttons/buttons";
 import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
 import styles from "./styles.module.scss";
 
-const MeNeighboursMain: React.FC = (): JSX.Element => {
+interface MeNeighboursMainProps {
+  setHasMyNotes: (e: boolean) => void;
+}
+
+const MeNeighboursMain: React.FC<MeNeighboursMainProps> = ({ setHasMyNotes }): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
   const [neighbours, setNeighbours] = useState<Neighbours[]>();
   const [total, setTotal] = useState(0);
@@ -24,6 +28,7 @@ const MeNeighboursMain: React.FC = (): JSX.Element => {
       id: user?.id,
     });
     const parsed = await data.json();
+    setHasMyNotes(parsed && !(parsed.statusCode || parsed.status) && parsed.data.length > 0);
     setNeighbours(parsed.data);
     setTotal(parsed.total);
     setPage(1);

@@ -1,6 +1,6 @@
 import React from "react";
 import appWhiteLogo from "src/assets/images/logos/white-logo.svg";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/redux/reducers/userReducer";
@@ -20,20 +20,31 @@ const Header = () => {
           <span className={styles.logoCaption}>NB</span>
           <div className={styles.linksContainer}>
             {headerLinks.map((el) => (
-              <Link to={el.value} className={`${styles.link} ${styles.highlight}`}>
+              <NavLink
+                to={el.value}
+                className={({ isActive }) => (isActive ? `${styles.active} ${styles.link} ` : `${styles.link} `)}
+              >
                 {el.label}
-              </Link>
+              </NavLink>
             ))}
           </div>
         </div>
         {!user.authorized ? (
           <div className={styles.buttons}>
-            <Link to="/sign-in" className={`${styles.link} ${styles.highlight}`}>
+            <NavLink
+              to="/sign-in"
+              className={({ isActive }) =>
+                isActive ? `${styles.active} ${styles.link} ` : `${styles.link}  ${styles.highlight}`
+              }
+            >
               Sign in
-            </Link>
-            <Link to="/sign-up" className={styles.link}>
+            </NavLink>
+            <NavLink
+              to="/sign-up"
+              className={({ isActive }) => (isActive ? `${styles.active} ${styles.link} ` : `${styles.link} `)}
+            >
               Sign up
-            </Link>
+            </NavLink>
           </div>
         ) : (
           <ProfileButton user={user} />

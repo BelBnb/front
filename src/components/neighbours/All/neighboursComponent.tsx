@@ -12,13 +12,14 @@ import MeNeighboursMain from "@/components/neighbours/My/mineNeighboursComponent
 import CoolLabel from "@/elements/common/coolLabel/coolLabel";
 import { DateRange, RangeKeyDict } from "react-date-range";
 import ColoredButton from "@/elements/common/buttons/buttons";
+import { RoleEnum } from "@/common/role.enum";
 import styles from "./styles.module.scss";
 import NeighbourComponent from "../neighbourComponent/NeighbourComponent";
-import { RoleEnum } from "@/common/role.enum";
 
 const NeighboursMain: React.FC = (): JSX.Element => {
   const user = useSelector<RootState, User>((el) => el.user);
-  const [neighbours, setNeighbours] = useState<Neighbours[]>();
+  const [neighbours, setNeighbours] = useState<Neighbours[]>([]);
+  const [hasMy, setHasMy] = useState(true);
   const [total, setTotal] = useState(0);
 
   const [ageMin, setAgeMin] = useState(18);
@@ -85,19 +86,23 @@ const NeighboursMain: React.FC = (): JSX.Element => {
       <div className={styles.pageContainer}>
         <div className={styles.columns}>
           <div className={styles.leftColumn}>
-            <MeNeighboursMain />
-            <CoolLabel>All cards</CoolLabel>
-            <div className={styles.commentsContainer}>
-              {neighbours?.map((item) => (
-                <div>
-                  <NeighbourComponent
-                    isMine={false}
-                    item={item}
-                    isDelete={user.role === RoleEnum.Admin ? { label: "Remove", onDelete: remove } : undefined}
-                  />
-                </div>
-              ))}
-            </div>
+            <MeNeighboursMain setHasMyNotes={setHasMy} />
+            {neighbours?.length > 0 ? (
+              <div className={styles.commentsContainer}>
+                <CoolLabel>All cards</CoolLabel>
+                {neighbours?.map((item) => (
+                  <div>
+                    <NeighbourComponent
+                      isMine={false}
+                      item={item}
+                      isDelete={user.role === RoleEnum.Admin ? { label: "Remove", onDelete: remove } : undefined}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              !hasMy && <span className={styles.noResults}>We didn't found anything</span>
+            )}
             {page * PageSize < total && (
               <div className={styles.loadButton}>
                 <ColoredButton coloredLabel="Load more" onClick={getMoreNeighbours} />

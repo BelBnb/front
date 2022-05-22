@@ -10,8 +10,17 @@
   z-index: 10;
 
   .link {
+    transition: all 0.3s;
+    padding: 4px 8px;
     color: $bn-light-grey;
-    font-size: 1.2rem;
+    font-size: 15px;
+    font-family: "DaysOne", sans-serif;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $bn-semi-black;
+      color: $bn-claucos !important;
+    }
   }
 }
 
@@ -26,6 +35,16 @@
 .logoContainer {
   display: flex;
   align-items: center;
+}
+
+.active {
+  background-color: $bn-light-grey !important;
+  border-radius: 4px;
+  color: $bn-claucos !important;
+}
+
+.highlight {
+  background-color: $bn-claucos;
 }
 
 .logoCaption {
@@ -48,7 +67,7 @@
 .linksContainer {
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin-left: 40px;
   gap: 8px;
 }
 
@@ -60,13 +79,6 @@
   button {
     height: 42px;
     padding: 0 40px;
-
-    .link {
-      font-family: "Catamaran-Regular", sans-serif;
-      text-transform: uppercase;
-      color: $bn-black;
-      font-size: 1rem;
-    }
   }
 }
 
@@ -78,7 +90,7 @@
   }
 
   a:hover {
-    color: $bn-black;
-    background-color: $bn-light-grey;
+    color: $bn-claucos !important;
+    background-color: $bn-semi-black !important;
   }
 }

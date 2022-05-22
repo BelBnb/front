@@ -16,6 +16,11 @@
     }
   }
 
+  .noResults {
+    font-family: "DaysOne", sans-serif;
+    text-transform: uppercase;
+  }
+
   .columns {
     display: flex;
     gap: 18px;

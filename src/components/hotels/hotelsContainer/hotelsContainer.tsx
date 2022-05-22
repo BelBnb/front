@@ -209,21 +209,23 @@ const HotelsContainer = ({
 
   return (
     <div className={styles.hotelsWrapper}>
-      <h4 className={styles.headerCaption}>Hotels</h4>
+      {hotels.length > 0 && <h4 className={styles.headerCaption}>Hotels</h4>}
       <div className={styles.hotelsContainer}>
-        {hotels.length > 0 &&
-          hotels.map((el) => <HotelCard hotelItem={el} updateHandler={handleUpdate} deleteHandler={handleDelete} />)}
-
-        {(page + 1) * PageSize < total && (
-          <button
-            onClick={() => {
-              fetchDataPaginated();
-            }}
-          >
-            Give me more
-          </button>
+        {hotels.length > 0 ? (
+          hotels.map((el) => <HotelCard hotelItem={el} updateHandler={handleUpdate} deleteHandler={handleDelete} />)
+        ) : (
+          <span className={styles.noResults}>We didn't found anything</span>
         )}
       </div>
+      {(page + 1) * PageSize < total && (
+        <button
+          onClick={() => {
+            fetchDataPaginated();
+          }}
+        >
+          Give me more
+        </button>
+      )}
 
       <DialogComponent
         submitLabel={submitLabel()}
