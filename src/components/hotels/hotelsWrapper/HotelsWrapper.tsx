@@ -1,9 +1,10 @@
 import ColoredButton from "@/elements/common/buttons/buttons";
 import Searchbar from "@/elements/common/searchbar/searchbar";
 import queryBuilder from "@/helpers/queryBuilder";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as debounce from "lodash.debounce";
+import useOutsideAlerter from "@/hooks/useOutside/useOutsideAlerter";
 import HotelFilters, { hotelFiltersType } from "../HotelFilters/HotelFIlters";
 import HotelsContainer from "../hotelsContainer/hotelsContainer";
 import styles from "./styles.module.scss";
@@ -13,6 +14,11 @@ const HotelsWrapper = () => {
   const [toplineClass, setTopLineClass] = useState(styles.initBorderLine);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [findEvent, setFindEvent] = useState(false);
+
+  const ref = useRef<HTMLDivElement>({} as HTMLDivElement);
+  useOutsideAlerter(ref, () => {
+    setFiltersOpen(false);
+  });
 
   const [invokeAddHotel, setInvokeAddHotel] = useState(0);
 
@@ -62,7 +68,9 @@ const HotelsWrapper = () => {
             <div className={styles.filtersContainer}>
               <ColoredButton
                 coloredLabel={filtersOpen ? "Close filters" : "Open filters"}
-                onClick={() => setFiltersOpen((prevState) => !prevState)}
+                onClick={() => {
+                  setFiltersOpen((prevState) => !prevState);
+                }}
               />
               {filtersOpen && (
                 <HotelFilters
@@ -71,6 +79,7 @@ const HotelsWrapper = () => {
                   priceL={filters.priceL}
                   priceB={filters.priceB}
                   handleApply={handleApply}
+                  ref={ref}
                 />
               )}
             </div>

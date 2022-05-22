@@ -17,12 +17,14 @@ interface HotelFiltersProps {
   handleApply: () => void;
 }
 
-const HotelFilters: React.FC<HotelFiltersProps> = ({ city, priceL, priceB, setValue, handleApply }) => {
+const HotelFilters = React.forwardRef<HTMLInputElement, HotelFiltersProps>((props, ref) => {
+  const { city, priceL, priceB, setValue, handleApply } = props;
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>, propName: keyof hotelFiltersType) => {
     setValue(e.currentTarget.value || "", propName);
   };
+
   return (
-    <div className={styles.inputWrapper}>
+    <div className={styles.inputWrapper} ref={ref}>
       <div className={styles.group}>
         <input type="text" value={city} onChange={(e) => changeHandler(e, "city")} />
         <label className={styles.label}>City</label>
@@ -45,6 +47,5 @@ const HotelFilters: React.FC<HotelFiltersProps> = ({ city, priceL, priceB, setVa
       </div>
     </div>
   );
-};
-
+});
 export default HotelFilters;
