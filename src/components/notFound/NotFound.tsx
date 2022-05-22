@@ -3,7 +3,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 
-const NotFound = () => {
+interface ErrorComponentProps {
+  topCaption: string;
+  bottomCaption: string;
+  code: number;
+}
+
+const ErrorComponent: React.FC<ErrorComponentProps> = ({ topCaption, bottomCaption, code }) => {
   const nav = useNavigate();
 
   const hableBack = () => {
@@ -13,16 +19,16 @@ const NotFound = () => {
     <div className={styles.wrapper}>
       <div className={styles.leftCol}>
         <div>
-          <span>You look lonely</span>
-          <span>Location couldn't be found</span>
+          <span>{topCaption}</span>
+          <span>{bottomCaption}</span>
           <OutlinedButton outlineLabel="Go back" onClick={hableBack} />
         </div>
       </div>
       <div className={styles.rightCol}>
-        <span>404</span>
+        <span>{code}</span>
       </div>
     </div>
   );
 };
 
-export default NotFound;
+export default ErrorComponent;

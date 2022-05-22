@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AdminPanel from "@/components/admin/adminPanel";
 import NeighboursMain from "@/components/neighbours/All/neighboursComponent";
 import Main from "../main/mainComponent";
-import { ProtectedRoute, UnprotectedRoute } from "./protectedRoute";
+import { AdminRoute, ProtectedRoute, UnprotectedRoute } from "./protectedRoute";
 import Header from "../header/headerComponent";
 import styles from "./styles.module.scss";
 import LoginPage from "../auth/login/loginPageComponent";
@@ -51,7 +51,14 @@ export default function App() {
             <Route path="/messenger" element={<MessengerMain />} />
             <Route path="/messenger/:id" element={<MessengerMain />} />
             <Route path="/neighbours" element={<NeighboursMain />} />
-            <Route path="/admin" element={<AdminPanel />} />
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute user={selectore}>
+                  <AdminPanel />
+                </AdminRoute>
+              }
+            />
             <Route
               path="/profile/:id"
               element={
@@ -60,7 +67,22 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/not-authorized"
+              element={
+                <NotFound
+                  topCaption="Look ad yourself"
+                  bottomCaption={"You don't have sufficient privileges"}
+                  code={403}
+                />
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <NotFound topCaption="You look lonely" bottomCaption={"Location couldn't be found"} code={404} />
+              }
+            />
             <Route
               path="/profile"
               element={

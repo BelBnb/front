@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import messengerApi from "@/api/messenger/messengerApi";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { User } from "@/types/redux/initStates";
-import { PageSize } from "@/common/paginationConstants";
 import userApi from "@/api/user/userApi";
 import messengerPic from "@/assets/images/backgrounds/messenger.png";
 import styles from "./styles.module.scss";
@@ -36,9 +35,6 @@ const MessengerMain = () => {
       });
 
       const s = Array.from(new Set(arr));
-      console.log("d.data", d.data);
-
-      console.log("s", s);
 
       const result = await userApi.getUsersByIds({
         ids: JSON.stringify(s),
@@ -46,7 +42,7 @@ const MessengerMain = () => {
       const u = result;
       u.push(user);
       setUsers(u);
-      console.log("Users for dialogs ", u);
+      conslie.log("Users for dialogs ", u);
 
       d.data = d.data.map((item) => {
         const userFrom = u.find((_user) => _user.id === item.from);
@@ -55,7 +51,7 @@ const MessengerMain = () => {
         return { ...item, companion: userFrom };
       });
 
-      console.log("Dialogs ", d.data);
+      conslie.log("Dialogs ", d.data);
 
       setDialogs(d.data);
     }
@@ -67,14 +63,30 @@ const MessengerMain = () => {
     <div className={styles.messengerWrapper}>
       <div className={styles.messengerContainer}>
         <div className={styles.dialogs}>
-          <MessengerDialogs dialogs={dialogs} selectDialog={selectDialog} />
+          {dialogs.length > 0 ? (
+            <MessengerDialogs dialogs={dialogs} selectDialog={selectDialog} />
+          ) : (
+            <span className={styles.rColEmpty}>It is so lonely there</span>
+          )}{" "}
         </div>
-        {params && params.id && (
+        {params && params.id ? (
           <div className={styles.selectedDialog}>
             <Dialog users={users} id={params.id} />
             <div className={styles.backgroundImage}>
               <img src={messengerPic} alt="background" />
             </div>
+          </div>
+        ) : (
+          <div className={styles.errDec}>
+            <span>This is a great opportunity to find someone</span>
+            <ol>
+              <li>
+                Open <Link to="/hotels">hotels page</Link>
+              </li>
+              <li>Choose favourite hotel</li>
+              <li>Then give us a sign that you want to find neighbours</li>
+              <li>Find someone through the search or leave a profile</li>
+            </ol>
           </div>
         )}
       </div>
