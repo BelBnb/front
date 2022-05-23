@@ -4,12 +4,14 @@ import { User, userInitState } from "@/types/redux/initStates";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getTokenPreffix } from "./prefixes";
 
-const getTokenInfoHandler = async () => {
+const getTokenInfoHandler = async (idpr: string) => {
   const token = localStorage.getItem("token");
   if (!token) {
     return userInitState;
   }
-  const { id } = decode(token);
+  let { id } = decode(token);
+
+  id = idpr || id;
 
   if (id) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

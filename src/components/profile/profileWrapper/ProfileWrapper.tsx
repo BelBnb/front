@@ -81,7 +81,7 @@ const ParticularUser = () => {
         user?.id
       )
       .then(() => dispatch(getTokenInfoThunk(user.id)));
-    dispatch(getTokenInfoThunk(user.id));
+    userApi.updateAvatar(formData, user?.id).then(() => dispatch(getTokenInfoThunk(user.id)));
     setNotEditPhoto();
   };
 
