@@ -42,7 +42,6 @@ const MessengerMain = () => {
       const u = result;
       u.push(user);
       setUsers(u);
-      conslie.log("Users for dialogs ", u);
 
       d.data = d.data.map((item) => {
         const userFrom = u.find((_user) => _user.id === item.from);
@@ -50,8 +49,6 @@ const MessengerMain = () => {
         if (userFrom.id === user.id) return { ...item, companion: userTo };
         return { ...item, companion: userFrom };
       });
-
-      conslie.log("Dialogs ", d.data);
 
       setDialogs(d.data);
     }
