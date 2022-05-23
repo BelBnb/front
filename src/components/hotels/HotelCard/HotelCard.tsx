@@ -31,7 +31,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotelItem, updateHandler, deleteH
       </Carousel>
       <div className={styles.bottomText}>
         <span className={styles.name}>{hotelItem.name}</span>
-        <span className={styles.price}>{hotelItem.price}</span>
+        <span className={styles.price}>{hotelItem.price}$</span>
         <div className={styles.bottomButtons}>
           <div>
             <button type="button">

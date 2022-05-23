@@ -1,11 +1,16 @@
 .cardContainer {
   display: flex;
-  flex: 0 0 24%;
-  width: 24%;
+  flex: 0 0 23%;
+  width: 23%;
   flex-direction: column;
   background-color: $bn-white;
   border-radius: 16px;
   padding-bottom: 18px;
+
+  .price {
+    font-family: "DaysOne", sans-serif;
+    margin-bottom: 5px;
+  }
 
   .imageContainer {
     display: flex;

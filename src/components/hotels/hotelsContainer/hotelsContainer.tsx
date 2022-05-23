@@ -128,6 +128,7 @@ const HotelsContainer = ({
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       onFileUpload();
     }
+    fetchData();
   };
 
   const cancelHandler = () => {
