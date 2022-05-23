@@ -51,6 +51,10 @@ const ParticularUser = () => {
     }
   };
 
+  const setNotEditPhoto = () => {
+    setIsEdit((prevState) => ({ ...prevState, editPhoto: false }));
+  };
+
   const onFileUpload = () => {
     const formData = new FormData();
     if (!file || !user) {
@@ -68,7 +72,17 @@ const ParticularUser = () => {
         },
       },
     });
-    dispatch(getTokenInfoThunk());
+    userApi
+      .updateUser(
+        {
+          firstName,
+          lastName,
+        },
+        user?.id
+      )
+      .then(() => dispatch(getTokenInfoThunk(user.id)));
+    dispatch(getTokenInfoThunk(user.id));
+    setNotEditPhoto();
   };
 
   const fetchUserBookings = async (id: string) => {
@@ -122,10 +136,6 @@ const ParticularUser = () => {
     setIsEdit((prevState) => ({ ...prevState, editPhoto: true }));
   };
 
-  const setNotEditPhoto = () => {
-    setIsEdit((prevState) => ({ ...prevState, editPhoto: false }));
-  };
-
   const setEditBody = () => {
     setOpen(true);
     setIsEdit((prevState) => ({ ...prevState, editBody: true }));
@@ -158,7 +168,16 @@ const ParticularUser = () => {
         pending: "Pending",
       }
     );
-    dispatch(getTokenInfoThunk());
+    userApi
+      .updateUser(
+        {
+          firstName,
+          lastName,
+        },
+        user?.id
+      )
+      .then(() => dispatch(getTokenInfoThunk(user.id)));
+    dispatch(getTokenInfoThunk(user.id));
   };
 
   const saveHandler = () => {
